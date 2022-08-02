@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    tools:context=".RegisterFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:background="@color/white"
+        android:elevation="0dp"
+        app:liftOnScroll="true"
+        tools:targetApi="lollipop">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed"
+            app:contentScrim="@color/white"
+            app:expandedTitleMarginBottom="18dp"
+            app:expandedTitleMarginStart="30dp"
+            app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:statusBarScrim="@color/white">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/back"
+                app:title="Sign up"
+                tools:targetApi="lollipop" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Note: A RecyclerView can also be used -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|bottom"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            tools:context=".RegisterFragment">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/ThemeOverlay.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="14dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                app:boxStrokeColor="@color/border_input_text_color"
+                app:boxStrokeErrorColor="@color/color_error"
+                app:startIconDrawable="@drawable/user">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/FullNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:hint="Full name"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="17dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/ThemeOverlay.App.TextInputLayout"
+                android:id="@+id/MailTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:drawablePadding="14dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                app:boxStrokeColor="@color/border_input_text_color"
+                app:boxStrokeErrorColor="@color/color_error"
+                app:startIconDrawable="@drawable/mail">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/MailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:hint="abc@email.com"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="17dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/ThemeOverlay.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:drawablePadding="14dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                app:boxStrokeColor="@color/border_input_text_color"
+                app:boxStrokeErrorColor="@color/color_error"
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:hint="Your password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="17dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/ThemeOverlay.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:drawablePadding="14dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                app:boxStrokeColor="@color/border_input_text_color"
+                app:boxStrokeErrorColor="@color/color_error"
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ConfirmPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:hint="Confirm password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="17dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/ThemeOverlay.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:drawablePadding="14dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                app:boxStrokeColor="@color/border_input_text_color"
+                app:boxStrokeErrorColor="@color/color_error"
+                app:startIconDrawable="@drawable/address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/AddressEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:hint="Address"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingHorizontal="15dp"
+                    android:paddingVertical="17dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/SignUpButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="45dp"
+                android:background="@drawable/corner_button"
+                android:drawableEnd="@drawable/enter_arrow_icon"
+                android:fontFamily="@font/airbnbcereal_w_md"
+                android:text="Sign up"
+                android:textSize="16sp"
+                app:backgroundTint="@color/primary_variant" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="59dp"
+                android:fontFamily="@font/airbnbcereal_w_md"
+                android:text="OR"
+                android:textColor="@color/text_gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="38dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:text="Already have an account?"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/SignInButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:text="Sign in"
+                    android:textColor="@color/primary"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
