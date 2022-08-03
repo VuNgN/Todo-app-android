@@ -87,8 +87,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/ThemeOverlay.App.TextInputLayout"
                 android:id="@+id/MailTextInputLayout"
+                style="@style/ThemeOverlay.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="19dp"
@@ -119,6 +119,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/PasswordTextInputLayout"
                 style="@style/ThemeOverlay.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,6 +134,7 @@
                 app:boxStrokeColor="@color/border_input_text_color"
                 app:boxStrokeErrorColor="@color/color_error"
                 app:endIconMode="password_toggle"
+                app:errorIconDrawable="@null"
                 app:startIconDrawable="@drawable/password">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -151,6 +153,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ConfirmPasswordTextInputLayout"
                 style="@style/ThemeOverlay.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -165,6 +168,7 @@
                 app:boxStrokeColor="@color/border_input_text_color"
                 app:boxStrokeErrorColor="@color/color_error"
                 app:endIconMode="password_toggle"
+                app:errorIconDrawable="@null"
                 app:startIconDrawable="@drawable/password">
 
                 <com.google.android.material.textfield.TextInputEditText
