@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/getStartedFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.vungn.todoapp.LoginFragment"
+        android:name="com.vungn.todoapp.ui.authentication.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -19,7 +19,37 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.vungn.todoapp.RegisterFragment"
+        android:name="com.vungn.todoapp.ui.authentication.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/getStartedFragment"
+        android:name="com.vungn.todoapp.ui.authentication.GetStartedFragment"
+        android:label="fragment_get_started"
+        tools:layout="@layout/fragment_get_started">
+        <action
+            android:id="@+id/action_getStartedFragment_to_onBoardFragment"
+            app:destination="@id/onBoardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/getStartedFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardFragment"
+        android:name="com.vungn.todoapp.ui.authentication.OnBoardFragment"
+        android:label="fragment_on_board"
+        tools:layout="@layout/fragment_on_board">
+        <action
+            android:id="@+id/action_onBoardFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/onBoardFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

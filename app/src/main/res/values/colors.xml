@@ -17,4 +17,6 @@
     <color name="border_input_text_color">#E4DFDF</color>
     <color name="color_error">#f5554a</color>
     <color name="text_gray">#9D9898</color>
+    <color name="text_shadow">#917878</color>
+    <color name="dots_stroke_color">#33FFFFFF</color>
 </resources>

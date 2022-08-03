@@ -1,4 +1,4 @@
-package com.vungn.todoapp
+package com.vungn.todoapp.ui.authentication
 
 import android.content.Context
 import android.graphics.Rect
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.vungn.todoapp.R
 
 class AuthenticationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

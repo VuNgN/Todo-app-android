@@ -1,4 +1,4 @@
-package com.vungn.todoapp
+package com.vungn.todoapp.ui.authentication
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentLoginBinding
 
 

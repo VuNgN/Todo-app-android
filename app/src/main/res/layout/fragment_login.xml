@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     android:gravity="center|bottom"
     android:orientation="vertical"
-    android:paddingHorizontal="30dp"
-    android:focusableInTouchMode="true"
-    tools:context=".LoginFragment">
+    android:paddingHorizontal="@dimen/edge_horizontal"
+    tools:context=".ui.authentication.LoginFragment">
 
     <TextView
         android:id="@+id/SignInTitle"
@@ -16,17 +16,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:fontFamily="@font/airbnbcereal_w_md"
-        android:text="Sign in"
+        android:text="@string/sign_in"
         android:textColor="@color/black"
-        android:textSize="24sp" />
+        android:textSize="@dimen/title_text_size_login" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/ThemeOverlay.App.TextInputLayout"
         android:id="@+id/MailTextInputLayout"
+        style="@style/ThemeOverlay.App.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:drawablePadding="14dp"
+        android:drawablePadding="@dimen/edit_text_drawable_padding"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
@@ -42,14 +42,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airbnbcereal_w_bk"
-            android:hint="abc@email.com"
+            android:hint="@string/abc_email_com"
 
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="17dp"
+            android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+            android:paddingVertical="@dimen/edit_text_padding_vertical"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="@dimen/edit_text_text_size_login_register" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
-        android:drawablePadding="14dp"
+        android:drawablePadding="@dimen/edit_text_drawable_padding"
         app:boxBackgroundColor="@color/white"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
@@ -75,13 +75,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/airbnbcereal_w_bk"
-            android:hint="Your password"
+            android:hint="@string/your_password"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:paddingHorizontal="15dp"
-            android:paddingVertical="17dp"
+            android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+            android:paddingVertical="@dimen/edit_text_padding_vertical"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="@dimen/edit_text_text_size_login_register" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,9 +113,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/airbnbcereal_w_bk"
-                android:text="Remember Me"
+                android:text="@string/remember_me"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_view_text_size_login" />
 
         </LinearLayout>
 
@@ -127,22 +127,22 @@
             android:layout_weight="1"
             android:fontFamily="@font/airbnbcereal_w_bk"
             android:gravity="end"
-            android:text="Forgot Password?"
+            android:text="@string/forgot_password"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="@dimen/text_view_text_size_login" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/SignInButton"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginHorizontal="32dp"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
         android:background="@drawable/corner_button"
         android:drawableEnd="@drawable/enter_arrow_icon"
         android:fontFamily="@font/airbnbcereal_w_md"
-        android:text="Sign in"
-        android:textSize="16sp"
+        android:text="@string/sign_in"
+        android:textSize="@dimen/button_text_size_login_register"
         app:backgroundTint="@color/primary_variant" />
 
     <TextView
@@ -150,37 +150,37 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/airbnbcereal_w_md"
-        android:text="OR"
+        android:text="@string/or"
         android:textColor="@color/text_gray" />
 
     <Button
         android:id="@+id/LoginWithGoogleButton"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="32dp"
+        android:layout_height="@dimen/button_height_social_login"
+        android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
         android:layout_marginTop="5dp"
         android:background="@drawable/corner_button"
         android:drawableLeft="@drawable/google_signin_icon"
         android:fontFamily="@font/airbnbcereal_w_bk"
-        android:text="Login with Google"
+        android:text="@string/login_with_google"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="@dimen/button_text_size_login_register"
         app:backgroundTint="@color/white" />
 
     <Button
         android:id="@+id/LoginWithFacebookButton"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="32dp"
+        android:layout_height="@dimen/button_height_social_login"
+        android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
         android:layout_marginTop="17dp"
         android:background="@drawable/corner_button"
         android:drawableLeft="@drawable/facebook_signin_icon"
         android:fontFamily="@font/airbnbcereal_w_bk"
-        android:text="Login with Facebook"
+        android:text="@string/login_with_facebook"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="@dimen/button_text_size_login_register"
         app:backgroundTint="@color/white" />
 
     <LinearLayout
@@ -197,9 +197,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/airbnbcereal_w_bk"
-            android:text="Don't have an account?"
+            android:text="@string/don_t_have_an_account"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="@dimen/text_view_text_size_login_register_2" />
 
         <TextView
             android:id="@+id/SignUpButton"
@@ -208,9 +208,9 @@
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:fontFamily="@font/airbnbcereal_w_bk"
-            android:text="Sign up"
+            android:text="@string/sign_up"
             android:textColor="@color/primary"
-            android:textSize="15sp" />
+            android:textSize="@dimen/text_view_text_size_login_register_2" />
 
     </LinearLayout>
 

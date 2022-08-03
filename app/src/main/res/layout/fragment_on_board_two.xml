@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".ui.onboarding.OnBoardTwoFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:contentDescription="@null"
+        android:paddingHorizontal="@dimen/image_view_padding_horizontal_onboard"
+        android:src="@drawable/onboard_image_2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:background="@android:color/transparent"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Keep track of tasks"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_view_text_size_onboard" />
+
+    </LinearLayout>
+
+</LinearLayout>

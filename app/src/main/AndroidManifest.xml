@@ -14,7 +14,7 @@
         android:theme="@style/Theme.TodoApp"
         tools:targetApi="31">
         <activity
-            android:name=".AuthenticationActivity"
+            android:name=".ui.authentication.AuthenticationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/title_activity_authentication"

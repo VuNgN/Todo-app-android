@@ -1,49 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/fullscreenBackgroundColor"
+    android:background="@color/primary"
+    android:fitsSystemWindows="true"
     android:theme="@style/ThemeOverlay.TodoApp.FullscreenContainer"
-    tools:context=".GetStartedFragment">
+    tools:context=".ui.authentication.GetStartedFragment">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-    <TextView
-        android:id="@+id/fullscreen_content"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="?attr/fullscreenTextColor"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:contentDescription="@null"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/start_image_background" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_gravity="bottom|start"
+        android:fitsSystemWindows="true"
+        android:paddingHorizontal="@dimen/edge_horizontal_get_started">
 
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
-            style="@style/Widget.Theme.TodoApp.ButtonBar.Fullscreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:weightSum="2"
             tools:ignore="UselessParent">
 
-            <Button
-                android:id="@+id/dummy_button"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="start"
+                android:shadowColor="@color/text_shadow"
+                android:shadowDx="@dimen/text_shadow_dx_get_started"
+                android:shadowDy="@dimen/text_shadow_dy_get_started"
+                android:shadowRadius="@dimen/text_shadow_radius_get_started"
+                android:text="Convenient and"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_title_get_started" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="53dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="start"
+                android:text="productive task manager"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_title_get_started" />
+
+            <Button
+                android:id="@+id/getStartedButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginHorizontal="@dimen/button_margin_horizontal_get_started"
+                android:layout_marginBottom="@dimen/button_margin_bottom_get_started"
+                android:layout_weight="1"
+                android:background="@drawable/corner_button"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="Get started"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_text_size_get_started"
+                app:backgroundTint="@color/black" />
 
         </LinearLayout>
     </FrameLayout>

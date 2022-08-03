@@ -8,6 +8,11 @@ buildscript {
         navigationVersion = "2.3.5"
         constraintLayoutVersion = "2.1.2"
     }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 
 plugins {
