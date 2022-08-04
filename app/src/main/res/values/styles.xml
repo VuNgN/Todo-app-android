@@ -39,6 +39,6 @@
         <item name="colorError">@color/color_error</item>
         <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>
         <item name="textAppearanceCaption">@style/TextAppearance.App.Caption</item>
-        <item name="android:editTextStyle">@drawable/corner_edit_text</item>
+        <item name="android:editTextStyle">@drawable/corner_edit_text_authentication</item>
     </style>
 </resources>

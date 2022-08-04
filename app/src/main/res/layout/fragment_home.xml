@@ -1,13 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/edge_horizontal"
     tools:context=".ui.main.HomeFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="45dp"
+        android:gravity="center">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/avatar"
+            app:backgroundTint="@null"
+            android:contentDescription="@null" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello, Jack"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You've got" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5 tasks today" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/ThemeOverlay.App.TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:drawablePadding="@dimen/edit_text_drawable_padding"
+        app:boxStrokeColor="#eeeeee"
+        app:boxBackgroundColor="#eeeeee"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+        app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+        app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+        app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+        app:endIconMode="custom"
+        app:endIconTint="@color/black"
+        app:endIconDrawable="@drawable/ic_baseline_search_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/PasswordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/airbnbcereal_w_bk"
+            android:hint="Search something"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+            android:paddingVertical="@dimen/edit_text_padding_vertical"
+            android:textColor="#9a9a9a"
+            android:textSize="@dimen/edit_text_text_size_login_register" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>
