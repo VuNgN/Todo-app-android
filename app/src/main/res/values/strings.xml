@@ -46,4 +46,8 @@
     <string name="re_send">Re-send</string>
     <string name="button_text_continue">continue</string>
     <string name="re_send_code_in">Re-send code in</string>
+    <string name="send">Send</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="please_enter_your_email_address_to">Please enter your email address to</string>
+    <string name="request_a_password_reset">request a password reset</string>
 </resources>

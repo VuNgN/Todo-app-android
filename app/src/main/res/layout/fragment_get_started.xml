@@ -70,13 +70,13 @@
                 android:layout_marginHorizontal="@dimen/button_margin_horizontal_get_started"
                 android:layout_marginBottom="@dimen/button_margin_bottom_get_started"
                 android:layout_weight="1"
-                android:background="@drawable/corner_button"
+                android:background="@drawable/ripple_button"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="Get started"
                 android:textColor="@color/white"
                 android:textSize="@dimen/button_text_size_get_started"
-                app:backgroundTint="@color/black" />
+                app:backgroundTint="@null" />
 
         </LinearLayout>
     </FrameLayout>

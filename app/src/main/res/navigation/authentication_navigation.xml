@@ -23,6 +23,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -64,4 +71,9 @@
         android:name="com.vungn.todoapp.ui.authentication.VerificationFragment"
         android:label="fragment_verification"
         tools:layout="@layout/fragment_verification" />
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.vungn.todoapp.ui.authentication.ResetPasswordFragment"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" />
 </navigation>

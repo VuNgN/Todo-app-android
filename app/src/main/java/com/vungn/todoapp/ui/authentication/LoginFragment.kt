@@ -17,6 +17,7 @@ class LoginFragment : Fragment() {
     private lateinit var signUpButton: TextView
     private lateinit var signInButton: Button
     private lateinit var emailEditText: EditText
+    private lateinit var forgotPassword: TextView
     private var _binding: FragmentLoginBinding? = null
 
     // This property is only valid between onCreateView and
@@ -45,11 +46,15 @@ class LoginFragment : Fragment() {
         signUpButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment, null)
         }
+        forgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment, null)
+        }
     }
 
     private fun bindingView() {
         signInButton = binding.SignInButton
         signUpButton = binding.SignUpButton
         emailEditText = binding.MailEditText
+        forgotPassword = binding.ForgotPasswordTextView
     }
 }
