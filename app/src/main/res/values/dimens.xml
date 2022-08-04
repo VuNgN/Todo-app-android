@@ -33,4 +33,9 @@
     <dimen name="text_view_text_size_onboard">22dp</dimen>
     <dimen name="expanded_title_margin_bottom_register">18dp</dimen>
     <dimen name="expanded_title_margin_start_register">30dp</dimen>
+    <dimen name="expanded_title_margin_bottom_verification_reset_pass">12dp</dimen>
+    <dimen name="text_view_text_size_verification_reset_pass">15sp</dimen>
+    <dimen name="otp_height">55dp</dimen>
+    <dimen name="otp_width">55dp</dimen>
+    <dimen name="otp_text_size">24sp</dimen>
 </resources>

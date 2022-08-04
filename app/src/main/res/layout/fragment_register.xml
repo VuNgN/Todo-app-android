@@ -53,8 +53,7 @@
             android:layout_height="match_parent"
             android:gravity="center|bottom"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/edge_horizontal"
-            tools:context=".ui.authentication.RegisterFragment">
+            android:paddingHorizontal="@dimen/edge_horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/ThemeOverlay.App.TextInputLayout"

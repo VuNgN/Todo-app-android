@@ -53,5 +53,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
 
     //other
-    implementation("com.tbuonomo:dotsindicator:4.3")
+    implementation "com.tbuonomo:dotsindicator:4.3"
+    implementation 'com.github.aabhasr1:OtpView:v1.1.2-ktx'
 }

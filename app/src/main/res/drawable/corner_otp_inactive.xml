@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <stroke
+                android:width="1dp"
+                android:color="#E4DFDF" />
+
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    <item
+        android:bottom="15dp"
+        android:drawable="@drawable/ic_baseline_remove_24"
+        android:left="14dp"
+        android:right="14dp"
+        android:top="15dp" />
+</layer-list>

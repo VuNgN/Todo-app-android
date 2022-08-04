@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.vungn.todoapp.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
     private lateinit var signUpButton: TextView
+    private lateinit var signInButton: Button
     private lateinit var emailEditText: EditText
     private var _binding: FragmentLoginBinding? = null
 
@@ -37,12 +39,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleEvents() {
+        signInButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_verificationFragment, null)
+        }
         signUpButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment, null)
         }
     }
 
     private fun bindingView() {
+        signInButton = binding.SignInButton
         signUpButton = binding.SignUpButton
         emailEditText = binding.MailEditText
     }
