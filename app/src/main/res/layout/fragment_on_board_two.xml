@@ -6,7 +6,7 @@
     android:background="@android:color/transparent"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".ui.onboarding.OnBoardTwoFragment">
+    tools:context=".ui.authentication.onboarding.OnBoardTwoFragment">
 
     <ImageView
         android:layout_width="match_parent"

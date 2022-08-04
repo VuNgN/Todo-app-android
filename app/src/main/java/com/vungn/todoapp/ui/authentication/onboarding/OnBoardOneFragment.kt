@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.onboarding
+package com.vungn.todoapp.ui.authentication.onboarding
 
 import android.os.Bundle
 import android.view.LayoutInflater

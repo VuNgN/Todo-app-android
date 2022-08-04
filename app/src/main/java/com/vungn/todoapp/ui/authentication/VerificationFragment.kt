@@ -39,6 +39,9 @@ class VerificationFragment : Fragment() {
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
+        binding.ContinueButton.setOnClickListener {
+            (requireActivity() as AuthenticationActivity).login()
+        }
     }
 
     private fun setupUi() {

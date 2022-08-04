@@ -2,9 +2,9 @@ package com.vungn.todoapp.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.vungn.todoapp.ui.onboarding.OnBoardOneFragment
-import com.vungn.todoapp.ui.onboarding.OnBoardThreeFragment
-import com.vungn.todoapp.ui.onboarding.OnBoardTwoFragment
+import com.vungn.todoapp.ui.authentication.onboarding.OnBoardOneFragment
+import com.vungn.todoapp.ui.authentication.onboarding.OnBoardThreeFragment
+import com.vungn.todoapp.ui.authentication.onboarding.OnBoardTwoFragment
 
 class OnBoardViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
