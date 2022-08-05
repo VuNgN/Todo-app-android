@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item>
+        <ripple
+            android:color="#42ffffff"
+            tools:targetApi="lollipop">
+            <item>
+                <shape>
+                    <solid android:color="@color/black" />
+                    <corners android:radius="10dp" />
+                </shape>
+            </item>
+        </ripple>
+
+    </item>
+    <item
+        android:bottom="10dp"
+        android:drawable="@drawable/ic_round_check_24"
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp" />
+</layer-list>

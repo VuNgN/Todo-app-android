@@ -8,20 +8,27 @@
         <entry key="..\:/Users/Me/Documents/Workspace/Todo-app-android/app/src/main/res/drawable/corner_edit_text_main.xml" value="0.2265" />
         <entry key="..\:/Users/Me/Documents/Workspace/Todo-app-android/app/src/main/res/layout/fragment_home.xml" value="0.4" />
         <entry key="..\:/Users/Me/Documents/Workspace/Todo-app-android/app/src/main/res/layout/fragment_login.xml" value="0.22826086956521738" />
+        <entry key="app/src/main/res/drawable/check_button.xml" value="0.2225" />
         <entry key="app/src/main/res/drawable/corner_button.xml" value="0.326" />
+        <entry key="app/src/main/res/drawable/corner_card.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/corner_edit_text.xml" value="0.326" />
+        <entry key="app/src/main/res/drawable/corner_edit_text_main.xml" value="0.3035" />
         <entry key="app/src/main/res/drawable/corner_on_board.xml" value="0.3265" />
         <entry key="app/src/main/res/drawable/corner_otp.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/corner_otp_active.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/corner_otp_inactive.xml" value="0.2015" />
         <entry key="app/src/main/res/drawable/ic_baseline_remove_24.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/ic_round_check_24.xml" value="0.2225" />
+        <entry key="app/src/main/res/drawable/ic_round_play_arrow_24.xml" value="0.2225" />
+        <entry key="app/src/main/res/drawable/play_button.xml" value="0.2005" />
         <entry key="app/src/main/res/drawable/ripple_button.xml" value="0.2225" />
         <entry key="app/src/main/res/drawable/start_background.xml" value="0.326" />
+        <entry key="app/src/main/res/drawable/task_card.xml" value="0.2225" />
         <entry key="app/src/main/res/layout/activity_authentication.xml" value="0.3428442028985507" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/authentication_activity.xml" value="0.3428442028985507" />
         <entry key="app/src/main/res/layout/fragment_get_started.xml" value="0.3619791666666667" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.3428442028985507" />
         <entry key="app/src/main/res/layout/fragment_on_board.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_on_board_one.xml" value="0.19479166666666667" />
@@ -29,7 +36,11 @@
         <entry key="app/src/main/res/layout/fragment_on_board_two.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.3428442028985507" />
         <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.365036231884058" />
+        <entry key="app/src/main/res/layout/fragment_today.xml" value="0.365036231884058" />
+        <entry key="app/src/main/res/layout/fragment_tomorrow.xml" value="0.365036231884058" />
+        <entry key="app/src/main/res/layout/fragment_upcoming.xml" value="0.365036231884058" />
         <entry key="app/src/main/res/layout/fragment_verification.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/layout/meeting_card.xml" value="0.365036231884058" />
       </map>
     </option>
   </component>

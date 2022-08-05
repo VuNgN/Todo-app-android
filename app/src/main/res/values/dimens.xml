@@ -38,4 +38,16 @@
     <dimen name="otp_height">55dp</dimen>
     <dimen name="otp_width">55dp</dimen>
     <dimen name="otp_text_size">24sp</dimen>
+    <dimen name="edit_text_padding_horizontal_main">20dp</dimen>
+    <dimen name="avatar_width_task">35dp</dimen>
+    <dimen name="avatar_height_task">35dp</dimen>
+    <dimen name="avatar_margin_start_task">26dp</dimen>
+    <dimen name="task_width">260dp</dimen>
+    <dimen name="task_height">180dp</dimen>
+    <dimen name="task_padding_horizontal">20dp</dimen>
+    <dimen name="task_padding_top">10dp</dimen>
+    <dimen name="task_padding_bottom">27dp</dimen>
+    <dimen name="task_margin_end">25dp</dimen>
+    <dimen name="task_title_text_size">15sp</dimen>
+    <dimen name="task_text_size">12sp</dimen>
 </resources>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="@dimen/task_width"
+    android:layout_height="@dimen/task_height"
+    android:layout_marginEnd="@dimen/task_margin_end"
+    android:background="@drawable/task_card"
+    android:paddingHorizontal="@dimen/task_padding_horizontal"
+    android:paddingTop="@dimen/task_padding_top"
+    android:paddingBottom="@dimen/task_padding_bottom">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:maxLines="1"
+        android:text="@string/meeting"
+        android:textColor="@color/black"
+        android:textSize="@dimen/task_title_text_size"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/_9_00_am"
+        android:textColor="@color/text_gray_task"
+        android:textSize="@dimen/task_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/description"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:maxLines="2"
+        android:text="@string/discuss_team_tasks_for_the_day"
+        android:textColor="@color/text_gray_task"
+        android:textSize="@dimen/task_text_size"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/checkButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image_1"
+            android:layout_width="@dimen/avatar_width_task"
+            android:layout_height="@dimen/avatar_height_task"
+            android:src="@drawable/avatar"
+            android:visibility="gone"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image_2"
+            android:layout_width="@dimen/avatar_width_task"
+            android:layout_height="@dimen/avatar_height_task"
+            android:layout_marginStart="@dimen/avatar_margin_start_task"
+            android:src="@drawable/avatar"
+            android:visibility="gone"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/profile_image_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image_3"
+            android:layout_width="@dimen/avatar_width_task"
+            android:layout_height="@dimen/avatar_height_task"
+            android:layout_marginStart="@dimen/avatar_margin_start_task"
+            android:src="@drawable/avatar"
+            android:visibility="gone"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/profile_image_2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image_4"
+            android:layout_width="@dimen/avatar_width_task"
+            android:layout_height="@dimen/avatar_height_task"
+            android:layout_marginStart="@dimen/avatar_margin_start_task"
+            android:src="@drawable/avatar"
+            android:visibility="gone"
+            app:civ_border_color="@color/primary"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/profile_image_3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/checkButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/check_button"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

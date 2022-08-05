@@ -20,4 +20,5 @@
     <color name="text_shadow">#917878</color>
     <color name="dots_stroke_color">#33FFFFFF</color>
     <color name="disable_button">#BEBEBE</color>
+    <color name="text_gray_task">#4b4b4b</color>
 </resources>

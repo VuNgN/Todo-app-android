@@ -50,4 +50,7 @@
     <string name="reset_password">Reset Password</string>
     <string name="please_enter_your_email_address_to">Please enter your email address to</string>
     <string name="request_a_password_reset">request a password reset</string>
+    <string name="meeting">Meeting</string>
+    <string name="_9_00_am">9:00 AM</string>
+    <string name="discuss_team_tasks_for_the_day">Discuss team tasks for the day</string>
 </resources>

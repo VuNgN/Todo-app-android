@@ -5,70 +5,205 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/edge_horizontal"
     tools:context=".ui.main.HomeFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="45dp"
         android:layout_height="45dp"
+        android:layout_marginHorizontal="@dimen/edge_horizontal"
         android:layout_marginTop="40dp"
-        app:cardCornerRadius="45dp"
-        android:gravity="center">
+        android:gravity="center"
+        app:cardCornerRadius="45dp">
 
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
+            android:contentDescription="@null"
             android:src="@drawable/avatar"
-            app:backgroundTint="@null"
-            android:contentDescription="@null" />
+            app:backgroundTint="@null" />
 
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello, Jack"/>
+        android:layout_marginHorizontal="@dimen/edge_horizontal"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Hello, Jack!"
+        android:textColor="@color/text_gray"
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You've got" />
+        android:layout_marginHorizontal="@dimen/edge_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="You've got"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5 tasks today" />
+        android:layout_marginHorizontal="@dimen/edge_horizontal"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="5 tasks today"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/ThemeOverlay.App.TextInputLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:drawablePadding="@dimen/edit_text_drawable_padding"
-        app:boxStrokeColor="#eeeeee"
-        app:boxBackgroundColor="#eeeeee"
-        app:boxBackgroundMode="filled"
-        app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
-        app:endIconMode="custom"
-        app:endIconTint="@color/black"
-        app:endIconDrawable="@drawable/ic_baseline_search_24">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/PasswordEditText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/airbnbcereal_w_bk"
-            android:hint="Search something"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
-            android:paddingVertical="@dimen/edit_text_padding_vertical"
-            android:textColor="#9a9a9a"
-            android:textSize="@dimen/edit_text_text_size_login_register" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/ThemeOverlay.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/edge_horizontal"
+                android:layout_marginTop="16dp"
+                android:drawablePadding="@dimen/edit_text_drawable_padding"
+                app:boxBackgroundColor="#eeeeee"
+                app:boxBackgroundMode="none"
+                app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                app:boxStrokeColor="#eeeeee"
+                app:endIconDrawable="@drawable/ic_baseline_search_24"
+                app:endIconMode="custom"
+                app:endIconTint="@color/black"
+                app:hintEnabled="false"
+                app:hintTextColor="#9a9a9a">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/PasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corner_edit_text_main"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:hint="Search something"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/edit_text_padding_horizontal_main"
+                    android:paddingVertical="@dimen/edit_text_padding_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/edit_text_text_size_login_register" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/edge_horizontal"
+                android:layout_marginVertical="40dp"
+                android:background="@drawable/corner_card"
+                android:elevation="4dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="26dp"
+                android:weightSum="5">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="start"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Project time tracker"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="You can start tracking"
+                        android:textColor="@color/text_gray"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="end|center">
+
+                    <Button
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/play_button"
+                        app:backgroundTint="@null" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:paddingHorizontal="@dimen/edge_horizontal"
+                android:text="My tasks"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                style="@style/customTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                app:tabIndicator="@color/white"
+                app:tabIndicatorHeight="0dp"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/primary_variant"
+                app:tabTextColor="@color/text_gray">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Today" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Tomorrow" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Upcoming" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_weight="1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/task"
+                tools:orientation="horizontal" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
