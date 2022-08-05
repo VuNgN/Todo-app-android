@@ -49,7 +49,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:maxLines="2"
+        android:lines="2"
         android:text="@string/discuss_team_tasks_for_the_day"
         android:textColor="@color/text_gray_task"
         android:textSize="@dimen/task_text_size"

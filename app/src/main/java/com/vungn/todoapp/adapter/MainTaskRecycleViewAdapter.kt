@@ -41,7 +41,7 @@ class MainTaskRecycleViewAdapter : RecyclerView.Adapter<MainTaskRecycleViewAdapt
             }
         }
 
-        fun setupFirstItem(position: Int) {
+        private fun setupFirstItem(position: Int) {
             if (position == 0) {
                 val lp = LinearLayout.LayoutParams(
                     binding.root.resources.getDimensionPixelSize(R.dimen.task_width),
