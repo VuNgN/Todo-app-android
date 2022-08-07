@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:fitsSystemWindows="true"
-    android:theme="@style/ThemeOverlay.TodoApp.FullscreenContainer"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
     tools:context=".ui.authentication.GetStartedFragment">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
