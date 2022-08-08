@@ -4,7 +4,6 @@
     android:id="@+id/parent"
     android:layout_width="@dimen/task_width"
     android:layout_height="@dimen/task_height"
-    android:layout_marginEnd="@dimen/task_margin_end"
     android:background="@drawable/task_card"
     android:paddingHorizontal="@dimen/task_padding_horizontal"
     android:paddingTop="@dimen/task_padding_top"
