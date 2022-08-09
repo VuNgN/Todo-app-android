@@ -143,6 +143,7 @@
                     android:gravity="end|center">
 
                     <Button
+                        android:id="@+id/trackerButton"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/play_button"
@@ -163,10 +164,10 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
-                style="@style/customTabLayout"
+                style="@style/customTabLayoutHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
+                android:layout_marginTop="10dp"
                 app:tabIndicator="@color/white"
                 app:tabIndicatorHeight="0dp"
                 app:tabRippleColor="@null"
@@ -194,7 +195,7 @@
                 android:id="@+id/recycle_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:clipToPadding="false"
                 android:layoutAnimation="@anim/tasks_recycle_view_animation"
@@ -202,7 +203,7 @@
                 android:paddingBottom="30dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="3"
-                tools:listitem="@layout/task"
+                tools:listitem="@layout/item_horizontal_task"
                 tools:orientation="horizontal" />
 
         </LinearLayout>

@@ -70,7 +70,7 @@
                 android:layout_marginHorizontal="@dimen/button_margin_horizontal_get_started"
                 android:layout_marginBottom="@dimen/button_margin_bottom_get_started"
                 android:layout_weight="1"
-                android:background="@drawable/ripple_button"
+                android:background="@drawable/home_ripple_button"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="Get started"

@@ -41,14 +41,25 @@
         <item name="android:editTextStyle">@drawable/corner_edit_text_authentication</item>
     </style>
 
-    <style name="customTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabTextAppearance">@style/TabTextAppearance</item>
+    <style name="customTabLayoutHome" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/TabTextAppearanceHome</item>
     </style>
 
-    <style name="TabTextAppearance" parent="@android:style/TextAppearance.Widget.TabWidget">
+    <style name="TabTextAppearanceHome" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">18sp</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="customTabLayoutTracker" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/TabTextAppearanceTracker</item>
+    </style>
+
+    <style name="TabTextAppearanceTracker" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:lines">2</item>
     </style>
 
     <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
