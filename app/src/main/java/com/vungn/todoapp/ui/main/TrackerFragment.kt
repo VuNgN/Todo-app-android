@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vungn.todoapp.R
-import com.vungn.todoapp.adapter.TrackerCalendarRecycleViewAdapter
+import com.vungn.todoapp.adapter.HorizontalCalendarAdapter
 import com.vungn.todoapp.adapter.VerticalTaskAdapter
 import com.vungn.todoapp.databinding.FragmentTrackerBinding
 import com.vungn.todoapp.model.FakeData.todayTasks
@@ -45,7 +45,7 @@ class TrackerFragment : Fragment() {
         val itemWidth = (requireContext().resources.displayMetrics.widthPixels - edge * 2) / 7
 
         binding.apply {
-            val adapter = TrackerCalendarRecycleViewAdapter(requireContext(), itemWidth)
+            val adapter = HorizontalCalendarAdapter(requireContext(), itemWidth)
             adapter.setData(dayOfMonth)
             calendarRecycleView
             calendarRecycleView.layoutManager =

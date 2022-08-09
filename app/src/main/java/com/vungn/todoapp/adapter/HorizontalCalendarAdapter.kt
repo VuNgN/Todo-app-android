@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.ItemCalendarBinding
 
-class TrackerCalendarRecycleViewAdapter(context: Context, private val itemWidth: Int) :
-    RecyclerView.Adapter<TrackerCalendarRecycleViewAdapter.ViewHolder>() {
+class HorizontalCalendarAdapter(context: Context, private val itemWidth: Int) :
+    RecyclerView.Adapter<HorizontalCalendarAdapter.ViewHolder>() {
     private lateinit var data: MutableList<String>
     private val context: Context
     private var selectedPosition: Int = 3

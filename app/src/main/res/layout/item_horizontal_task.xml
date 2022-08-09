@@ -4,7 +4,7 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="@dimen/task_height"
-    android:background="@drawable/task_card"
+    android:background="@drawable/corner_task_card"
     android:paddingHorizontal="@dimen/task_padding_horizontal"
     android:paddingTop="@dimen/task_padding_top"
     android:paddingBottom="@dimen/task_padding_bottom">
@@ -128,7 +128,7 @@
         android:id="@+id/checkButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/check_button"
+        android:background="@drawable/layer_list_check_button"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

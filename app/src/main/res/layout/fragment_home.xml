@@ -146,7 +146,7 @@
                         android:id="@+id/trackerButton"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:background="@drawable/play_button"
+                        android:background="@drawable/layer_list_play_button"
                         app:backgroundTint="@null" />
 
                 </LinearLayout>
