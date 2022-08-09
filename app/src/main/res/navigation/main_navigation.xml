@@ -22,6 +22,19 @@
         android:id="@+id/trackerFragment"
         android:name="com.vungn.todoapp.ui.main.TrackerFragment"
         android:label="fragment_tracker"
-        tools:layout="@layout/fragment_tracker" />
+        tools:layout="@layout/fragment_tracker">
+        <action
+            android:id="@+id/action_trackerFragment_to_taskFragment"
+            app:destination="@id/taskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.vungn.todoapp.ui.main.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" />
 
 </navigation>

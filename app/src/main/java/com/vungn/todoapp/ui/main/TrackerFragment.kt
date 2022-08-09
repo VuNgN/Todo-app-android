@@ -52,7 +52,9 @@ class TrackerFragment : Fragment() {
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
             calendarRecycleView.adapter = adapter
 
-            val taskAdapter = VerticalTaskAdapter()
+            val taskAdapter = VerticalTaskAdapter {
+                findNavController().navigate(R.id.action_trackerFragment_to_taskFragment, null)
+            }
             taskAdapter.setData(todayTasks)
             taskRecycleView.adapter = taskAdapter
         }

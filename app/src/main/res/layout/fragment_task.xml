@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.main.TaskFragment">
+
+    <ImageView
+        android:id="@+id/buttonBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="14dp"
+        android:contentDescription="@null"
+        android:scaleType="center"
+        android:src="@drawable/ic_round_arrow_back_ios_new_24" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/edge_horizontal">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="2"
+            app:layout_constraintEnd_toStartOf="@+id/buttonAddTask"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonAddTask">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:text="April 10, 2022"
+                android:textColor="@color/text_gray_tracker"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Today"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="80dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/edge_horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView_1"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/dot_selected_task"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toTopOf="@id/view_1"
+                    app:layout_constraintEnd_toEndOf="@+id/view_1"
+                    app:layout_constraintStart_toStartOf="@+id/view_1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view_1"
+                    android:layout_width="3dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/primary_variant"
+                    app:layout_constraintBottom_toTopOf="@id/imageView_2"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_2"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_2"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_1" />
+
+                <ImageView
+                    android:id="@+id/imageView_2"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:background="@drawable/dot_normal_task"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toTopOf="@id/view_2"
+                    app:layout_constraintEnd_toEndOf="@+id/view_2"
+                    app:layout_constraintStart_toStartOf="@+id/view_2"
+                    app:layout_constraintTop_toBottomOf="@id/view_1" />
+
+                <View
+                    android:id="@+id/view_2"
+                    android:layout_width="3dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/primary_variant"
+                    app:layout_constraintBottom_toTopOf="@id/imageView_3"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_3"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_3"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_2" />
+
+                <ImageView
+                    android:id="@+id/imageView_3"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:background="@drawable/dot_normal_task"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toTopOf="@id/view_3"
+                    app:layout_constraintEnd_toEndOf="@+id/view_3"
+                    app:layout_constraintStart_toStartOf="@+id/view_3"
+                    app:layout_constraintTop_toBottomOf="@id/view_2" />
+
+                <View
+                    android:id="@+id/view_3"
+                    android:layout_width="3dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/primary_variant"
+                    app:layout_constraintBottom_toTopOf="@id/imageView_4"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_4"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_4"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_3" />
+
+
+                <ImageView
+                    android:id="@+id/imageView_4"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:background="@drawable/dot_normal_task"
+                    android:contentDescription="@null"
+                    app:layout_constraintBottom_toTopOf="@id/view_4"
+                    app:layout_constraintEnd_toEndOf="@+id/view_4"
+                    app:layout_constraintStart_toStartOf="@+id/view_4"
+                    app:layout_constraintTop_toBottomOf="@id/view_3" />
+
+                <View
+                    android:id="@+id/view_4"
+                    android:layout_width="3dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/primary_variant"
+                    app:layout_constraintBottom_toTopOf="@id/imageView_5"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_5"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_5"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_4" />
+
+
+                <ImageView
+                    android:id="@+id/imageView_5"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/dot_normal_task"
+                    android:contentDescription="@null"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_4" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/item_horizontal_task"
+                    layout="@layout/item_horizontal_task" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/startOnTextInputLayout"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:expandedHintEnabled="false"
+                    app:hintTextColor="@color/text_gray_task_info">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/startOnEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Started on"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                        android:paddingVertical="@dimen/edit_text_padding_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ElapsedTimeTextInputLayout"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:expandedHintEnabled="false"
+                    app:hintTextColor="@color/text_gray_task_info">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ElapsedTimeEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Elapsed time"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                        android:paddingVertical="@dimen/edit_text_padding_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/DueDateTextInputLayout"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:expandedHintEnabled="false"
+                    app:hintTextColor="@color/text_gray_task_info">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/DueDateEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Due date"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                        android:paddingVertical="@dimen/edit_text_padding_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
