@@ -97,8 +97,4 @@ class HorizontalCalendarAdapter(context: Context, private val itemWidth: Int) :
     fun setData(data: MutableList<String>) {
         this.data = data
     }
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
 }

@@ -35,6 +35,10 @@
         android:id="@+id/taskFragment"
         android:name="com.vungn.todoapp.ui.main.TaskFragment"
         android:label="fragment_task"
-        tools:layout="@layout/fragment_task" />
+        tools:layout="@layout/fragment_task">
+        <argument
+            android:name="task"
+            app:argType="com.vungn.todoapp.model.Task" />
+    </fragment>
 
 </navigation>

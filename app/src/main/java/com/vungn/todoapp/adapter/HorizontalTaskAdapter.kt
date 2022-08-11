@@ -1,10 +1,8 @@
 package com.vungn.todoapp.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.ItemHorizontalTaskBinding
 import com.vungn.todoapp.model.Task
@@ -41,29 +39,8 @@ class HorizontalTaskAdapter :
 
         fun bind(task: Task) {
             binding.apply {
-                title.text = task.title
-                time.text = task.time
-                description.text = task.description
-                task.users.forEachIndexed { index, user ->
-                    when (index) {
-                        0 -> {
-                            profileImage1.visibility = View.VISIBLE
-                            Picasso.get().load(user.avatar).into(profileImage1)
-                        }
-                        1 -> {
-                            profileImage2.visibility = View.VISIBLE
-                            Picasso.get().load(user.avatar).into(profileImage2)
-                        }
-                        2 -> {
-                            profileImage3.visibility = View.VISIBLE
-                            Picasso.get().load(user.avatar).into(profileImage3)
-                        }
-                        3 -> {
-                            profileImage4.visibility = View.VISIBLE
-                            Picasso.get().load(user.avatar).into(profileImage4)
-                        }
-                    }
-                }
+                this.task = task
+                executePendingBindings()
             }
         }
     }

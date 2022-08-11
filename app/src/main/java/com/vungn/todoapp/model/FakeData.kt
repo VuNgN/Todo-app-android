@@ -22,7 +22,10 @@ object FakeData {
                     "",
                     "https://linhkiem.vn/avatar-de-thuong-cho-facebook/imager_70231.jpg"
                 )
-            )
+            ),
+            "Nov, 16 2021",
+            "",
+            "Dec, 01 2021"
         ),
         Task(
             "Training",
@@ -39,7 +42,10 @@ object FakeData {
                     "",
                     "https://kynguyenlamdep.com/wp-content/uploads/2022/06/avatar-cute-cho-co-nang-nghien-tra-sua.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "aaaaaaaaaazzzzazazazazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -51,7 +57,10 @@ object FakeData {
                     "",
                     "https://kynguyenlamdep.com/wp-content/uploads/2022/06/avatar-cute-meo-con-than-chet-700x695.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "Meeting",
@@ -83,13 +92,19 @@ object FakeData {
                     "",
                     "https://img5.thuthuatphanmem.vn/uploads/2021/11/22/anh-avatar-gau-cute_092859783.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "Meeting",
             "9:00 AM",
             "Discuss team tasks for the day",
-            mutableListOf()
+            mutableListOf(),
+            "",
+            "",
+            ""
         )
     )
     val tomorrowTasks = mutableListOf(
@@ -108,7 +123,10 @@ object FakeData {
                     "",
                     "https://kynguyenlamdep.com/wp-content/uploads/2022/06/avatar-cute-cho-co-nang-nghien-tra-sua.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "Meeting",
@@ -130,7 +148,10 @@ object FakeData {
                     "",
                     "https://linhkiem.vn/avatar-de-thuong-cho-facebook/imager_70231.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "Meeting",
@@ -162,13 +183,19 @@ object FakeData {
                     "",
                     "https://img5.thuthuatphanmem.vn/uploads/2021/11/22/anh-avatar-gau-cute_092859783.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "Meeting",
             "9:00 AM",
             "Discuss team tasks for the day",
-            mutableListOf()
+            mutableListOf(),
+            "",
+            "",
+            ""
         ),
         Task(
             "aaaaaaaaaazzzzazazazazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -180,7 +207,10 @@ object FakeData {
                     "",
                     "https://kynguyenlamdep.com/wp-content/uploads/2022/06/avatar-cute-meo-con-than-chet-700x695.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         )
     )
     val upcomingTasks = mutableListOf(
@@ -194,7 +224,10 @@ object FakeData {
                     "",
                     "https://kynguyenlamdep.com/wp-content/uploads/2022/06/avatar-cute-meo-con-than-chet-700x695.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "Training",
@@ -211,7 +244,10 @@ object FakeData {
                     "",
                     "https://kynguyenlamdep.com/wp-content/uploads/2022/06/avatar-cute-cho-co-nang-nghien-tra-sua.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "Meeting",
@@ -243,13 +279,19 @@ object FakeData {
                     "",
                     "https://img5.thuthuatphanmem.vn/uploads/2021/11/22/anh-avatar-gau-cute_092859783.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         ),
         Task(
             "Meeting",
             "9:00 AM",
             "Discuss team tasks for the day",
-            mutableListOf()
+            mutableListOf(),
+            "",
+            "",
+            ""
         ),
         Task(
             "Meeting",
@@ -271,7 +313,10 @@ object FakeData {
                     "",
                     "https://linhkiem.vn/avatar-de-thuong-cho-facebook/imager_70231.jpg"
                 )
-            )
+            ),
+            "",
+            "",
+            ""
         )
     )
 }
