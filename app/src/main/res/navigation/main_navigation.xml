@@ -30,6 +30,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_trackerFragment_to_insertTaskFragment"
+            app:destination="@id/insertTaskFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
@@ -40,5 +47,10 @@
             android:name="task"
             app:argType="com.vungn.todoapp.model.Task" />
     </fragment>
+    <fragment
+        android:id="@+id/insertTaskFragment"
+        android:name="com.vungn.todoapp.ui.main.InsertTaskFragment"
+        android:label="fragment_insert_task"
+        tools:layout="@layout/fragment_insert_task" />
 
 </navigation>

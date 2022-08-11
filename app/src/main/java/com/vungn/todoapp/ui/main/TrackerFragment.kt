@@ -35,6 +35,12 @@ class TrackerFragment : Fragment() {
             buttonBack.setOnClickListener {
                 findNavController().popBackStack()
             }
+            buttonAddTask.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_trackerFragment_to_insertTaskFragment,
+                    null
+                )
+            }
         }
     }
 
