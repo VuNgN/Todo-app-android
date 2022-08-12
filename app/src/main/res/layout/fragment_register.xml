@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    tools:context=".ui.authentication.RegisterFragment">
+    tools:context=".ui.authentication.register.RegisterFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

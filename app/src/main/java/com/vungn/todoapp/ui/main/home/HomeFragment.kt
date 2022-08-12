@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.main
+package com.vungn.todoapp.ui.main.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.tabs.TabLayout
 import com.vungn.todoapp.R
-import com.vungn.todoapp.adapter.HorizontalTaskAdapter
+import com.vungn.todoapp.ui.main.home.adapter.HorizontalTaskAdapter
 import com.vungn.todoapp.databinding.FragmentHomeBinding
 import com.vungn.todoapp.model.FakeData.todayTasks
 import com.vungn.todoapp.model.FakeData.tomorrowTasks
@@ -40,30 +40,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleEvent() {
-        binding.trackerButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_trackerFragment, null)
-        }
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab?.position) {
-                    0 -> {
-                        updateRecycleView(todayTasks)
-                    }
-                    1 -> {
-                        updateRecycleView(tomorrowTasks)
-                    }
-                    2 -> {
-                        updateRecycleView(upcomingTasks)
+        binding.apply {
+            avatarButton.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_settingFragment, null)
+            }
+            trackerButton.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_trackerFragment, null)
+            }
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    when (tab?.position) {
+                        0 -> {
+                            updateRecycleView(todayTasks)
+                        }
+                        1 -> {
+                            updateRecycleView(tomorrowTasks)
+                        }
+                        2 -> {
+                            updateRecycleView(upcomingTasks)
+                        }
                     }
                 }
-            }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                }
 
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-        })
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                }
+            })
+        }
     }
 
     private fun setupUi() {

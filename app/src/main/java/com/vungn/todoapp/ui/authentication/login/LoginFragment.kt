@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.authentication
+package com.vungn.todoapp.ui.authentication.login
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -7,7 +7,7 @@
     android:background="@color/primary"
     android:fitsSystemWindows="true"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-    tools:context=".ui.authentication.GetStartedFragment">
+    tools:context=".ui.authentication.getstarted.GetStartedFragment">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,

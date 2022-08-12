@@ -22,4 +22,5 @@
     <color name="text_gray_tracker">#909090</color>
     <color name="text_gray_task_info">#9B9B9B</color>
     <color name="calendar_date_text_normal">#656565</color>
+    <color name="corner_setting_layout_color">#F9F9F9</color>
 </resources>

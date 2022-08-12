@@ -1,4 +1,4 @@
-package com.vungn.todoapp.binding
+package com.vungn.todoapp.common.binding
 
 import android.view.View
 import androidx.databinding.BindingAdapter

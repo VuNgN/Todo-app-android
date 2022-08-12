@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.authentication
+package com.vungn.todoapp.ui.authentication.resetpasswd
 
 import android.os.Bundle
 import android.text.Editable

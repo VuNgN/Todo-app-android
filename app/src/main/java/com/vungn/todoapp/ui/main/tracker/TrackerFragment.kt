@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.main
+package com.vungn.todoapp.ui.main.tracker
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vungn.todoapp.R
-import com.vungn.todoapp.adapter.HorizontalCalendarAdapter
-import com.vungn.todoapp.adapter.VerticalTaskAdapter
+import com.vungn.todoapp.ui.main.tracker.adapter.HorizontalCalendarAdapter
+import com.vungn.todoapp.ui.main.tracker.adapter.VerticalTaskAdapter
 import com.vungn.todoapp.databinding.FragmentTrackerBinding
 import com.vungn.todoapp.model.FakeData.todayTasks
 

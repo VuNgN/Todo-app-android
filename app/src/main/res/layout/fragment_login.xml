@@ -8,7 +8,7 @@
     android:gravity="center|bottom"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/edge_horizontal"
-    tools:context=".ui.authentication.LoginFragment">
+    tools:context=".ui.authentication.login.LoginFragment">
 
     <TextView
         android:id="@+id/SignInTitle"

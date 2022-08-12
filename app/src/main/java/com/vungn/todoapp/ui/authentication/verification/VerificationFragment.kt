@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.authentication
+package com.vungn.todoapp.ui.authentication.verification
 
 import `in`.aabhasjindal.otptextview.OTPListener
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentVerificationBinding
+import com.vungn.todoapp.ui.authentication.activity.AuthenticationActivity
 import java.util.concurrent.TimeUnit
 
 class VerificationFragment : Fragment() {

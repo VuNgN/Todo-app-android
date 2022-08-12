@@ -1,4 +1,4 @@
-package com.vungn.todoapp.adapter
+package com.vungn.todoapp.ui.main.tracker.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

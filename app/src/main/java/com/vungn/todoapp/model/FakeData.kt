@@ -1,6 +1,11 @@
 package com.vungn.todoapp.model
 
 object FakeData {
+    val loggedInUser = User(
+        "Alo Alo",
+        "demo@gmail.com",
+        "https://kynguyenlamdep.com/wp-content/uploads/2022/06/avatar-cute-vui-nhon.jpg"
+    )
     val todayTasks = mutableListOf(
         Task(
             "Meeting",

@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.main
+package com.vungn.todoapp.ui.main.task
 
 import android.os.Bundle
 import android.view.LayoutInflater

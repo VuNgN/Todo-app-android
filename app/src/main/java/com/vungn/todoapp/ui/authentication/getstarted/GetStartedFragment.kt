@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.authentication
+package com.vungn.todoapp.ui.authentication.getstarted
 
 import android.content.Context
 import android.os.Bundle

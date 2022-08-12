@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.authentication
+package com.vungn.todoapp.ui.authentication.onboarding
 
 import android.content.Context
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import com.vungn.todoapp.R
-import com.vungn.todoapp.adapter.OnBoardViewPagerAdapter
+import com.vungn.todoapp.ui.authentication.onboarding.adapter.OnBoardViewPagerAdapter
 import com.vungn.todoapp.databinding.FragmentOnBoardBinding
 import com.vungn.todoapp.util.extention.WindowEx.showStatusBar
 

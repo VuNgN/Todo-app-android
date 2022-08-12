@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.authentication
+package com.vungn.todoapp.ui.authentication.register
 
 import android.os.Bundle
 import android.text.Editable

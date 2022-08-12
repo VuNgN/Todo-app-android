@@ -1,4 +1,4 @@
-package com.vungn.todoapp.adapter
+package com.vungn.todoapp.ui.authentication.onboarding.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

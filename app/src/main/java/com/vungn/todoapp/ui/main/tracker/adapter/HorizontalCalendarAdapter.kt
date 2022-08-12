@@ -1,4 +1,4 @@
-package com.vungn.todoapp.adapter
+package com.vungn.todoapp.ui.main.tracker.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
