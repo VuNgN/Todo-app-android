@@ -49,6 +49,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -190,6 +191,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/edge_horizontal"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="35dp"
                 android:drawablePadding="@dimen/edit_text_drawable_padding"
                 app:boxBackgroundColor="@color/white"
                 app:boxBackgroundMode="filled"
@@ -206,9 +208,11 @@
                     android:id="@+id/dueDateEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:focusable="false"
                     android:fontFamily="@font/poppins_light"
                     android:hint="Enter due date"
-                    android:inputType="text"
+                    android:inputType="none"
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
                     android:paddingVertical="@dimen/edit_text_padding_vertical"
@@ -217,11 +221,31 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/edge_horizontal"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp">
+
+                <CalendarView
+                    android:id="@+id/calendarPicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/corner_button"
+                    android:dateTextAppearance="@style/CalendarViewDateCustomText"
+                    android:theme="@style/CalendarViewCustom"
+                    android:visibility="visible"
+                    android:weekDayTextAppearance="@style/CalendarViewWeekCustomText" />
+
+            </androidx.cardview.widget.CardView>
+
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/corner_button"
                 android:fontFamily="@font/poppins_regular"
