@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentSettingBinding
 import com.vungn.todoapp.model.FakeData.loggedInUser
+import com.vungn.todoapp.ui.main.activity.MainActivity
 
 
 class SettingFragment : Fragment() {
@@ -43,6 +44,9 @@ class SettingFragment : Fragment() {
             }
             privacyButton.setOnClickListener {
                 findNavController().navigate(R.id.action_settingFragment_to_privacyPoliciesFragment)
+            }
+            logoutButton.setOnClickListener {
+                (requireActivity() as MainActivity).logout()
             }
         }
     }

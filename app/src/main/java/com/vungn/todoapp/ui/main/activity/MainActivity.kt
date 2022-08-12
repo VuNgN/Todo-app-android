@@ -1,6 +1,7 @@
 package com.vungn.todoapp.ui.main.activity
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.MotionEvent
@@ -9,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.vungn.todoapp.R
+import com.vungn.todoapp.ui.authentication.activity.AuthenticationActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,5 +33,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.dispatchTouchEvent(ev)
+    }
+
+    fun logout() {
+        val intent = Intent(this, AuthenticationActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
