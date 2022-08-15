@@ -1,4 +1,4 @@
-package com.vungn.todoapp.model
+package com.vungn.todoapp.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

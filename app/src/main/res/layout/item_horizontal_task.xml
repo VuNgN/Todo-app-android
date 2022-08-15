@@ -9,7 +9,7 @@
 
         <variable
             name="task"
-            type="com.vungn.todoapp.model.Task" />
+            type="com.vungn.todoapp.data.model.Task" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

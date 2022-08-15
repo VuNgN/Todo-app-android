@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentSettingBinding
-import com.vungn.todoapp.model.FakeData.loggedInUser
+import com.vungn.todoapp.data.model.FakeData.loggedInUser
 import com.vungn.todoapp.ui.main.activity.MainActivity
 
 

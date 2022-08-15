@@ -1,217 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
-    android:gravity="center|bottom"
-    android:orientation="vertical"
-    android:paddingHorizontal="@dimen/edge_horizontal"
-    tools:context=".ui.authentication.login.LoginFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/SignInTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:fontFamily="@font/airbnbcereal_w_md"
-        android:text="@string/sign_in"
-        android:textColor="@color/black"
-        android:textSize="@dimen/title_text_size_login" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/MailTextInputLayout"
-        style="@style/ThemeOverlay.App.TextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:drawablePadding="@dimen/edit_text_drawable_padding"
-        app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
-        app:boxStrokeColor="@color/border_input_text_color"
-        app:boxStrokeErrorColor="@color/color_error"
-        app:startIconDrawable="@drawable/mail">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/MailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/airbnbcereal_w_bk"
-            android:hint="@string/abc_email_com"
-
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
-            android:paddingVertical="@dimen/edit_text_padding_vertical"
-            android:textColor="@color/black"
-            android:textSize="@dimen/edit_text_text_size_login_register" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/ThemeOverlay.App.TextInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:drawablePadding="@dimen/edit_text_drawable_padding"
-        app:boxBackgroundColor="@color/white"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
-        app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
-        app:boxStrokeColor="@color/border_input_text_color"
-        app:boxStrokeErrorColor="@color/color_error"
-        app:endIconMode="password_toggle"
-        app:startIconDrawable="@drawable/password">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/PasswordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/airbnbcereal_w_bk"
-            android:hint="@string/your_password"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
-            android:paddingVertical="@dimen/edit_text_padding_vertical"
-            android:textColor="@color/black"
-            android:textSize="@dimen/edit_text_text_size_login_register" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
+    <data>
+        <variable
+            name="viewModel"
+            type="com.vungn.todoapp.ui.authentication.login.contract.LoginViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingVertical="20dp"
-        android:weightSum="2">
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:gravity="center|bottom"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/edge_horizontal"
+        tools:context=".ui.authentication.login.LoginFragment">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/SignInTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="start"
+            android:fontFamily="@font/airbnbcereal_w_md"
+            android:text="@string/sign_in"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_text_size_login" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/MailTextInputLayout"
+            style="@style/ThemeOverlay.App.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:drawablePadding="@dimen/edit_text_drawable_padding"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+            app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+            app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+            app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+            app:boxStrokeColor="@color/border_input_text_color"
+            app:boxStrokeErrorColor="@color/color_error"
+            app:startIconDrawable="@drawable/mail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/MailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/airbnbcereal_w_bk"
+                android:hint="@string/abc_email_com"
+
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                android:paddingVertical="@dimen/edit_text_padding_vertical"
+                android:textColor="@color/black"
+                android:textSize="@dimen/edit_text_text_size_login_register" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/ThemeOverlay.App.TextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:drawablePadding="@dimen/edit_text_drawable_padding"
+            app:boxBackgroundColor="@color/white"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+            app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+            app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+            app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+            app:boxStrokeColor="@color/border_input_text_color"
+            app:boxStrokeErrorColor="@color/color_error"
+            app:endIconMode="password_toggle"
+            app:startIconDrawable="@drawable/password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/PasswordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/airbnbcereal_w_bk"
+                android:hint="@string/your_password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                android:paddingVertical="@dimen/edit_text_padding_vertical"
+                android:textColor="@color/black"
+                android:textSize="@dimen/edit_text_text_size_login_register" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingVertical="20dp"
             android:weightSum="2">
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/RememberMeSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:gravity="center_vertical|start"
-                android:layoutDirection="ltr"
-                android:theme="@style/CustomSwitch" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/RememberMeSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical|start"
+                    android:layoutDirection="ltr"
+                    android:theme="@style/CustomSwitch" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/airbnbcereal_w_bk"
+                    android:text="@string/remember_me"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_view_text_size_login" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ForgotPasswordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:fontFamily="@font/airbnbcereal_w_bk"
-                android:text="@string/remember_me"
+                android:gravity="end"
+                android:text="@string/forgot_password"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_view_text_size_login" />
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/SignInButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
+            android:background="@drawable/corner_button"
+            android:drawableEnd="@drawable/enter_arrow_icon"
+            android:fontFamily="@font/airbnbcereal_w_md"
+            android:text="@string/sign_in"
+            app:onSafeClick="@{_->viewModel.login()}"
+            android:textSize="@dimen/button_text_size_login_register"
+            app:backgroundTint="@color/primary_variant" />
+
         <TextView
-            android:id="@+id/ForgotPasswordTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/airbnbcereal_w_md"
+            android:text="@string/or"
+            android:textColor="@color/text_gray" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_social_login"
+            android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/corner_button"
+            android:drawableLeft="@drawable/google_signin_icon"
             android:fontFamily="@font/airbnbcereal_w_bk"
-            android:gravity="end"
-            android:text="@string/forgot_password"
+            android:text="@string/login_with_google"
+            android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_view_text_size_login" />
+            android:textSize="@dimen/button_text_size_login_register"
+            app:backgroundTint="@color/white" />
+
+        <Button
+            android:id="@+id/LoginWithFacebookButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height_social_login"
+            android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/corner_button"
+            android:drawableLeft="@drawable/facebook_signin_icon"
+            android:fontFamily="@font/airbnbcereal_w_bk"
+            android:text="@string/login_with_facebook"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/button_text_size_login_register"
+            app:backgroundTint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="38dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/airbnbcereal_w_bk"
+                android:text="@string/don_t_have_an_account"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_view_text_size_login_register_2" />
+
+            <TextView
+                android:id="@+id/SignUpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/airbnbcereal_w_bk"
+                android:text="@string/sign_up"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_view_text_size_login_register_2" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/SignInButton"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
-        android:background="@drawable/corner_button"
-        android:drawableEnd="@drawable/enter_arrow_icon"
-        android:fontFamily="@font/airbnbcereal_w_md"
-        android:text="@string/sign_in"
-        android:textSize="@dimen/button_text_size_login_register"
-        app:backgroundTint="@color/primary_variant" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/airbnbcereal_w_md"
-        android:text="@string/or"
-        android:textColor="@color/text_gray" />
-
-    <Button
-        android:id="@+id/LoginWithGoogleButton"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height_social_login"
-        android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/corner_button"
-        android:drawableLeft="@drawable/google_signin_icon"
-        android:fontFamily="@font/airbnbcereal_w_bk"
-        android:text="@string/login_with_google"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/button_text_size_login_register"
-        app:backgroundTint="@color/white" />
-
-    <Button
-        android:id="@+id/LoginWithFacebookButton"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height_social_login"
-        android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"
-        android:layout_marginTop="17dp"
-        android:background="@drawable/corner_button"
-        android:drawableLeft="@drawable/facebook_signin_icon"
-        android:fontFamily="@font/airbnbcereal_w_bk"
-        android:text="@string/login_with_facebook"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/button_text_size_login_register"
-        app:backgroundTint="@color/white" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="38dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/airbnbcereal_w_bk"
-            android:text="@string/don_t_have_an_account"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_view_text_size_login_register_2" />
-
-        <TextView
-            android:id="@+id/SignUpButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/airbnbcereal_w_bk"
-            android:text="@string/sign_up"
-            android:textColor="@color/primary"
-            android:textSize="@dimen/text_view_text_size_login_register_2" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</layout>

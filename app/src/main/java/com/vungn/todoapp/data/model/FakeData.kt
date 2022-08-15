@@ -1,4 +1,4 @@
-package com.vungn.todoapp.model
+package com.vungn.todoapp.data.model
 
 object FakeData {
     val loggedInUser = User(

@@ -7,7 +7,7 @@
 
         <variable
             name="user"
-            type="com.vungn.todoapp.model.User" />
+            type="com.vungn.todoapp.data.model.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

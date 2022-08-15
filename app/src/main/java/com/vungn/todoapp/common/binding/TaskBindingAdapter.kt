@@ -3,7 +3,7 @@ package com.vungn.todoapp.common.binding
 import android.view.View
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
-import com.vungn.todoapp.model.User
+import com.vungn.todoapp.data.model.User
 
 object TaskBindingAdapter {
     @BindingAdapter("imageSource")

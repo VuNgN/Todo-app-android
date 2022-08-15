@@ -15,10 +15,10 @@ import com.google.android.material.tabs.TabLayout
 import com.vungn.todoapp.R
 import com.vungn.todoapp.ui.main.home.adapter.HorizontalTaskAdapter
 import com.vungn.todoapp.databinding.FragmentHomeBinding
-import com.vungn.todoapp.model.FakeData.todayTasks
-import com.vungn.todoapp.model.FakeData.tomorrowTasks
-import com.vungn.todoapp.model.FakeData.upcomingTasks
-import com.vungn.todoapp.model.Task
+import com.vungn.todoapp.data.model.FakeData.todayTasks
+import com.vungn.todoapp.data.model.FakeData.tomorrowTasks
+import com.vungn.todoapp.data.model.FakeData.upcomingTasks
+import com.vungn.todoapp.data.model.Task
 
 class HomeFragment : Fragment() {
     private lateinit var adapter: HorizontalTaskAdapter

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.ItemHorizontalTaskBinding
-import com.vungn.todoapp.model.Task
+import com.vungn.todoapp.data.model.Task
 
 class HorizontalTaskAdapter :
     RecyclerView.Adapter<HorizontalTaskAdapter.ViewHolder>() {

@@ -3,15 +3,14 @@ package com.vungn.todoapp.ui.main.setting.binding
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.squareup.picasso.Picasso
-import com.vungn.todoapp.model.User
+import com.vungn.todoapp.data.model.User
 
-object SrcUrl {
-    @BindingAdapter("srcUrl")
+object SettingBindingAdapter {
+    @BindingAdapter("app:srcUrl")
     @JvmStatic
-    fun srcUrl(
-        imageView: ImageView,
+    fun ImageView.srcUrl(
         user: User?
     ) {
-        Picasso.get().load(user?.avatar).into(imageView)
+        Picasso.get().load(user?.avatar).into(this)
     }
 }

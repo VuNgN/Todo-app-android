@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentLoginBinding
+import com.vungn.todoapp.ui.authentication.login.contract.implement.LoginViewModelImpl
 
 
 class LoginFragment : Fragment() {
@@ -30,6 +31,7 @@ class LoginFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding?.viewModel = LoginViewModelImpl()
         return binding.root
     }
 
@@ -40,9 +42,9 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleEvents() {
-        signInButton.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_verificationFragment, null)
-        }
+//        signInButton.setOnClickListener {
+//            findNavController().navigate(R.id.action_loginFragment_to_verificationFragment, null)
+//        }
         signUpButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment, null)
         }

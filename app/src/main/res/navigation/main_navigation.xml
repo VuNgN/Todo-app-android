@@ -52,7 +52,7 @@
         tools:layout="@layout/fragment_task">
         <argument
             android:name="task"
-            app:argType="com.vungn.todoapp.model.Task" />
+            app:argType="com.vungn.todoapp.data.model.Task" />
     </fragment>
     <fragment
         android:id="@+id/insertTaskFragment"
