@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.vungn.todoapp.ui.authentication.login.contract.LoginViewModel" />
@@ -51,11 +52,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/airbnbcereal_w_bk"
                 android:hint="@string/abc_email_com"
-
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
                 android:paddingVertical="@dimen/edit_text_padding_vertical"
+                android:text="@={viewModel.email}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/edit_text_text_size_login_register" />
 
@@ -88,6 +89,7 @@
                 android:maxLines="1"
                 android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
                 android:paddingVertical="@dimen/edit_text_padding_vertical"
+                android:text="@={viewModel.password}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/edit_text_text_size_login_register" />
 
@@ -150,9 +152,9 @@
             android:drawableEnd="@drawable/enter_arrow_icon"
             android:fontFamily="@font/airbnbcereal_w_md"
             android:text="@string/sign_in"
-            app:onSafeClick="@{_->viewModel.login()}"
             android:textSize="@dimen/button_text_size_login_register"
-            app:backgroundTint="@color/primary_variant" />
+            app:backgroundTint="@color/primary_variant"
+            app:onSafeClick="@{_->viewModel.login()}" />
 
         <TextView
             android:layout_width="wrap_content"

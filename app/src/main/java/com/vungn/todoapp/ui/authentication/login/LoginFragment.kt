@@ -8,17 +8,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentLoginBinding
+import com.vungn.todoapp.ui.authentication.login.contract.LoginViewModel
 import com.vungn.todoapp.ui.authentication.login.contract.implement.LoginViewModelImpl
 
 
 class LoginFragment : Fragment() {
     private lateinit var signUpButton: TextView
     private lateinit var signInButton: Button
-    private lateinit var emailEditText: EditText
     private lateinit var forgotPassword: TextView
+    private lateinit var viewModel: LoginViewModel
     private var _binding: FragmentLoginBinding? = null
 
     // This property is only valid between onCreateView and
@@ -31,7 +33,13 @@ class LoginFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        _binding?.viewModel = LoginViewModelImpl()
+        // đang khởi tạo dữ liệu, sau này sẽ sử dụng dependency để khởi tạo ở nơi khác
+        val factory =
+            LoginViewModelImpl.Factory(this@LoginFragment.requireActivity().application) // Factory
+        viewModel =
+            ViewModelProvider(this, factory)[LoginViewModelImpl::class.java] // ViewModel
+        _binding?.viewModel = viewModel
+        //
         return binding.root
     }
 
@@ -42,21 +50,20 @@ class LoginFragment : Fragment() {
     }
 
     private fun handleEvents() {
-//        signInButton.setOnClickListener {
-//            findNavController().navigate(R.id.action_loginFragment_to_verificationFragment, null)
-//        }
         signUpButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment, null)
         }
         forgotPassword.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_resetPasswordFragment, null)
         }
+        viewModel.navigation().observe(viewLifecycleOwner) {
+            findNavController().navigate(it.id, it.data)
+        }
     }
 
     private fun bindingView() {
         signInButton = binding.SignInButton
         signUpButton = binding.SignUpButton
-        emailEditText = binding.MailEditText
         forgotPassword = binding.ForgotPasswordTextView
     }
 }
