@@ -7,22 +7,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentVerificationBinding
 import com.vungn.todoapp.ui.authentication.activity.AuthenticationActivity
+import com.vungn.todoapp.ui.authentication.verification.contract.VerificationViewModel
+import com.vungn.todoapp.ui.authentication.verification.contract.implement.VerificationViewModelImpl
 import java.util.concurrent.TimeUnit
 
 class VerificationFragment : Fragment() {
     private lateinit var countDownTimer: CountDownTimer
     private var _binding: FragmentVerificationBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: VerificationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = FragmentVerificationBinding.inflate(layoutInflater, container, false).also {
         _binding = it
+        val factory =
+            VerificationViewModelImpl.Factory(this@VerificationFragment.requireActivity().application)
+        viewModel = ViewModelProvider(this, factory)[VerificationViewModelImpl::class.java]
+        _binding?.viewModel = viewModel
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,8 +48,10 @@ class VerificationFragment : Fragment() {
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
-        binding.ContinueButton.setOnClickListener {
-            (requireActivity() as AuthenticationActivity).login()
+        viewModel.navigation().observe(viewLifecycleOwner) {
+            if (it) {
+                (requireActivity() as AuthenticationActivity).login()
+            }
         }
     }
 
@@ -58,6 +68,7 @@ class VerificationFragment : Fragment() {
             }
 
             override fun onOTPComplete(otp: String) {
+                viewModel.otpCompleted(otp)
                 binding.ContinueButton.isEnabled = true
                 binding.ContinueButton.setCompoundDrawablesWithIntrinsicBounds(
                     0,
