@@ -18,6 +18,7 @@ class VerificationViewModelImpl(application: Application) : AndroidViewModel(app
 
     override fun checkOtp() {
         if (otp.value == "0000") {
+
             navigation.postValue(true)
         }
     }
