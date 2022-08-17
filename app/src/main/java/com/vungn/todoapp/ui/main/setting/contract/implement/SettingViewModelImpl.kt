@@ -12,6 +12,7 @@ class SettingViewModelImpl(application: Application) : AndroidViewModel(applicat
     private val configManager: ConfigManager by lazy {
         ConfigManager(application.applicationContext)
     }
+
     override fun logout() {
         configManager.setLoggedIn(false)
     }

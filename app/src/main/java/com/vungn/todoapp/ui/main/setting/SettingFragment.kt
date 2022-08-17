@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
-import com.vungn.todoapp.databinding.FragmentSettingBinding
 import com.vungn.todoapp.data.model.FakeData.loggedInUser
+import com.vungn.todoapp.databinding.FragmentSettingBinding
 import com.vungn.todoapp.ui.main.activity.MainActivity
 import com.vungn.todoapp.ui.main.setting.contract.SettingViewModel
 import com.vungn.todoapp.ui.main.setting.contract.implement.SettingViewModelImpl
@@ -25,7 +25,8 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = FragmentSettingBinding.inflate(inflater, container, false).also {
-        val factory = SettingViewModelImpl.Factory(this@SettingFragment.requireActivity().application)
+        val factory =
+            SettingViewModelImpl.Factory(this@SettingFragment.requireActivity().application)
         viewModel = ViewModelProvider(this, factory)[SettingViewModelImpl::class.java]
         binding = it
     }.root
