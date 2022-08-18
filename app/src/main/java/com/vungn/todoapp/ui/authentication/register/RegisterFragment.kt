@@ -6,23 +6,16 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textfield.TextInputLayout
 import com.vungn.todoapp.databinding.FragmentRegisterBinding
 import com.vungn.todoapp.ui.authentication.register.contract.RegisterViewModel
 import com.vungn.todoapp.ui.authentication.register.contract.implement.RegisterViewModelImpl
 
 class RegisterFragment : Fragment() {
-    private lateinit var topAppBar: MaterialToolbar
-    private lateinit var signInTextView: TextView
-    private lateinit var emailEditText: EditText
-    private lateinit var passwordEditText: EditText
-    private lateinit var confirmPasswordEditText: EditText
     private lateinit var vm: RegisterViewModel
     private var emailPattern: Regex = Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
     private var passwordPattern: Regex =
@@ -35,11 +28,12 @@ class RegisterFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        val factory = RegisterViewModelImpl.Factory(this@RegisterFragment.requireActivity().application)
+        val factory =
+            RegisterViewModelImpl.Factory(this@RegisterFragment.requireActivity().application)
         vm = ViewModelProvider(this, factory)[RegisterViewModelImpl::class.java]
         _binding!!.viewModel = vm
         return binding.root
@@ -48,55 +42,55 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bindingView()
         handleEvents()
     }
 
     private fun handleEvents() {
-        topAppBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+        binding.apply {
+            topAppBar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+            SignInButton.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            MailEditText.addTextChangedListener(
+                checkValidation(
+                    MailTextInputLayout,
+                    emailPattern,
+                    "Invalid email format"
+                )
+            )
+            PasswordEditText.addTextChangedListener(
+                checkValidation(
+                    PasswordTextInputLayout,
+                    passwordPattern,
+                    """
+                        * Must be at least 6 characters.
+                        * Must have at least 1 upper case letter (A-Z)
+                        * Must have at least 1 number (0-9)
+                        * Must have at least 1 special character
+                    """.trimIndent()
+                )
+            )
+            ConfirmPasswordEditText.addTextChangedListener(
+                checkSamePassword(
+                    ConfirmPasswordTextInputLayout
+                )
+            )
+            SignUpButton.setOnClickListener {
+                if (vm.register()) {
+                    findNavController().popBackStack()
+                } else {
+                    Toast.makeText(requireContext(), "Register false", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-        signInTextView.setOnClickListener {
-            findNavController().popBackStack()
-        }
-        emailEditText.addTextChangedListener(
-            checkValidation(
-                binding.MailTextInputLayout,
-                emailPattern,
-                "Invalid email format"
-            )
-        )
-        passwordEditText.addTextChangedListener(
-            checkValidation(
-                binding.PasswordTextInputLayout,
-                passwordPattern,
-                """
-                    * Must be at least 6 characters.
-                    * Must have at least 1 upper case letter (A-Z)
-                    * Must have at least 1 number (0-9)
-                    * Must have at least 1 special character
-                """.trimIndent()
-            )
-        )
-        confirmPasswordEditText.addTextChangedListener(
-            checkSamePassword(
-                binding.ConfirmPasswordTextInputLayout
-            )
-        )
-    }
-
-    private fun bindingView() {
-        topAppBar = binding.topAppBar
-        signInTextView = binding.SignInButton
-        emailEditText = binding.MailEditText
-        passwordEditText = binding.PasswordEditText
-        confirmPasswordEditText = binding.ConfirmPasswordEditText
     }
 
     private fun checkValidation(
         layout: TextInputLayout,
         pattern: Regex,
-        message: String
+        message: String,
     ): TextWatcher =
         object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -121,7 +115,7 @@ class RegisterFragment : Fragment() {
         }
 
     private fun checkSamePassword(
-        layout: TextInputLayout
+        layout: TextInputLayout,
     ): TextWatcher =
         object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

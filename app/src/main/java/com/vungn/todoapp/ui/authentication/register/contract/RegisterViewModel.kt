@@ -8,5 +8,5 @@ interface RegisterViewModel {
     fun passwd(): MutableLiveData<String>
     fun rePasswd(): MutableLiveData<String>
     fun address(): MutableLiveData<String>
-    fun register()
+    fun register(): Boolean
 }

@@ -11,5 +11,5 @@ interface UserDao {
     fun getAll(): List<User>
 
     @Insert(entity = User::class)
-    fun insertUser(user: User)
+    fun insertUser(user: User): Long
 }

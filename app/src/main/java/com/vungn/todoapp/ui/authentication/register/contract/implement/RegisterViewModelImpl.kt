@@ -32,9 +32,9 @@ class RegisterViewModelImpl(application: Application) : AndroidViewModel(applica
 
     override fun address(): MutableLiveData<String> = address
 
-    override fun register() {
+    override fun register(): Boolean {
         if (passwd.value != rePasswd.value) {
-            return
+            return false
         }
         val user = User(
             name = name.value.toString(),
@@ -45,8 +45,10 @@ class RegisterViewModelImpl(application: Application) : AndroidViewModel(applica
         try {
             userRepo.insertUser(user)
         } catch (e: Exception) {
-            Log.d("", "register: " + e.message)
+            Log.e("", "register: " + e.message)
+            return false
         }
+        return true
     }
 
     class Factory(private val application: Application) : ViewModelProvider.Factory {

@@ -13,7 +13,5 @@ class UserRepoImpl(application: Application) : UserRepo {
 
     override fun users() = userDao.getAll()
 
-    override fun insertUser(user: User) {
-        userDao.insertUser(user)
-    }
+    override fun insertUser(user: User): Long = userDao.insertUser(user)
 }
