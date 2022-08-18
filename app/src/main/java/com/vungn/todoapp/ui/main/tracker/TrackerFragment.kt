@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vungn.todoapp.R
+import com.vungn.todoapp.databinding.FragmentTrackerBinding
 import com.vungn.todoapp.ui.main.tracker.adapter.HorizontalCalendarAdapter
 import com.vungn.todoapp.ui.main.tracker.adapter.VerticalTaskAdapter
-import com.vungn.todoapp.databinding.FragmentTrackerBinding
-import com.vungn.todoapp.data.model.FakeData.todayTasks
 
 class TrackerFragment : Fragment() {
     private lateinit var binding: FragmentTrackerBinding
@@ -62,7 +61,6 @@ class TrackerFragment : Fragment() {
                 val action = TrackerFragmentDirections.actionTrackerFragmentToTaskFragment(task)
                 findNavController().navigate(action)
             }
-            taskAdapter.setData(todayTasks)
             taskRecycleView.adapter = taskAdapter
         }
     }

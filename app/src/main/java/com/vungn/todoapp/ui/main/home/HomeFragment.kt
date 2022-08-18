@@ -13,12 +13,9 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.tabs.TabLayout
 import com.vungn.todoapp.R
-import com.vungn.todoapp.ui.main.home.adapter.HorizontalTaskAdapter
-import com.vungn.todoapp.databinding.FragmentHomeBinding
-import com.vungn.todoapp.data.model.FakeData.todayTasks
-import com.vungn.todoapp.data.model.FakeData.tomorrowTasks
-import com.vungn.todoapp.data.model.FakeData.upcomingTasks
 import com.vungn.todoapp.data.model.Task
+import com.vungn.todoapp.databinding.FragmentHomeBinding
+import com.vungn.todoapp.ui.main.home.adapter.HorizontalTaskAdapter
 
 class HomeFragment : Fragment() {
     private lateinit var adapter: HorizontalTaskAdapter
@@ -51,13 +48,10 @@ class HomeFragment : Fragment() {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     when (tab?.position) {
                         0 -> {
-                            updateRecycleView(todayTasks)
                         }
                         1 -> {
-                            updateRecycleView(tomorrowTasks)
                         }
                         2 -> {
-                            updateRecycleView(upcomingTasks)
                         }
                     }
                 }
@@ -88,7 +82,6 @@ class HomeFragment : Fragment() {
             recycleView.addItemDecoration(itemDecoration)
             val snapHelper: SnapHelper = LinearSnapHelper()
             snapHelper.attachToRecyclerView(binding.recycleView)
-            updateRecycleView(todayTasks)
         }
     }
 

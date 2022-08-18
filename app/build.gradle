@@ -63,6 +63,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.core:core-ktx:1.8.0"
 
+    // Room
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     //other
     implementation "com.tbuonomo:dotsindicator:4.3"
     implementation 'com.github.aabhasr1:OtpView:v1.1.2-ktx'

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
-import com.vungn.todoapp.data.model.FakeData.loggedInUser
+import com.vungn.todoapp.data.model.User
 import com.vungn.todoapp.databinding.FragmentSettingBinding
 import com.vungn.todoapp.ui.main.activity.MainActivity
 import com.vungn.todoapp.ui.main.setting.contract.SettingViewModel
@@ -35,7 +35,7 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            user = loggedInUser
+            user = User(name = "alo alo", email = "", passwd = "", address = "")
         }
         handleEvent()
         setupStatusBarColor(R.color.primary_variant)
