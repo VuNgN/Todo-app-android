@@ -13,5 +13,11 @@ class UserRepoImpl(application: Application) : UserRepo {
 
     override fun users() = userDao.getAll()
 
-    override fun insertUser(user: User): Long = userDao.insertUser(user)
+    override fun insertUser(user: User): Boolean =
+        try {
+            userDao.insertUser(user)
+            true
+        } catch (e: Exception) {
+            false
+        }
 }

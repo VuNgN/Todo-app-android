@@ -4,5 +4,5 @@ import com.vungn.todoapp.data.model.User
 
 interface UserRepo {
     fun users(): List<User>
-    fun insertUser(user: User): Long
+    fun insertUser(user: User): Boolean
 }

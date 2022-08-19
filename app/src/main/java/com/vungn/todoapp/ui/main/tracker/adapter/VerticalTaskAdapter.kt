@@ -3,9 +3,9 @@ package com.vungn.todoapp.ui.main.tracker.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.vungn.todoapp.data.model.Task
 import com.vungn.todoapp.databinding.ItemVerticalTaskNormalBinding
 import com.vungn.todoapp.databinding.ItemVerticalTaskSelectedBinding
-import com.vungn.todoapp.data.model.Task
 
 class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -75,9 +75,7 @@ class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = n
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             binding.apply {
-                title.text = task.title
-                time.text = task.time
-                description.text = task.description
+                this.task = task
             }
         }
     }

@@ -1,261 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.main.insert.InsertTaskFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="vm"
+            type="com.vungn.todoapp.ui.main.insert.contract.InsertTaskViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.insert.InsertTaskFragment">
 
-        <ImageView
-            android:id="@+id/buttonBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="14dp"
-            android:contentDescription="@null"
-            android:scaleType="center"
-            android:src="@drawable/ic_round_arrow_back_ios_new_24"
-            app:layout_constraintBottom_toBottomOf="@+id/title"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/title" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Add a task"
-            android:textColor="@color/black"
-            android:textSize="22dp"
-            app:layout_constraintBottom_toBottomOf="@id/buttonBack"
-            app:layout_constraintStart_toEndOf="@id/buttonBack" />
-
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="April 10, 2022"
-            android:textColor="@color/text_gray_tracker"
-            android:textSize="15dp"
-            app:layout_constraintStart_toStartOf="@id/title"
-            app:layout_constraintTop_toBottomOf="@id/title" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/name"
-                style="@style/ThemeOverlay.App.TextInputLayout"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/buttonBack"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="14dp"
+                android:contentDescription="@null"
+                android:scaleType="center"
+                android:src="@drawable/ic_round_arrow_back_ios_new_24"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/edge_horizontal"
-                android:layout_marginTop="40dp"
-                android:drawablePadding="@dimen/edit_text_drawable_padding"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="filled"
-                app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
-                app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
-                app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
-                app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
-                app:boxStrokeColor="@color/black"
-                app:boxStrokeErrorColor="@color/color_error"
-                app:hintEnabled="false"
-                app:hintTextColor="@color/text_gray_task_info"
-                app:startIconDrawable="@drawable/ic_outline_assignment_turned_in_24"
-                app:startIconTint="@color/black">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/enterTask"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Enter task"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
-                    android:paddingVertical="@dimen/edit_text_padding_vertical"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_text_size_login_register" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/remindMe"
-                style="@style/ThemeOverlay.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/edge_horizontal"
-                android:layout_marginTop="30dp"
-                android:drawablePadding="@dimen/edit_text_drawable_padding"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="filled"
-                app:boxStrokeColor="@color/black"
-                app:boxStrokeErrorColor="@color/color_error"
-                app:endIconDrawable="@drawable/ic_round_keyboard_arrow_down_24"
-                app:endIconMode="dropdown_menu"
-                app:endIconTint="@color/black"
-                app:hintEnabled="false"
-                app:startIconDrawable="@drawable/ic_outline_notifications_none_24"
-                app:startIconTint="@color/black">
-
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:inputType="none"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_text_size_login_register" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/repeat"
-                style="@style/ThemeOverlay.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/edge_horizontal"
-                android:layout_marginTop="30dp"
-                android:drawablePadding="@dimen/edit_text_drawable_padding"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="filled"
-                app:boxStrokeColor="@color/black"
-                app:boxStrokeErrorColor="@color/color_error"
-                app:endIconDrawable="@drawable/ic_round_keyboard_arrow_down_24"
-                app:endIconMode="dropdown_menu"
-                app:endIconTint="@color/black"
-                app:hintEnabled="false"
-                app:startIconDrawable="@drawable/ic_round_refresh_24"
-                app:startIconTint="@color/black">
-
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:inputType="none"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_text_size_login_register" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/relatedLink"
-                style="@style/ThemeOverlay.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/edge_horizontal"
-                android:layout_marginTop="30dp"
-                android:drawablePadding="@dimen/edit_text_drawable_padding"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="filled"
-                app:boxStrokeColor="@color/black"
-                app:boxStrokeErrorColor="@color/color_error"
-                app:hintEnabled="false"
-                app:startIconDrawable="@drawable/ic_outline_link_24"
-                app:startIconTint="@color/black">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/relatedLinkEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Related links"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
-                    android:paddingVertical="@dimen/edit_text_padding_vertical"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_text_size_login_register" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dueDate"
-                style="@style/ThemeOverlay.App.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/edge_horizontal"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="35dp"
-                android:drawablePadding="@dimen/edit_text_drawable_padding"
-                app:boxBackgroundColor="@color/white"
-                app:boxBackgroundMode="filled"
-                app:boxStrokeColor="@color/black"
-                app:boxStrokeErrorColor="@color/color_error"
-                app:endIconDrawable="@drawable/ic_round_keyboard_arrow_down_24"
-                app:endIconMode="custom"
-                app:endIconTint="@color/black"
-                app:hintEnabled="false"
-                app:startIconDrawable="@drawable/ic_round_calendar_today_24"
-                app:startIconTint="@color/black">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dueDateEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:fontFamily="@font/poppins_light"
-                    android:hint="Enter due date"
-                    android:inputType="none"
-                    android:maxLines="1"
-                    android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
-                    android:paddingVertical="@dimen/edit_text_padding_vertical"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/edit_text_text_size_login_register" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/edge_horizontal"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
-
-                <CalendarView
-                    android:id="@+id/calendarPicker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/corner_button"
-                    android:dateTextAppearance="@style/CalendarViewDateCustomText"
-                    android:theme="@style/CalendarViewCustom"
-                    android:visibility="visible"
-                    android:weekDayTextAppearance="@style/CalendarViewWeekCustomText" />
-
-            </androidx.cardview.widget.CardView>
-
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/button_height"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/corner_button"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Save"
-                android:textColor="@color/white"
-                android:textSize="16dp" />
+                android:text="Add a task"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/buttonBack"
+                app:layout_constraintStart_toEndOf="@id/buttonBack" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="April 10, 2022"
+                android:textColor="@color/text_gray_tracker"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/title" />
 
-    </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/name"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/edge_horizontal"
+                    android:layout_marginTop="40dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxCornerRadiusBottomEnd="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/edit_text_border_radius"
+                    app:boxCornerRadiusTopStart="@dimen/edit_text_border_radius"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@color/text_gray_task_info"
+                    app:startIconDrawable="@drawable/ic_outline_assignment_turned_in_24"
+                    app:startIconTint="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/enterTask"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Enter task"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                        android:paddingVertical="@dimen/edit_text_padding_vertical"
+                        android:text="@={vm.name}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/repeat"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/edge_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:endIconDrawable="@drawable/ic_round_keyboard_arrow_down_24"
+                    app:endIconMode="dropdown_menu"
+                    app:endIconTint="@color/black"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_round_refresh_24"
+                    app:startIconTint="@color/black">
+
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Repeat"
+                        android:inputType="none"
+                        android:text="@={vm.repeat}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/relatedLink"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/edge_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_outline_link_24"
+                    app:startIconTint="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/relatedLinkEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Related links"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                        android:paddingVertical="@dimen/edit_text_padding_vertical"
+                        android:text="@={vm.relatedLink}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dueDate"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/edge_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:endIconDrawable="@drawable/ic_round_keyboard_arrow_down_24"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/black"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_round_calendar_today_24"
+                    app:startIconTint="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dueDateEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Enter due date"
+                        android:inputType="none"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                        android:paddingVertical="@dimen/edit_text_padding_vertical"
+                        android:text="@={vm.dueDate}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/corner_button"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Save"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:onSafeClick="@{_->vm.save()}" />
+
+            </LinearLayout>
+
+        </ScrollView>
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

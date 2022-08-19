@@ -82,6 +82,7 @@ class HomeFragment : Fragment() {
             recycleView.addItemDecoration(itemDecoration)
             val snapHelper: SnapHelper = LinearSnapHelper()
             snapHelper.attachToRecyclerView(binding.recycleView)
+            updateRecycleView(mutableListOf())
         }
     }
 

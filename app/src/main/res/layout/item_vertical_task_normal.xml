@@ -1,100 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="20dp">
+    <data>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:background="@drawable/dot_normal_task"
-            android:contentDescription="@null"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside" />
+        <import type="com.vungn.todoapp.util.TimeUtil" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/primary_variant"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <variable
+            name="task"
+            type="com.vungn.todoapp.data.model.Task" />
+    </data>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/task_padding_horizontal">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp">
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:maxLines="1"
-                android:text="@string/meeting"
-                android:textColor="@color/black"
-                android:textSize="@dimen/task_title_text_size"
-                app:layout_constraintEnd_toStartOf="@id/guideline"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:background="@drawable/dot_normal_task"
+                android:contentDescription="@null"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
 
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/_9_00_am"
-                android:textColor="@color/text_gray_task"
-                android:textSize="@dimen/task_text_size"
-                app:layout_constraintBottom_toBottomOf="@+id/title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/description"
-                app:layout_constraintGuide_percent="0.6" />
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:lines="2"
-                android:text="@string/discuss_team_tasks_for_the_day"
-                android:textColor="@color/text_gray_task"
-                android:textSize="@dimen/task_text_size"
-                app:layout_constraintEnd_toStartOf="@id/guideline"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toBottomOf="@id/title" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/primary_variant"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp">
 
-</LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/task_padding_horizontal">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:maxLines="1"
+                    android:text="@{task.title}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/task_title_text_size"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@{TimeUtil.INSTANCE.formatFromISO8601ToHour(task.startOn)}"
+                    android:textColor="@color/text_gray_task"
+                    android:textSize="@dimen/task_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/description"
+                    app:layout_constraintGuide_percent="0.6" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:lines="2"
+                    android:text="@{task.description}"
+                    android:textColor="@color/text_gray_task"
+                    android:textSize="@dimen/task_text_size"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintStart_toStartOf="@+id/title"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+</layout>

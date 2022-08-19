@@ -17,7 +17,7 @@ class TrackerFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View = FragmentTrackerBinding.inflate(inflater, container, false).also {
         binding = it
     }.root
@@ -62,6 +62,7 @@ class TrackerFragment : Fragment() {
                 findNavController().navigate(action)
             }
             taskRecycleView.adapter = taskAdapter
+            taskAdapter.setData(mutableListOf())
         }
     }
 }
