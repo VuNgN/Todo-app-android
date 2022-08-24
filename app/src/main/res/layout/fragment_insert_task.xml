@@ -106,6 +106,38 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/relatedLink"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/edge_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_round_description_24"
+                    app:startIconTint="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/relatedLinkEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Description"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                        android:paddingVertical="@dimen/edit_text_padding_vertical"
+                        android:text="@={vm.description}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/repeat"
                     style="@style/ThemeOverlay.App.TextInputLayout"
                     android:layout_width="match_parent"
@@ -131,38 +163,6 @@
                         android:hint="Repeat"
                         android:inputType="none"
                         android:text="@={vm.repeat}"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/edit_text_text_size_login_register" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/relatedLink"
-                    style="@style/ThemeOverlay.App.TextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/edge_horizontal"
-                    android:layout_marginTop="30dp"
-                    android:drawablePadding="@dimen/edit_text_drawable_padding"
-                    app:boxBackgroundColor="@color/white"
-                    app:boxBackgroundMode="filled"
-                    app:boxStrokeColor="@color/black"
-                    app:boxStrokeErrorColor="@color/color_error"
-                    app:hintEnabled="false"
-                    app:startIconDrawable="@drawable/ic_outline_link_24"
-                    app:startIconTint="@color/black">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/relatedLinkEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_light"
-                        android:hint="Related links"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
-                        android:paddingVertical="@dimen/edit_text_padding_vertical"
-                        android:text="@={vm.relatedLink}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/edit_text_text_size_login_register" />
 
@@ -207,17 +207,31 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
+                    android:id="@+id/saveButton"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
                     android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="35dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/corner_button"
+                    android:background="@drawable/ripple_primary_button"
+                    android:elevation="@null"
+                    android:enabled="false"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Save"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     app:onSafeClick="@{_->vm.save()}" />
+
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

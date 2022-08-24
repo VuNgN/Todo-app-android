@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.vungn.todoapp.R
@@ -44,6 +45,7 @@ class InsertTaskFragment : Fragment() {
         binding = it
         val factory =
             InsertTaskViewModelImpl.Factory(this@InsertTaskFragment.requireActivity().application)
+        binding.lifecycleOwner = this
         vm = ViewModelProvider(this, factory)[InsertTaskViewModelImpl::class.java]
         binding.vm = vm
     }.root
@@ -84,7 +86,6 @@ class InsertTaskFragment : Fragment() {
         val formattedDate = formatToISO8601(date)
         Log.d("", "datePicker: $formattedDate")
         vm.dueDate().postValue(formattedDate)
-        binding.dueDateEditText.setText(formattedDate)
     }
 
     private fun setupUi() {
@@ -95,6 +96,29 @@ class InsertTaskFragment : Fragment() {
             (repeat.editText as AutoCompleteTextView).setAdapter(dropdownAdapter)
             (repeat.editText as AutoCompleteTextView).setText(dropdownAdapter.getItem(3), false)
         }
-    }
 
+        vm.isLoading().observe(viewLifecycleOwner) {
+            binding.apply {
+                if (it) {
+                    saveButton.visibility = View.GONE
+                    indicator.visibility = View.VISIBLE
+                } else {
+                    saveButton.visibility = View.VISIBLE
+                    indicator.visibility = View.GONE
+                    vm?.clearTextField()
+                }
+            }
+        }
+
+        vm.isValid().observe(viewLifecycleOwner) {
+            binding.saveButton.isEnabled = it
+        }
+
+        vm.isSaveSuccess().observe(viewLifecycleOwner) {
+            if (it) {
+                Snackbar.make(this.requireView(), "Add success", Snackbar.LENGTH_SHORT).show()
+                findNavController().popBackStack()
+            }
+        }
+    }
 }
