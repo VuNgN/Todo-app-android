@@ -1,5 +1,6 @@
 package com.vungn.todoapp.ui.main.insert
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -116,7 +117,12 @@ class InsertTaskFragment : Fragment() {
 
         vm.isSaveSuccess().observe(viewLifecycleOwner) {
             if (it) {
-                Snackbar.make(this.requireView(), "Add success", Snackbar.LENGTH_SHORT).show()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    Snackbar.make(this.requireView(), "Add success!", Snackbar.LENGTH_SHORT)
+                        .setBackgroundTint(resources.getColor(R.color.primary_variant, null))
+                        .setTextColor(resources.getColor(R.color.white, null))
+                        .show()
+                }
                 findNavController().popBackStack()
             }
         }
