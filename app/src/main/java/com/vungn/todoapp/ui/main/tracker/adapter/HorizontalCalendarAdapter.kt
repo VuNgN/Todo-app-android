@@ -18,11 +18,16 @@ import java.util.*
 class HorizontalCalendarAdapter(
     context: Context,
     private val itemWidth: Int,
+    selectedDate: Date?,
 ) :
     RecyclerView.Adapter<HorizontalCalendarAdapter.ViewHolder>() {
     private lateinit var data: MutableList<Date>
     private val context: Context
-    private var selectedItem = Calendar.getInstance()[Calendar.DAY_OF_MONTH] - 1
+    private var selectedItem = (Calendar.getInstance().apply {
+        if (selectedDate != null) {
+            time = selectedDate
+        }
+    }[Calendar.DAY_OF_MONTH] - 1)
     private var mListener: AdapterView.OnItemClickListener? = null
 
     init {

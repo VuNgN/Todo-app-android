@@ -28,7 +28,7 @@ class TrackerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
 
-    ): View = FragmentTrackerBinding.inflate(inflater, container, false).also {
+        ): View = FragmentTrackerBinding.inflate(inflater, container, false).also {
         val factory =
             TrackerViewModelImpl.Factory(this@TrackerFragment.requireActivity().application)
         vm = ViewModelProvider(this, factory)[TrackerViewModelImpl::class.java]
@@ -54,7 +54,7 @@ class TrackerFragment : Fragment() {
                 )
             }
         }
-        vm.date().observe(viewLifecycleOwner){
+        vm.date().observe(viewLifecycleOwner) {
             Log.d("", "handleEvent: $it")
         }
     }
@@ -74,53 +74,37 @@ class TrackerFragment : Fragment() {
         }
         binding.taskRecycleView.adapter = taskAdapter
         taskAdapter.setData(vm.getTasks())
-        vm.date().observe(viewLifecycleOwner){
+        vm.date().observe(viewLifecycleOwner) {
             taskAdapter.setData(vm.getTasks())
             taskAdapter.notifyDataSetChanged()
         }
     }
 
-    private fun setUpCalendar(changeMonth: Calendar? = null) {
+    private fun setUpCalendar() {
+        vm.date().postValue(Calendar.getInstance().time)
         val edge = resources.getDimensionPixelSize(R.dimen.edge_horizontal)
         val itemWidth = (requireContext().resources.displayMetrics.widthPixels - edge * 2) / 7
 
-        val lastDayInCalendar = Calendar.getInstance(Locale.ENGLISH)
-        val cal = Calendar.getInstance(Locale.ENGLISH)
-
-        val currentDate = Calendar.getInstance(Locale.ENGLISH)
-        val currentDay = currentDate[Calendar.DAY_OF_MONTH]
-
-        var selectedDay: Int = when {
-            changeMonth != null -> changeMonth.getActualMinimum(Calendar.DAY_OF_MONTH)
-            else -> currentDay
-        }
-
         val dates = ArrayList<Date>()
-
-        val monthCalendar = cal.clone() as Calendar
+        val cal = Calendar.getInstance(Locale.ENGLISH)
         val maxDaysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
 
-        lastDayInCalendar.add(Calendar.MONTH, 6)
-
-
-        var currentPosition = 0
         dates.clear()
-        monthCalendar.set(Calendar.DAY_OF_MONTH, 1)
+        cal.set(Calendar.DAY_OF_MONTH, 1)
 
         while (dates.size < maxDaysInMonth) {
-            if (monthCalendar[Calendar.DAY_OF_MONTH] == selectedDay)
-                currentPosition = dates.size
-            dates.add(monthCalendar.time)
-            monthCalendar.add(Calendar.DAY_OF_MONTH, 1)
+            dates.add(cal.time)
+            cal.add(Calendar.DAY_OF_MONTH, 1)
         }
 
         binding.apply {
             val adapter =
-                HorizontalCalendarAdapter(requireContext(), itemWidth)
+                HorizontalCalendarAdapter(requireContext(), itemWidth, vm.date().value)
             adapter.setData(dates)
             calendarRecycleView.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
             calendarRecycleView.adapter = adapter
+            val currentPosition = Calendar.getInstance()[Calendar.DAY_OF_MONTH] - 1
             when {
                 currentPosition > 2 -> calendarRecycleView.scrollToPosition(currentPosition - 3)
                 maxDaysInMonth - currentPosition < 2 -> calendarRecycleView.scrollToPosition(
@@ -134,10 +118,6 @@ class TrackerFragment : Fragment() {
                     position: Int,
                     id: Long,
                 ) {
-                    Log.d("", "onItemClick: $position")
-                    val clickCalendar = Calendar.getInstance()
-                    clickCalendar.time = dates[position]
-                    selectedDay = clickCalendar[Calendar.DAY_OF_MONTH]
                     vm.date().postValue(dates[position])
                 }
             })
