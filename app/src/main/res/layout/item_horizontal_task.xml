@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
-            android:text="@{TimeUtil.INSTANCE.formatFromISO8601ToHour(task.startOn)}"
+            android:text="@{TimeUtil.INSTANCE.formatFromISO8601ToHour(task.dueDate)}"
             android:textColor="@color/text_gray_task"
             android:textSize="@dimen/task_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/title"

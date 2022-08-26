@@ -9,7 +9,7 @@ import com.vungn.todoapp.databinding.ItemVerticalTaskSelectedBinding
 
 class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private lateinit var data: MutableList<Task>
+    private lateinit var data: List<Task>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -49,7 +49,7 @@ class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = n
         return position
     }
 
-    fun setData(data: MutableList<Task>) {
+    fun setData(data: List<Task>) {
         this.data = data
     }
 

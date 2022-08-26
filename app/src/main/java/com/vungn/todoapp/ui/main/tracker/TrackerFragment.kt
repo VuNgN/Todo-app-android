@@ -1,5 +1,6 @@
 package com.vungn.todoapp.ui.main.tracker
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -14,15 +16,22 @@ import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentTrackerBinding
 import com.vungn.todoapp.ui.main.tracker.adapter.HorizontalCalendarAdapter
 import com.vungn.todoapp.ui.main.tracker.adapter.VerticalTaskAdapter
+import com.vungn.todoapp.ui.main.tracker.contract.TrackerViewModel
+import com.vungn.todoapp.ui.main.tracker.contract.implement.TrackerViewModelImpl
 import java.util.*
 
 class TrackerFragment : Fragment() {
     private lateinit var binding: FragmentTrackerBinding
+    private lateinit var vm: TrackerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
+
     ): View = FragmentTrackerBinding.inflate(inflater, container, false).also {
+        val factory =
+            TrackerViewModelImpl.Factory(this@TrackerFragment.requireActivity().application)
+        vm = ViewModelProvider(this, factory)[TrackerViewModelImpl::class.java]
         binding = it
     }.root
 
@@ -45,23 +54,29 @@ class TrackerFragment : Fragment() {
                 )
             }
         }
+        vm.date().observe(viewLifecycleOwner){
+            Log.d("", "handleEvent: $it")
+        }
     }
 
     private fun setupUi() {
         val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.calendarRecycleView)
+        setUpCalendar()
+        setUpTasks()
+    }
 
-        binding.apply {
-            // Calendar RecycleView
-            snapHelper.attachToRecyclerView(calendarRecycleView)
-            setUpCalendar()
-
-            // Task RecycleView
-            val taskAdapter = VerticalTaskAdapter { task ->
-                val action = TrackerFragmentDirections.actionTrackerFragmentToTaskFragment(task)
-                findNavController().navigate(action)
-            }
-            taskRecycleView.adapter = taskAdapter
-            taskAdapter.setData(mutableListOf())
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setUpTasks() {
+        val taskAdapter = VerticalTaskAdapter { task ->
+            val action = TrackerFragmentDirections.actionTrackerFragmentToTaskFragment(task)
+            findNavController().navigate(action)
+        }
+        binding.taskRecycleView.adapter = taskAdapter
+        taskAdapter.setData(vm.getTasks())
+        vm.date().observe(viewLifecycleOwner){
+            taskAdapter.setData(vm.getTasks())
+            taskAdapter.notifyDataSetChanged()
         }
     }
 
@@ -123,6 +138,7 @@ class TrackerFragment : Fragment() {
                     val clickCalendar = Calendar.getInstance()
                     clickCalendar.time = dates[position]
                     selectedDay = clickCalendar[Calendar.DAY_OF_MONTH]
+                    vm.date().postValue(dates[position])
                 }
             })
         }
