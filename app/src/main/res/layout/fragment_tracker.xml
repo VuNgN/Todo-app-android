@@ -1,92 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.main.tracker.TrackerFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/buttonBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="14dp"
-        android:contentDescription="@null"
-        android:scaleType="center"
-        android:src="@drawable/ic_round_arrow_back_ios_new_24" />
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <import type="com.vungn.todoapp.util.TimeUtil" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/edge_horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.tracker.TrackerFragment">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="2"
-            app:layout_constraintEnd_toStartOf="@+id/buttonAddTask"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/buttonAddTask">
+        <ImageView
+            android:id="@+id/buttonBack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="14dp"
+            android:contentDescription="@null"
+            android:scaleType="center"
+            android:src="@drawable/ic_round_arrow_back_ios_new_24" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins_medium"
-                android:text="April 10, 2022"
-                android:textColor="@color/text_gray_tracker"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Today"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonAddTask"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ripple_tracker_button"
-            android:drawableLeft="@drawable/ic_round_add_24"
-            android:drawableTint="@color/white"
-            android:text="Add Task"
-            android:textAllCaps="false"
-            app:backgroundTint="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+            android:layout_marginHorizontal="@dimen/edge_horizontal">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2"
+                app:layout_constraintEnd_toStartOf="@+id/buttonAddTask"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/buttonAddTask">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendarRecycleView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/edge_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="25dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="7"
-        tools:listitem="@layout/item_calendar" />
+                <TextView
+                    android:id="@+id/dateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@{TimeUtil.INSTANCE.currentDateTitle}"
+                    android:textColor="@color/text_gray_tracker"
+                    android:textSize="18sp"
+                    tools:text="April 10, 2022" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/taskRecycleView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/edge_horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_vertical_task_selected" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Today"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
 
-</LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonAddTask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_tracker_button"
+                android:drawableLeft="@drawable/ic_round_add_24"
+                android:drawableTint="@color/white"
+                android:text="Add Task"
+                android:textAllCaps="false"
+                app:backgroundTint="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/calendarRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/edge_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="7"
+            tools:listitem="@layout/item_calendar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taskRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/edge_horizontal"
+            android:layoutAnimation="@anim/anim_vertical_task"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_vertical_task_selected" />
+
+    </LinearLayout>
+</layout>

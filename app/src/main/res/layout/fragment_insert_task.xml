@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.vungn.todoapp.util.TimeUtil" />
+
         <variable
             name="vm"
             type="com.vungn.todoapp.ui.main.insert.contract.InsertTaskViewModel" />
@@ -49,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="April 10, 2022"
+                android:text="@{TimeUtil.INSTANCE.currentDateTitle}"
                 android:textColor="@color/text_gray_tracker"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="@id/title"

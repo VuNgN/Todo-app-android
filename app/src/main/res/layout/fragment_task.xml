@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.vungn.todoapp.util.TimeUtil" />
+
         <variable
             name="task"
             type="com.vungn.todoapp.data.model.Task" />
@@ -43,13 +45,15 @@
                 app:layout_constraintTop_toTopOf="@+id/buttonAddTask">
 
                 <TextView
+                    android:id="@+id/dateTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="April 10, 2022"
+                    android:text="@{TimeUtil.INSTANCE.currentDateTitle}"
                     android:textColor="@color/text_gray_tracker"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:text="April 10, 2022" />
 
                 <TextView
                     android:layout_width="wrap_content"

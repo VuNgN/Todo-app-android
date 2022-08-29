@@ -46,14 +46,12 @@ class HorizontalCalendarAdapter(
         }
 
         fun bind(position: Int, selectedPosition: Int, data: MutableList<Date>) {
-            val sdf = SimpleDateFormat("EEE MMM dd HH:mm:ss", Locale.ENGLISH)
+            val sdf = SimpleDateFormat("EEE", Locale.ENGLISH)
             val cal = Calendar.getInstance()
             cal.time = data[position]
 
             try {
-                val dayInWeek = sdf.parse(cal.time.toString())!!
-                sdf.applyPattern("EEE")
-                binding.dayOfWeek.text = sdf.format(dayInWeek).toString()
+                binding.dayOfWeek.text = sdf.format(cal.time).toString()
             } catch (ex: ParseException) {
                 Log.v("Exception", ex.localizedMessage!!)
             }

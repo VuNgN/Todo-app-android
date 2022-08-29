@@ -208,7 +208,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:clipToPadding="false"
-                    android:layoutAnimation="@anim/tasks_recycle_view_animation"
+                    android:layoutAnimation="@anim/anim_horizontal_task"
                     android:paddingStart="@dimen/edge_horizontal"
                     android:paddingBottom="30dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

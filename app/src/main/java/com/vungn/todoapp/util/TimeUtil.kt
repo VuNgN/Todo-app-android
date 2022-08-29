@@ -5,8 +5,8 @@ import android.os.Build
 import java.text.SimpleDateFormat
 import java.util.*
 
+@SuppressLint("SimpleDateFormat")
 object TimeUtil {
-    @SuppressLint("SimpleDateFormat")
     fun formatFromISO8601ToHour(startOn: String): String {
         val fd = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss",
@@ -25,7 +25,6 @@ object TimeUtil {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     fun formatToISO8601(date: Date): String = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss",
             Locale.getDefault(Locale.Category.FORMAT)).format(date)
@@ -33,7 +32,6 @@ object TimeUtil {
         SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss").format(date)
     }
 
-    @SuppressLint("SimpleDateFormat")
     fun formatFromISO8601ToDay(time: Any): String? {
         return when (time) {
             is String -> {
@@ -63,5 +61,28 @@ object TimeUtil {
             }
             else -> null
         }
+    }
+
+    fun getCurrentDateTitle(): String {
+        val currentDate = Calendar.getInstance().time
+        val day = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            SimpleDateFormat("dd",
+                Locale.getDefault(Locale.Category.FORMAT)).format(currentDate)
+        } else {
+            SimpleDateFormat("dd").format(currentDate)
+        }
+        val month = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            SimpleDateFormat("MMMM",
+                Locale.getDefault(Locale.Category.FORMAT)).format(currentDate)
+        } else {
+            SimpleDateFormat("MMMM").format(currentDate)
+        }
+        val year = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            SimpleDateFormat("yyyy",
+                Locale.getDefault(Locale.Category.FORMAT)).format(currentDate)
+        } else {
+            SimpleDateFormat("yyyy").format(currentDate)
+        }
+        return "$month $day, $year"
     }
 }
