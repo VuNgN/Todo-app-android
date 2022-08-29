@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vungn.todoapp.R
-import com.vungn.todoapp.databinding.ItemHorizontalTaskBinding
 import com.vungn.todoapp.data.model.Task
+import com.vungn.todoapp.databinding.ItemHorizontalTaskBinding
 
 class HorizontalTaskAdapter :
     RecyclerView.Adapter<HorizontalTaskAdapter.ViewHolder>() {
-    private lateinit var data: MutableList<Task>
+    private lateinit var data: List<Task>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -26,7 +26,7 @@ class HorizontalTaskAdapter :
 
     override fun getItemCount(): Int = data.size
 
-    fun setData(data: MutableList<Task>) {
+    fun setData(data: List<Task>) {
         this.data = data
     }
 

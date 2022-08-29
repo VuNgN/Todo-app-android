@@ -13,12 +13,12 @@ class TaskRepoImpl(application: Application) : TaskRepo {
         Db.getInstance(application).taskDao()
     }
 
-    override fun insertNewTask(task: Task): Boolean =
+    override fun tasks(): List<Task> =
         try {
-            taskDao.save(task)
-            true
+            val tasks = taskDao.allTask()
+            tasks
         } catch (e: Exception) {
-            false
+            listOf()
         }
 
     override fun taskOn(date: Date): List<Task> =
@@ -27,5 +27,13 @@ class TaskRepoImpl(application: Application) : TaskRepo {
             tasks
         } catch (e: Exception) {
             listOf()
+        }
+
+    override fun insertNewTask(task: Task): Boolean =
+        try {
+            taskDao.save(task)
+            true
+        } catch (e: Exception) {
+            false
         }
 }
