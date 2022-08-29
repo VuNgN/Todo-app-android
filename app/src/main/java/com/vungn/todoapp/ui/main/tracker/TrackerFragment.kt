@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.vungn.todoapp.R
+import com.vungn.todoapp.data.model.Task
 import com.vungn.todoapp.databinding.FragmentTrackerBinding
 import com.vungn.todoapp.ui.main.tracker.adapter.HorizontalCalendarAdapter
 import com.vungn.todoapp.ui.main.tracker.adapter.VerticalTaskAdapter
@@ -68,16 +69,19 @@ class TrackerFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setUpTasks() {
-        val taskAdapter = VerticalTaskAdapter { task ->
-            val action = TrackerFragmentDirections.actionTrackerFragmentToTaskFragment(task)
-            findNavController().navigate(action)
-        }
+        val taskAdapter = VerticalTaskAdapter()
         binding.taskRecycleView.adapter = taskAdapter
         taskAdapter.setData(vm.getTasks())
         vm.date().observe(viewLifecycleOwner) {
             taskAdapter.setData(vm.getTasks())
             taskAdapter.notifyDataSetChanged()
         }
+        taskAdapter.setOnItemClickListener(object : VerticalTaskAdapter.OnItemClickListener {
+            override fun onItemClick(task: Task) {
+                val action = TrackerFragmentDirections.actionTrackerFragmentToTaskFragment(task)
+                findNavController().navigate(action)
+            }
+        })
     }
 
     private fun setUpCalendar() {

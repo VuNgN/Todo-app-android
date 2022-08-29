@@ -76,6 +76,12 @@ class HomeFragment : Fragment() {
                 }
             })
         }
+        adapter.setOnItemClickListener(object : HorizontalTaskAdapter.OnItemClickListener {
+            override fun onItemClick(task: Task) {
+                val action = HomeFragmentDirections.actionHomeFragmentToTaskFragment(task)
+                findNavController().navigate(action)
+            }
+        })
         vm.tasks().observe(viewLifecycleOwner) {
             updateRecycleView(it)
             adapter.notifyDataSetChanged()

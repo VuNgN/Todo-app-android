@@ -7,9 +7,10 @@ import com.vungn.todoapp.data.model.Task
 import com.vungn.todoapp.databinding.ItemVerticalTaskNormalBinding
 import com.vungn.todoapp.databinding.ItemVerticalTaskSelectedBinding
 
-class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = null) :
+class VerticalTaskAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private lateinit var data: List<Task>
+    private var mListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -18,14 +19,16 @@ class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = n
                     LayoutInflater.from(parent.context),
                     parent,
                     false
-                )
+                ),
+                mListener!!
             )
             else -> ViewHolderNormalTask(
                 ItemVerticalTaskNormalBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
-                )
+                ),
+                mListener!!
             )
         }
 
@@ -34,11 +37,14 @@ class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = n
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is ViewHolderSelectedTask -> {
-                holder.bind(data[position])
-                holder.handleEvent(data[position])
+                val task = data[position]
+                holder.bind(task)
+                holder.handleEvent(task)
             }
             is ViewHolderNormalTask -> {
-                holder.bind(data[position])
+                val task = data[position]
+                holder.bind(task)
+                holder.handleEvent(task)
             }
         }
     }
@@ -53,7 +59,10 @@ class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = n
         this.data = data
     }
 
-    inner class ViewHolderSelectedTask(private val binding: ItemVerticalTaskSelectedBinding) :
+    inner class ViewHolderSelectedTask(
+        private val binding: ItemVerticalTaskSelectedBinding,
+        private val listener: OnItemClickListener,
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(task: Task) {
@@ -63,20 +72,35 @@ class VerticalTaskAdapter(private val onItemClickListener: ((Task) -> Unit)? = n
         }
 
         fun handleEvent(task: Task) {
-            binding.itemHorizontalTask.apply {
-                checkButton.setOnClickListener {
-                    onItemClickListener?.invoke(task)
-                }
+            itemView.setOnClickListener {
+                listener.onItemClick(task)
             }
         }
     }
 
-    inner class ViewHolderNormalTask(private val binding: ItemVerticalTaskNormalBinding) :
+    inner class ViewHolderNormalTask(
+        private val binding: ItemVerticalTaskNormalBinding,
+        private val listener: OnItemClickListener,
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             binding.apply {
                 this.task = task
             }
         }
+
+        fun handleEvent(task: Task) {
+            itemView.setOnClickListener {
+                listener.onItemClick(task)
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(task: Task)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
     }
 }
