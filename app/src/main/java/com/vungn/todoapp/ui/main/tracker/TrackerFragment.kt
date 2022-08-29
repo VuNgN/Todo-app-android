@@ -19,6 +19,7 @@ import com.vungn.todoapp.ui.main.tracker.adapter.HorizontalCalendarAdapter
 import com.vungn.todoapp.ui.main.tracker.adapter.VerticalTaskAdapter
 import com.vungn.todoapp.ui.main.tracker.contract.TrackerViewModel
 import com.vungn.todoapp.ui.main.tracker.contract.implement.TrackerViewModelImpl
+import com.vungn.todoapp.util.TimeUtil.formatToISO8601
 import java.util.*
 
 class TrackerFragment : Fragment() {
@@ -63,6 +64,9 @@ class TrackerFragment : Fragment() {
     private fun setupUi() {
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.calendarRecycleView)
+        if (vm.date().value == null) {
+            vm.date().postValue(Calendar.getInstance().time)
+        }
         setUpCalendar()
         setUpTasks()
     }
@@ -71,8 +75,9 @@ class TrackerFragment : Fragment() {
     private fun setUpTasks() {
         val taskAdapter = VerticalTaskAdapter()
         binding.taskRecycleView.adapter = taskAdapter
-        taskAdapter.setData(vm.getTasks())
+        taskAdapter.setData(listOf())
         vm.date().observe(viewLifecycleOwner) {
+            Log.d("", "setUpTasks: change to ${formatToISO8601(it)}")
             taskAdapter.setData(vm.getTasks())
             taskAdapter.notifyDataSetChanged()
         }
@@ -85,7 +90,6 @@ class TrackerFragment : Fragment() {
     }
 
     private fun setUpCalendar() {
-        vm.date().postValue(Calendar.getInstance().time)
         val edge = resources.getDimensionPixelSize(R.dimen.edge_horizontal)
         val itemWidth = (requireContext().resources.displayMetrics.widthPixels - edge * 2) / 7
 
