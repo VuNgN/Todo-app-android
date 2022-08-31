@@ -6,5 +6,6 @@ import java.util.*
 interface TaskRepo {
     fun tasks(): List<Task>
     fun taskOn(date: Date): List<Task>
+    fun upComingTasks(start: Date): List<Task>
     fun insertNewTask(task: Task): Boolean
 }

@@ -28,7 +28,7 @@ class HomeViewModelImpl(application: Application) : AndroidViewModel(application
         val tasks = when (type) {
             TabType.TODAY -> taskRepo.taskOn(today)
             TabType.TOMORROW -> taskRepo.taskOn(tomorrow)
-            TabType.UPCOMING -> taskRepo.tasks()
+            TabType.UPCOMING -> taskRepo.upComingTasks(today)
         }
         this.tasks.postValue(tasks)
     }

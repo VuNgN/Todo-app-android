@@ -10,9 +10,12 @@ interface TaskDao {
     @Query("SELECT * FROM tasks")
     fun allTask(): List<Task>
 
-    @Insert(entity = Task::class)
-    fun save(task: Task): Long
-
     @Query("SELECT * FROM tasks WHERE due_date LIKE :date ORDER BY due_date ASC")
     fun taskOn(date: String): List<Task>
+
+    @Query("SELECT * FROM tasks WHERE due_date > :start ORDER BY due_date ASC")
+    fun upComingTasks(start: String): List<Task>
+
+    @Insert(entity = Task::class)
+    fun save(task: Task): Long
 }
