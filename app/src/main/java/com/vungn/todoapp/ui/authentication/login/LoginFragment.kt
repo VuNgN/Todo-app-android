@@ -80,7 +80,6 @@ class LoginFragment : Fragment() {
             val signInIntent = mGoogleSignInClient.signInIntent
             resultLaunch.launch(signInIntent)
         }
-
     }
 
     private var resultLaunch =
