@@ -8,15 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.vungn.todoapp.databinding.FragmentRegisterBinding
 import com.vungn.todoapp.ui.authentication.register.contract.RegisterViewModel
 import com.vungn.todoapp.ui.authentication.register.contract.implement.RegisterViewModelImpl
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
-    private lateinit var vm: RegisterViewModel
+    private val vm: RegisterViewModel by viewModels<RegisterViewModelImpl>()
     private var emailPattern: Regex = Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
     private var passwordPattern: Regex =
         Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_\\-.,|~/+=])(?=\\S+$).{4,}$")
@@ -32,9 +35,6 @@ class RegisterFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        val factory =
-            RegisterViewModelImpl.Factory(this@RegisterFragment.requireActivity().application)
-        vm = ViewModelProvider(this, factory)[RegisterViewModelImpl::class.java]
         _binding!!.viewModel = vm
         return binding.root
     }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,9 +23,9 @@ import com.vungn.todoapp.ui.main.home.constant.TabType
 import com.vungn.todoapp.ui.main.home.contract.HomeViewModel
 import com.vungn.todoapp.ui.main.home.contract.implement.HomeViewModelImpl
 
-class HomeFragment : Fragment() {
+class HomeFragment  : Fragment() {
     private lateinit var adapter: HorizontalTaskAdapter
-    private lateinit var vm: HomeViewModel
+    private val vm: HomeViewModel by viewModels<HomeViewModelImpl>()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -32,8 +33,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View = FragmentHomeBinding.inflate(inflater, container, false).also {
-        val factory = HomeViewModelImpl.Factory(this@HomeFragment.requireActivity().application)
-        vm = ViewModelProvider(this, factory)[HomeViewModelImpl::class.java]
         _binding = it
         _binding?.vm = vm
     }.root

@@ -10,8 +10,9 @@ import com.vungn.todoapp.data.model.User
 import com.vungn.todoapp.data.repository.UserRepo
 import com.vungn.todoapp.data.repository.impl.UserRepoImpl
 import com.vungn.todoapp.ui.authentication.register.contract.RegisterViewModel
+import javax.inject.Inject
 
-class RegisterViewModelImpl(application: Application) : AndroidViewModel(application),
+class RegisterViewModelImpl @Inject constructor(application: Application) : AndroidViewModel(application),
     RegisterViewModel {
     private val name: MutableLiveData<String> = MutableLiveData()
     private val email: MutableLiveData<String> = MutableLiveData()
@@ -51,9 +52,4 @@ class RegisterViewModelImpl(application: Application) : AndroidViewModel(applica
         return true
     }
 
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return RegisterViewModelImpl(application) as T
-        }
-    }
 }

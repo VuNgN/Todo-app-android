@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -21,13 +22,14 @@ import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentLoginBinding
 import com.vungn.todoapp.ui.authentication.login.contract.LoginViewModel
 import com.vungn.todoapp.ui.authentication.login.contract.implement.LoginViewModelImpl
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var signUpButton: TextView
     private lateinit var signInButton: Button
     private lateinit var forgotPassword: TextView
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel: LoginViewModel by viewModels<LoginViewModelImpl>()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private var _binding: FragmentLoginBinding? = null
 
@@ -42,10 +44,6 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         // đang khởi tạo dữ liệu, sau này sẽ sử dụng dependency để khởi tạo ở nơi khác
-        val factory =
-            LoginViewModelImpl.Factory(this@LoginFragment.requireActivity().application) // Factory
-        viewModel =
-            ViewModelProvider(this, factory)[LoginViewModelImpl::class.java] // ViewModel
         _binding?.viewModel = viewModel
         //
         return binding.root

@@ -6,13 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.vungn.todoapp.data.repository.ConfigManager
 import com.vungn.todoapp.ui.authentication.activity.contract.AuthenticationViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AuthenticationViewModelImpl(application: Application) : AndroidViewModel(
+@HiltViewModel
+class AuthenticationViewModelImpl @Inject constructor(
+    application: Application,
+    private val configManager: ConfigManager,
+) : AndroidViewModel(
     application
 ), AuthenticationViewModel {
-    private val configManager: ConfigManager by lazy {
-        ConfigManager(application.applicationContext)
-    }
 
     override fun isFirstRun(): Boolean =
         if (configManager.isFirstRun()) {
@@ -25,9 +28,5 @@ class AuthenticationViewModelImpl(application: Application) : AndroidViewModel(
     override fun isLoggedIn(): Boolean = configManager.isLoggedIn()
 
 
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return AuthenticationViewModelImpl(application) as T
-        }
-    }
+
 }

@@ -8,8 +8,9 @@ import com.vungn.todoapp.data.repository.TaskRepo
 import com.vungn.todoapp.util.TimeUtil.formatFromISO8601ToDay
 import com.vungn.todoapp.util.TimeUtil.formatToISO8601
 import java.util.*
+import javax.inject.Inject
 
-class TaskRepoImpl(application: Application) : TaskRepo {
+class TaskRepoImpl @Inject constructor(application: Application,) : TaskRepo {
     private val taskDao: TaskDao by lazy {
         Db.getInstance(application).taskDao()
     }

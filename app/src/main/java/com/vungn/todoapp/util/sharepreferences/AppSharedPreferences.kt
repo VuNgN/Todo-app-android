@@ -4,9 +4,10 @@ package com.vungn.todoapp.util.sharepreferences
 
 import android.content.Context
 import android.content.SharedPreferences
+import javax.inject.Inject
 
 @Suppress("unused")
-class AppSharedPreferences(
+class AppSharedPreferences (
     private val preferences: SharedPreferences,
 ) : SharedPreferences by preferences {
 

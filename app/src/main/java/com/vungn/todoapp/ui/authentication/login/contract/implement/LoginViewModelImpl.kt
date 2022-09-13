@@ -6,8 +6,11 @@ import com.vungn.todoapp.R
 import com.vungn.todoapp.common.livedata.OneTimeMutableLivedata
 import com.vungn.todoapp.data.model.Direction
 import com.vungn.todoapp.ui.authentication.login.contract.LoginViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginViewModelImpl(
+@HiltViewModel
+class LoginViewModelImpl @Inject constructor(
     application: Application
 ) : AndroidViewModel(application), LoginViewModel {
     private val email = MutableLiveData<String>()
@@ -30,9 +33,4 @@ class LoginViewModelImpl(
         // do something
     }
 
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return LoginViewModelImpl(application) as T
-        }
-    }
 }

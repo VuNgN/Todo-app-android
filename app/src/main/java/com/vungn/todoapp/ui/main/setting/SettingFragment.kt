@@ -25,9 +25,8 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = FragmentSettingBinding.inflate(inflater, container, false).also {
-        val factory =
-            SettingViewModelImpl.Factory(this@SettingFragment.requireActivity().application)
-        viewModel = ViewModelProvider(this, factory)[SettingViewModelImpl::class.java]
+
+        viewModel = ViewModelProvider(this)[SettingViewModelImpl::class.java]
         binding = it
     }.root
 

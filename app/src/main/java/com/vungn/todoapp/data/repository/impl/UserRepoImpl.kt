@@ -5,8 +5,10 @@ import com.vungn.todoapp.data.database.Db
 import com.vungn.todoapp.data.database.dao.UserDao
 import com.vungn.todoapp.data.model.User
 import com.vungn.todoapp.data.repository.UserRepo
+import javax.inject.Inject
 
-class UserRepoImpl(application: Application) : UserRepo {
+class UserRepoImpl @Inject constructor(application: Application) : UserRepo {
+
     private val userDao: UserDao by lazy {
         Db.getInstance(application).userDao()
     }

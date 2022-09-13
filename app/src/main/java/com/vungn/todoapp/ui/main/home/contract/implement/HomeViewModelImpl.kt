@@ -10,13 +10,13 @@ import com.vungn.todoapp.data.repository.TaskRepo
 import com.vungn.todoapp.data.repository.impl.TaskRepoImpl
 import com.vungn.todoapp.ui.main.home.constant.TabType
 import com.vungn.todoapp.ui.main.home.contract.HomeViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
+import javax.inject.Inject
 
-class HomeViewModelImpl(application: Application) : AndroidViewModel(application), HomeViewModel {
+@HiltViewModel
+class HomeViewModelImpl @Inject constructor(application: Application,  private val taskRepo: TaskRepo) : AndroidViewModel(application), HomeViewModel {
     private val tasks: MutableLiveData<List<Task>> = MutableLiveData()
-    private val taskRepo: TaskRepo by lazy {
-        TaskRepoImpl(application)
-    }
 
     override fun tasks(): MutableLiveData<List<Task>> = tasks
 
@@ -39,9 +39,4 @@ class HomeViewModelImpl(application: Application) : AndroidViewModel(application
         this.tasks.postValue(tasks)
     }
 
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return HomeViewModelImpl(application) as T
-        }
-    }
 }
