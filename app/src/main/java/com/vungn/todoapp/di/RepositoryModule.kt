@@ -18,4 +18,5 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindUserRepository(userRepo: UserRepoImpl): UserRepo
+
 }

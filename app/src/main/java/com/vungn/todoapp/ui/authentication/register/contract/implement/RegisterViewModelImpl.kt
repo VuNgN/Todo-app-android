@@ -2,26 +2,25 @@ package com.vungn.todoapp.ui.authentication.register.contract.implement
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.vungn.todoapp.data.model.User
 import com.vungn.todoapp.data.repository.UserRepo
 import com.vungn.todoapp.data.repository.impl.UserRepoImpl
 import com.vungn.todoapp.ui.authentication.register.contract.RegisterViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class RegisterViewModelImpl @Inject constructor(application: Application) : AndroidViewModel(application),
+class RegisterViewModelImpl @Inject constructor(
+    application: Application,
+    private val userRepo: UserRepo,
+) : AndroidViewModel(application),
     RegisterViewModel {
     private val name: MutableLiveData<String> = MutableLiveData()
     private val email: MutableLiveData<String> = MutableLiveData()
     private val passwd: MutableLiveData<String> = MutableLiveData()
     private val rePasswd: MutableLiveData<String> = MutableLiveData()
     private val address: MutableLiveData<String> = MutableLiveData()
-    private val userRepo: UserRepo by lazy {
-        UserRepoImpl(application)
-    }
+
 
     override fun name(): MutableLiveData<String> = name
 
@@ -44,12 +43,15 @@ class RegisterViewModelImpl @Inject constructor(application: Application) : Andr
             address = address.value.toString()
         )
         try {
-            userRepo.insertUser(user)
+            viewModelScope.launch {
+                userRepo.insertUser(user)
+            }
         } catch (e: Exception) {
             Log.e("", "register: " + e.message)
             return false
         }
         return true
+
     }
 
 }

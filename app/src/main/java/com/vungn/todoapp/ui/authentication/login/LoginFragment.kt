@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -32,6 +34,7 @@ class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel by viewModels<LoginViewModelImpl>()
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private var _binding: FragmentLoginBinding? = null
+    private lateinit var liveDataToken: MutableLiveData<String>
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -54,6 +57,7 @@ class LoginFragment : Fragment() {
         configGoogle()
         bindingView()
         handleEvents()
+        checkLogin()
     }
 
     private fun configGoogle() {
@@ -96,6 +100,15 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+
+    private fun checkLogin() {
+        (viewModel as LoginViewModelImpl).checkLogin.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(requireActivity(), "Login Successfully!!!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
 
     private fun bindingView() {
         signInButton = binding.SignInButton
