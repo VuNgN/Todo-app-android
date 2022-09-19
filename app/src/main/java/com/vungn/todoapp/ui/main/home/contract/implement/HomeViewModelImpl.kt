@@ -10,13 +10,21 @@ import com.vungn.todoapp.data.repository.TaskRepo
 import com.vungn.todoapp.data.repository.impl.TaskRepoImpl
 import com.vungn.todoapp.ui.main.home.constant.TabType
 import com.vungn.todoapp.ui.main.home.contract.HomeViewModel
+import com.vungn.todoapp.usecase.home.LoadInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModelImpl @Inject constructor(application: Application,  private val taskRepo: TaskRepo) : AndroidViewModel(application), HomeViewModel {
+class HomeViewModelImpl @Inject constructor(
+    application: Application,
+    private val taskRepo: TaskRepo,
+    private val loadInfoUseCase: LoadInfoUseCase
+) : AndroidViewModel(application), HomeViewModel {
     private val tasks: MutableLiveData<List<Task>> = MutableLiveData()
+    private val name: MutableLiveData<String> = MutableLiveData()
+    private val avartar: MutableLiveData<String> = MutableLiveData()
+
 
     override fun tasks(): MutableLiveData<List<Task>> = tasks
 

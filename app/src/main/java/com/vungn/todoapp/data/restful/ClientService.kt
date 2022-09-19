@@ -15,5 +15,5 @@ interface ClientService {
     suspend fun register(@Body body: UserRequest): User
 
     @POST("auth")
-    suspend fun loginWithGoogle(@Body token: String): User
+    suspend fun loginWithGoogle(@Body token: String): UserRequest
 }
