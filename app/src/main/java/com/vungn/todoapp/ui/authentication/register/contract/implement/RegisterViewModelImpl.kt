@@ -1,18 +1,22 @@
 package com.vungn.todoapp.ui.authentication.register.contract.implement
 
 import android.app.Application
-import android.util.Log
-import androidx.lifecycle.*
-import com.vungn.todoapp.data.model.User
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.vungn.todoapp.data.model.request.UserRequest
 import com.vungn.todoapp.data.repository.UserRepo
-import com.vungn.todoapp.data.repository.impl.UserRepoImpl
 import com.vungn.todoapp.ui.authentication.register.contract.RegisterViewModel
+import com.vungn.todoapp.usecase.auth.RegisterUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class RegisterViewModelImpl @Inject constructor(
     application: Application,
     private val userRepo: UserRepo,
+    private val registerUseCase: RegisterUseCase,
 ) : AndroidViewModel(application),
     RegisterViewModel {
     private val name: MutableLiveData<String> = MutableLiveData()
@@ -36,22 +40,17 @@ class RegisterViewModelImpl @Inject constructor(
         if (passwd.value != rePasswd.value) {
             return false
         }
-        val user = User(
+        val userRequest = UserRequest(
             name = name.value.toString(),
             email = email.value.toString(),
-            passwd = passwd.value.toString(),
-            address = address.value.toString()
+            ""
         )
-        try {
-            viewModelScope.launch {
-                userRepo.insertUser(user)
-            }
-        } catch (e: Exception) {
-            Log.e("", "register: " + e.message)
-            return false
-        }
-        return true
 
+        viewModelScope.launch {
+           registerUseCase.execute(userRequest)
+        }
+
+        return true
     }
 
 }

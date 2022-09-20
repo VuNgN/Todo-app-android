@@ -6,6 +6,7 @@ import com.vungn.todoapp.data.model.Direction
 import com.vungn.todoapp.data.model.User
 
 interface LoginViewModel {
+    val checkLogin: LiveData<Boolean>
     fun navigation(): LiveData<Direction>
     fun email(): MutableLiveData<String>
     fun password(): MutableLiveData<String>

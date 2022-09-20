@@ -11,7 +11,9 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.vungn.todoapp.R
 import com.vungn.todoapp.ui.authentication.activity.AuthenticationActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,5 +1,7 @@
 package com.vungn.todoapp.di
 
+import com.vungn.todoapp.data.manager.UserManager
+import com.vungn.todoapp.data.manager.implement.UserManagerImpl
 import com.vungn.todoapp.data.repository.TaskRepo
 import com.vungn.todoapp.data.repository.UserRepo
 import com.vungn.todoapp.data.repository.impl.TaskRepoImpl

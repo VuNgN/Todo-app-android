@@ -2,9 +2,8 @@ package com.vungn.todoapp.data.restful
 
 import com.vungn.todoapp.common.api.User
 import com.vungn.todoapp.data.model.request.UserRequest
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
+
 
 interface ClientService {
 
@@ -14,6 +13,7 @@ interface ClientService {
     @POST("user")
     suspend fun register(@Body body: UserRequest): User
 
+    @FormUrlEncoded
     @POST("auth")
-    suspend fun loginWithGoogle(@Body token: String): UserRequest
+    suspend fun loginWithGoogle(@Field("token") token: String): UserRequest
 }

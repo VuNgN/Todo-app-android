@@ -26,6 +26,7 @@
             app:cardCornerRadius="45dp">
 
             <ImageView
+                android:id="@+id/avartar_imageView"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:contentDescription="@null"

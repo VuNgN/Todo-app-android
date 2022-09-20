@@ -1,6 +1,7 @@
 package com.vungn.todoapp.ui.authentication.login
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -24,10 +26,12 @@ import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentLoginBinding
 import com.vungn.todoapp.ui.authentication.login.contract.LoginViewModel
 import com.vungn.todoapp.ui.authentication.login.contract.implement.LoginViewModelImpl
+import com.vungn.todoapp.ui.main.activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(),LifecycleOwner {
     private lateinit var signUpButton: TextView
     private lateinit var signInButton: Button
     private lateinit var forgotPassword: TextView
@@ -57,7 +61,12 @@ class LoginFragment : Fragment() {
         configGoogle()
         bindingView()
         handleEvents()
-        checkLogin()
+        viewModel.checkLogin.observe(viewLifecycleOwner) {
+            if (it) {
+                startActivity(Intent(activity,MainActivity::class.java))
+                Toast.makeText(requireActivity(), "Login Successfully!!!", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun configGoogle() {
@@ -80,6 +89,7 @@ class LoginFragment : Fragment() {
         }
         binding.ggBtn.setOnClickListener {
             val signInIntent = mGoogleSignInClient.signInIntent
+            Log.d(TAG, "handleEvents: ggBtn")
             resultLaunch.launch(signInIntent)
         }
     }
@@ -94,25 +104,20 @@ class LoginFragment : Fragment() {
 
                     // TODO(developer): send ID Token to server and validate
 
-                    Log.d("", "token: $idToken, ${account.displayName}, ${account.email}")
+                    Log.d(TAG, "token: $idToken, ${account.displayName}, ${account.email}")
+                    viewModel.loginWithGoogle(idToken.toString())
                 } catch (e: ApiException) {
-                    Log.d("", "handleSignInResult:error: $e")
+                    Log.d(TAG, "handleSignInResult:error: $e")
                 }
             }
         }
-
-    private fun checkLogin() {
-        (viewModel as LoginViewModelImpl).checkLogin.observe(viewLifecycleOwner) {
-            if (it) {
-                Toast.makeText(requireActivity(), "Login Successfully!!!", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-    }
 
     private fun bindingView() {
         signInButton = binding.SignInButton
         signUpButton = binding.SignUpButton
         forgotPassword = binding.ForgotPasswordTextView
+    }
+    companion object{
+        private val TAG= "LoginFragment"
     }
 }

@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.vungn.todoapp.R
 import com.vungn.todoapp.data.model.Task
@@ -22,8 +24,10 @@ import com.vungn.todoapp.ui.main.home.adapter.HorizontalTaskAdapter
 import com.vungn.todoapp.ui.main.home.constant.TabType
 import com.vungn.todoapp.ui.main.home.contract.HomeViewModel
 import com.vungn.todoapp.ui.main.home.contract.implement.HomeViewModelImpl
+import dagger.hilt.android.AndroidEntryPoint
 
-class HomeFragment  : Fragment() {
+@AndroidEntryPoint
+class HomeFragment : Fragment(), LifecycleOwner {
     private lateinit var adapter: HorizontalTaskAdapter
     private val vm: HomeViewModel by viewModels<HomeViewModelImpl>()
     private var _binding: FragmentHomeBinding? = null
@@ -35,6 +39,7 @@ class HomeFragment  : Fragment() {
     ): View = FragmentHomeBinding.inflate(inflater, container, false).also {
         _binding = it
         _binding?.vm = vm
+        vm.loadUserFromJson()
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,6 +94,14 @@ class HomeFragment  : Fragment() {
     }
 
     private fun setupUi() {
+
+        (vm as HomeViewModelImpl).avatar.observe(viewLifecycleOwner) {
+            Glide.with(this).load(it).into(binding.avartarImageView)
+        }
+        (vm as HomeViewModelImpl).name.observe(viewLifecycleOwner) {
+            binding.nameTextview.setText(it)
+        }
+
         adapter = HorizontalTaskAdapter()
         binding.apply {
             recycleView.adapter = adapter

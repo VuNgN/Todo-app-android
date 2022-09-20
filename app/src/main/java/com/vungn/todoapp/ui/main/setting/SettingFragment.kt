@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
@@ -15,18 +16,17 @@ import com.vungn.todoapp.databinding.FragmentSettingBinding
 import com.vungn.todoapp.ui.main.activity.MainActivity
 import com.vungn.todoapp.ui.main.setting.contract.SettingViewModel
 import com.vungn.todoapp.ui.main.setting.contract.implement.SettingViewModelImpl
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SettingFragment : Fragment() {
     private lateinit var binding: FragmentSettingBinding
-    private lateinit var viewModel: SettingViewModel
+    private val viewModel: SettingViewModel by viewModels<SettingViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = FragmentSettingBinding.inflate(inflater, container, false).also {
-
-        viewModel = ViewModelProvider(this)[SettingViewModelImpl::class.java]
         binding = it
     }.root
 

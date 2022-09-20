@@ -1,32 +1,28 @@
 package com.vungn.todoapp.usecase.auth.loginwithgoogle
 
 import android.app.Application
-import com.google.gson.Gson
+import com.vungn.todoapp.data.manager.UserManager
 import com.vungn.todoapp.data.model.User
-import com.vungn.todoapp.data.restful.ClientService
-import com.vungn.todoapp.util.constants.Constants
-import java.io.FileWriter
+import com.vungn.todoapp.data.repository.UserRepo
+import vn.com.vti.learnningdisplay.base.usecase.UseCase
 import javax.inject.Inject
 
 
 class LoginWithGoogleUseCase @Inject constructor(
-    application: Application,
-    private val clientService: ClientService,
-) {
+    private val userRepo: UserRepo,
+    private val userManager: UserManager
+) : UseCase<String, User> {
 
-    suspend fun sendTokenToServer(token: String): User {
-        val userRequest = clientService.loginWithGoogle(token)
-        val user = User(userRequest.id,
+    override suspend fun execute(params: String): User {
+        val userRequest = userRepo.loginWithGoogle(params)
+        val user = User(0,
             userRequest.name,
             userRequest.email,
             "",
             userRequest.avatar,
             "address")
-        val gson = Gson()
-        val file = FileWriter(Constants.FILE_USER_JSON)
-//        Gson().toJson(user)
-//        sharedPreferences.save(Constants.KEY_USER, jsonUser)
-        gson.toJson(User::class.java,file)
+
+        userManager.saveUser(user)
         return user
     }
 

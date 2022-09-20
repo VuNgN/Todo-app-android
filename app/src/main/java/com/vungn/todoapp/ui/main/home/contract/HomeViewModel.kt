@@ -8,4 +8,5 @@ interface HomeViewModel {
     fun tasks(): MutableLiveData<List<Task>>
     fun onTabChanges(type: TabType)
     fun getTodayTask()
+    fun loadUserFromJson()
 }

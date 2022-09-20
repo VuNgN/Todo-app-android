@@ -1,9 +1,14 @@
 package com.vungn.todoapp.data.repository.impl
 
 import android.app.Application
+import com.google.gson.Gson
 import com.vungn.todoapp.data.model.User
+import com.vungn.todoapp.data.model.request.UserRequest
 import com.vungn.todoapp.data.repository.UserRepo
 import com.vungn.todoapp.data.restful.ClientService
+import com.vungn.todoapp.util.constants.Constants
+import com.vungn.todoapp.util.sharepreferences.AppSharedPreferences
+import com.vungn.todoapp.util.sharepreferences.save
 import javax.inject.Inject
 
 class UserRepoImpl @Inject constructor(
@@ -11,28 +16,17 @@ class UserRepoImpl @Inject constructor(
     private val clientService: ClientService,
 ) : UserRepo {
 
-
     override suspend fun users(): List<User> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun insertUser(user: User): Boolean {
-        TODO("Not yet implemented")
+    override suspend fun insertUser(user: UserRequest) {
+        clientService.register(user)
     }
 
-    override suspend fun loginWithGoogle(token: String): User {
-        TODO("Not yet implemented")
+    override suspend fun loginWithGoogle(token: String): UserRequest {
+        return clientService.loginWithGoogle(token)
     }
-
-    override suspend fun writeFileJson(user: User) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun readFileJson() {
-        TODO("Not yet implemented")
-    }
-
-//    override suspend fun loginWithGoogle(token: String): User = clientService.loginWithGoogle(token)
 
 
 }
