@@ -1,6 +1,7 @@
 package com.vungn.todoapp.data.manager.implement
 
 import android.app.Application
+import android.util.Log
 import com.google.gson.Gson
 import com.vungn.todoapp.data.manager.UserManager
 import com.vungn.todoapp.data.model.User

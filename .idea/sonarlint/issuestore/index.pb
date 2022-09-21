@@ -11,8 +11,6 @@ Dapp/src/main/java/com/vungn/todoapp/data/repository/ConfigManager.kt,0\0\006d5
 Qapp/src/main/java/com/vungn/todoapp/util/sharepreferences/AppSharedPreferences.kt,c\6\c6d90433d696ac49f9c25bebcb9e269fc7d3be7a
 ‚
 Rapp/src/main/java/com/vungn/todoapp/ui/authentication/register/RegisterFragment.kt,3\7\37b06e23cb4693bf52370c5eda279409a0da3f91
-}
-Mapp/src/main/java/com/vungn/todoapp/common/livedata/OneTimeMutableLivedata.kt,b\f\bfdd7d393552f57cf202a01d35f42358fed07924
 w
 Gapp/src/main/java/com/vungn/todoapp/common/login/GoogleLoginProvider.kt,f\1\f1fbdb6ab031cc297c6bebf718ba1c45c32ac7ca
 t

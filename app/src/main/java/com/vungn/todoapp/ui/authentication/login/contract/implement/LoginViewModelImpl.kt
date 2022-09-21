@@ -5,12 +5,14 @@ import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.*
 import com.vungn.todoapp.R
+import com.vungn.todoapp.common.livedata.CombinedLiveData
 import com.vungn.todoapp.common.livedata.OneTimeMutableLivedata
 import com.vungn.todoapp.data.model.Direction
 import com.vungn.todoapp.ui.authentication.login.contract.LoginViewModel
 import com.vungn.todoapp.usecase.auth.loginwithgoogle.LoginWithGoogleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -42,11 +44,14 @@ class LoginViewModelImpl @Inject constructor(
 
     override fun loginWithGoogle(token: String) {
         viewModelScope.launch {
-            if (loginWithGoogleUseCase.execute(token)) {
+            runBlocking {
+                loginWithGoogleUseCase.execute(token)
                 singleLiveEventLogin.setValue(true)
                 Log.d(TAG, "loginWithGoogle: " + checkLogin.value)
             }
         }
+
+
     }
 
     override fun navigateToVerify() {

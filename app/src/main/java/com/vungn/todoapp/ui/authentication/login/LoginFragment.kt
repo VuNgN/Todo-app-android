@@ -31,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.log
 
 @AndroidEntryPoint
-class LoginFragment : Fragment(), LifecycleOwner {
+class LoginFragment : Fragment(),LifecycleOwner {
     private lateinit var signUpButton: TextView
     private lateinit var signInButton: Button
     private lateinit var forgotPassword: TextView
@@ -52,6 +52,7 @@ class LoginFragment : Fragment(), LifecycleOwner {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         // đang khởi tạo dữ liệu, sau này sẽ sử dụng dependency để khởi tạo ở nơi khác
         _binding?.viewModel = viewModel
+        _binding?.lifecycleOwner = this
         //
         return binding.root
     }
@@ -62,13 +63,17 @@ class LoginFragment : Fragment(), LifecycleOwner {
         bindingView()
         handleEvents()
         viewModel.checkLogin.observe(viewLifecycleOwner) {
+            Log.d(TAG, "onViewCreated 2: $it")
             if (it) {
                 startActivity(Intent(activity, MainActivity::class.java))
-                Toast.makeText(requireActivity(), "Login Successfully!!!", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireActivity(), "Login Successfully!!!", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireActivity(), "Login fail", Toast.LENGTH_SHORT)
+                Toast.makeText(requireActivity(), "Login fail", Toast.LENGTH_SHORT).show()
+                Log.d(TAG, "false" )
             }
+        }
+        viewModel.email().observe(viewLifecycleOwner) {
+            Log.d(TAG, "onViewCreated: $it")
         }
     }
 

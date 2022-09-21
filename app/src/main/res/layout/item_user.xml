@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="user"
-            type="com.vungn.todoapp.ui.main.searchuser.constract.SearchUserViewModel" />
+            name="userUnSelected"
+            type="com.vungn.todoapp.data.model.reponse.UserResponse" />
     </data>
 
     <LinearLayout
