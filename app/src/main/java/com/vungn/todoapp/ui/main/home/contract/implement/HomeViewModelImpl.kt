@@ -24,11 +24,11 @@ class HomeViewModelImpl @Inject constructor(
     private val tasks: MutableLiveData<List<Task>> = MutableLiveData()
 
     private val mutableName: MutableLiveData<String> = MutableLiveData()
-    val name: LiveData<String>
+    override val name: LiveData<String>
         get() = mutableName
 
     private val mutableAvartar: MutableLiveData<String> = MutableLiveData()
-    val avatar: LiveData<String>
+    override val avatar: LiveData<String>
         get() = mutableAvartar
 
     override fun tasks(): MutableLiveData<List<Task>> = tasks
@@ -52,7 +52,7 @@ class HomeViewModelImpl @Inject constructor(
         this.tasks.postValue(tasks)
     }
 
-    override fun loadUserFromJson() {
+    override fun loadUser() {
         viewModelScope.launch {
             val user = loadInfoUserUseCase.getUserFromJson()
             mutableName.postValue(user.name)

@@ -18,7 +18,7 @@ class LoginViewModelImpl @Inject constructor(
     application: Application,
     private val loginWithGoogleUseCase: LoginWithGoogleUseCase,
 
-) : AndroidViewModel(application), LoginViewModel {
+    ) : AndroidViewModel(application), LoginViewModel {
     private val email = MutableLiveData<String>()
     private val password = MutableLiveData<String>()
 
@@ -38,14 +38,14 @@ class LoginViewModelImpl @Inject constructor(
         if (email.value == "admin" && password.value == "123") {
             navigation.postValue(Direction(R.id.action_loginFragment_to_verificationFragment, null))
         }
-
-
     }
 
     override fun loginWithGoogle(token: String) {
         viewModelScope.launch {
-            singleLiveEventLogin.setValue(true)
-            Log.d(TAG, "loginWithGoogle: " + checkLogin.value)
+            if (loginWithGoogleUseCase.execute(token)) {
+                singleLiveEventLogin.setValue(true)
+                Log.d(TAG, "loginWithGoogle: " + checkLogin.value)
+            }
         }
     }
 

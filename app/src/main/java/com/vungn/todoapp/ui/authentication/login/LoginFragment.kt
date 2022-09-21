@@ -31,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.log
 
 @AndroidEntryPoint
-class LoginFragment : Fragment(),LifecycleOwner {
+class LoginFragment : Fragment(), LifecycleOwner {
     private lateinit var signUpButton: TextView
     private lateinit var signInButton: Button
     private lateinit var forgotPassword: TextView
@@ -63,8 +63,11 @@ class LoginFragment : Fragment(),LifecycleOwner {
         handleEvents()
         viewModel.checkLogin.observe(viewLifecycleOwner) {
             if (it) {
-                startActivity(Intent(activity,MainActivity::class.java))
-                Toast.makeText(requireActivity(), "Login Successfully!!!", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(activity, MainActivity::class.java))
+                Toast.makeText(requireActivity(), "Login Successfully!!!", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Toast.makeText(requireActivity(), "Login fail", Toast.LENGTH_SHORT)
             }
         }
     }
@@ -89,7 +92,6 @@ class LoginFragment : Fragment(),LifecycleOwner {
         }
         binding.ggBtn.setOnClickListener {
             val signInIntent = mGoogleSignInClient.signInIntent
-            Log.d(TAG, "handleEvents: ggBtn")
             resultLaunch.launch(signInIntent)
         }
     }
@@ -117,7 +119,8 @@ class LoginFragment : Fragment(),LifecycleOwner {
         signUpButton = binding.SignUpButton
         forgotPassword = binding.ForgotPasswordTextView
     }
-    companion object{
-        private val TAG= "LoginFragment"
+
+    companion object {
+        private val TAG = "LoginFragment"
     }
 }

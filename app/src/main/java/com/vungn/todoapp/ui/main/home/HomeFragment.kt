@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,7 +38,7 @@ class HomeFragment : Fragment(), LifecycleOwner {
     ): View = FragmentHomeBinding.inflate(inflater, container, false).also {
         _binding = it
         _binding?.vm = vm
-        vm.loadUserFromJson()
+        vm.loadUser()
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -95,10 +94,10 @@ class HomeFragment : Fragment(), LifecycleOwner {
 
     private fun setupUi() {
 
-        (vm as HomeViewModelImpl).avatar.observe(viewLifecycleOwner) {
+        vm.avatar.observe(viewLifecycleOwner) {
             Glide.with(this).load(it).into(binding.avartarImageView)
         }
-        (vm as HomeViewModelImpl).name.observe(viewLifecycleOwner) {
+        vm.name.observe(viewLifecycleOwner) {
             binding.nameTextview.setText(it)
         }
 

@@ -6,6 +6,7 @@ import com.vungn.todoapp.data.manager.UserManager
 import com.vungn.todoapp.data.model.User
 import com.vungn.todoapp.util.constants.Constants
 import com.vungn.todoapp.util.sharepreferences.AppSharedPreferences
+import com.vungn.todoapp.util.sharepreferences.delete
 import com.vungn.todoapp.util.sharepreferences.save
 import javax.inject.Inject
 
@@ -26,5 +27,7 @@ class UserManagerImpl @Inject constructor(application: Application, private val 
         return gson.fromJson(strJsonUser, User::class.java)
     }
 
-
+    override suspend fun deleteUser() {
+        sharedPreferences.delete(Constants.KEY_USER)
+    }
 }
