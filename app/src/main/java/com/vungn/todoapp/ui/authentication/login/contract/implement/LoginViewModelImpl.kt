@@ -43,15 +43,11 @@ class LoginViewModelImpl @Inject constructor(
     }
 
     override fun loginWithGoogle(token: String) {
-        viewModelScope.launch {
-            runBlocking {
-                loginWithGoogleUseCase.execute(token)
-                singleLiveEventLogin.setValue(true)
-                Log.d(TAG, "loginWithGoogle: " + checkLogin.value)
-            }
+        runBlocking {
+            loginWithGoogleUseCase.execute(token)
+            singleLiveEventLogin.setValue(true)
+            Log.d(TAG, "loginWithGoogle: " + checkLogin.value)
         }
-
-
     }
 
     override fun navigateToVerify() {

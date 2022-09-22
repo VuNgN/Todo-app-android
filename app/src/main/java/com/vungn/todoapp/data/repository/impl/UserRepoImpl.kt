@@ -29,5 +29,4 @@ class UserRepoImpl @Inject constructor(
         return clientService.searchUser(key)
     }
 
-
 }

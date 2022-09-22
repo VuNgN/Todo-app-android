@@ -10,7 +10,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.ActivityAuthenticationBinding
 import com.vungn.todoapp.ui.authentication.activity.contract.AuthenticationViewModel
@@ -33,14 +32,14 @@ class AuthenticationActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (viewHolder.isFirstRun()) {
-            binding.myNavHostFragment.popupAndGo(R.id.loginFragment, R.id.getStartedFragment)
-        } else {
-            binding.myNavHostFragment.popupAndGo(R.id.getStartedFragment, R.id.loginFragment)
-        }
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        if (viewHolder.isFirstRun()) {
+//            binding.myNavHostFragment.popupAndGo(R.id.loginFragment, R.id.getStartedFragment)
+//        } else {
+//            binding.myNavHostFragment.popupAndGo(R.id.getStartedFragment, R.id.loginFragment)
+//        }
+//    }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (ev?.action == MotionEvent.ACTION_DOWN) {

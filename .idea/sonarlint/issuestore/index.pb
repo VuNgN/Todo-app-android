@@ -3,14 +3,10 @@ x
 Happ/src/main/java/com/vungn/todoapp/data/repository/impl/TaskRepoImpl.kt,8\4\840cf8eccad76af4edc25c240d406f6bc6c9024a
 Z
 *app/src/main/java/com/vungn/todoapp/App.kt,d\e\deb11c56ea91fbba748cdb8936232a0458e99822
-å
-\app/src/main/java/com/vungn/todoapp/ui/authentication/register/contract/RegisterViewModel.kt,3\4\347c9cf73b6b77de2005c255cb7f16aca83b7953
 t
 Dapp/src/main/java/com/vungn/todoapp/data/repository/ConfigManager.kt,0\0\006d5ccfe10c7c539340bcaa1debd3109f3cdf9c
 Å
 Qapp/src/main/java/com/vungn/todoapp/util/sharepreferences/AppSharedPreferences.kt,c\6\c6d90433d696ac49f9c25bebcb9e269fc7d3be7a
-Ç
-Rapp/src/main/java/com/vungn/todoapp/ui/authentication/register/RegisterFragment.kt,3\7\37b06e23cb4693bf52370c5eda279409a0da3f91
 w
 Gapp/src/main/java/com/vungn/todoapp/common/login/GoogleLoginProvider.kt,f\1\f1fbdb6ab031cc297c6bebf718ba1c45c32ac7ca
 t

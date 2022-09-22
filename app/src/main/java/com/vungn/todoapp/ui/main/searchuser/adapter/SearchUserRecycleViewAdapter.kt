@@ -9,7 +9,7 @@ import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.ItemUserBinding
 import com.vungn.todoapp.databinding.ItemUserSelectedBinding
 
-class SearchUserAdapter constructor(
+class SearchUserRecycleViewAdapter constructor(
     private val context: Context,
     private val lstUser: List<UserResponse>,
 ) :

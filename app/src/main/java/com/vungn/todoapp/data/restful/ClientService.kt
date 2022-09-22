@@ -8,9 +8,6 @@ import retrofit2.http.*
 
 interface ClientService {
 
-    @GET("user")
-    suspend fun getAllUsers(): List<User>
-
     @POST("user")
     suspend fun register(@Body body: UserRequest): User
 
@@ -19,5 +16,8 @@ interface ClientService {
     suspend fun loginWithGoogle(@Field("token") token: String): UserResponse
 
     @GET("user/search")
-    suspend fun searchUser(@Field("keyword") key: String): List<UserResponse>
+    @Headers(
+        "Content-type: application/json"
+    )
+    suspend fun searchUser(@Query("keyword") keyword: String): List<UserResponse>
 }

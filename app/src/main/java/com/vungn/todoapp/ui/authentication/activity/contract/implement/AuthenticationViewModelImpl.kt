@@ -1,9 +1,7 @@
 package com.vungn.todoapp.ui.authentication.activity.contract.implement
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.vungn.todoapp.data.repository.ConfigManager
 import com.vungn.todoapp.ui.authentication.activity.contract.AuthenticationViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,7 +24,5 @@ class AuthenticationViewModelImpl @Inject constructor(
         }
 
     override fun isLoggedIn(): Boolean = configManager.isLoggedIn()
-
-
 
 }

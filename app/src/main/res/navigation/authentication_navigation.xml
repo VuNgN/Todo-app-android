@@ -3,7 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/searchUserFragment">
+    <fragment
+        android:id="@+id/searchUserFragment"
+        android:name="com.vungn.todoapp.ui.main.searchuser.SearchUserFragment"
+        android:label="SearchUserFragment"
+        tools:layout="@layout/fragment_search_user" />
+    <fragment
+        android:id="@+id/getStartedFragment"
+        android:name="com.vungn.todoapp.ui.authentication.getstarted.GetStartedFragment"
+        android:label="fragment_get_started"
+        tools:layout="@layout/fragment_get_started">
+        <action
+            android:id="@+id/action_getStartedFragment_to_onBoardFragment"
+            app:destination="@id/onBoardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/getStartedFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.vungn.todoapp.ui.authentication.login.LoginFragment"
@@ -36,21 +56,6 @@
         android:name="com.vungn.todoapp.ui.authentication.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
-    <fragment
-        android:id="@+id/getStartedFragment"
-        android:name="com.vungn.todoapp.ui.authentication.getstarted.GetStartedFragment"
-        android:label="fragment_get_started"
-        tools:layout="@layout/fragment_get_started">
-        <action
-            android:id="@+id/action_getStartedFragment_to_onBoardFragment"
-            app:destination="@id/onBoardFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/getStartedFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
     <fragment
         android:id="@+id/onBoardFragment"
         android:name="com.vungn.todoapp.ui.authentication.onboarding.OnBoardFragment"
