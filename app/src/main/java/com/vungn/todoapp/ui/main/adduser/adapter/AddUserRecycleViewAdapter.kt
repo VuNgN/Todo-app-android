@@ -1,4 +1,4 @@
-package com.vungn.todoapp.ui.main.searchuser.adapter
+package com.vungn.todoapp.ui.main.adduser.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.ItemUserBinding
 import com.vungn.todoapp.databinding.ItemUserSelectedBinding
 
-class SearchUserRecycleViewAdapter constructor(
+class AddUserRecycleViewAdapter constructor(
     private val context: Context,
     private val lstUser: List<UserResponse>,
 ) :

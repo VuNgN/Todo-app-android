@@ -32,14 +32,14 @@ class AuthenticationActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        if (viewHolder.isFirstRun()) {
-//            binding.myNavHostFragment.popupAndGo(R.id.loginFragment, R.id.getStartedFragment)
-//        } else {
-//            binding.myNavHostFragment.popupAndGo(R.id.getStartedFragment, R.id.loginFragment)
-//        }
-//    }
+    override fun onResume() {
+        super.onResume()
+        if (viewHolder.isFirstRun()) {
+            binding.myNavHostFragment.popupAndGo(R.id.loginFragment, R.id.getStartedFragment)
+        } else {
+            binding.myNavHostFragment.popupAndGo(R.id.getStartedFragment, R.id.loginFragment)
+        }
+    }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (ev?.action == MotionEvent.ACTION_DOWN) {

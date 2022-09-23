@@ -26,7 +26,19 @@ class UserRepoImpl @Inject constructor(
     }
 
     override suspend fun searchUser(key: String): List<UserResponse> {
+//        return data()
         return clientService.searchUser(key)
+    }
+
+    inline fun data(): List<UserResponse> {
+        val lst = mutableListOf(
+            UserResponse(0,"người số 1", " email 1", ""),
+            UserResponse(0,"đồng chí A", " email 2", ""),
+            UserResponse(0,"fake data", " email 3", ""),
+            UserResponse(0,"user ảo", " email 4", ""),
+            UserResponse(0,"name", " email 5", ""),
+        )
+        return lst
     }
 
 }

@@ -4,58 +4,51 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import android.widget.ArrayAdapter
 import android.widget.Filter
-import android.widget.Filterable
 import android.widget.TextView
 import com.vungn.todoapp.R
 import com.vungn.todoapp.data.model.reponse.UserResponse
 
 class SearchAutoCompletedTVAdapter(
-    var context: Context,
-    var lstUser: List<UserResponse>,
-) : BaseAdapter(), Filterable {
+    context: Context,
+    private val users: List<UserResponse>,
+) : ArrayAdapter<UserResponse>(context, R.layout.row_auto_completed_textview, users) {
 
-    override fun getCount(): Int {
-        return lstUser.size
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view = convertView
+            ?: LayoutInflater.from(context)
+                .inflate(R.layout.row_auto_completed_textview, parent, false)
+        bind(view, position)
+        return view
     }
 
-    override fun getItem(position: Int): Any {
-        return lstUser.get(position)
+    override fun getFilter() = filter
+
+    private fun bind(view: View, position: Int) {
+        val userName = users[position].name
+        (view.findViewById(R.id.row_ItemNameSearch) as? TextView)?.text = userName
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+    private var filter: Filter = object : Filter() {
+        /* thực hiện tìm kiếm các kết quả matcher với search
+        * vì đã tìm kiếm nên chỉ việc get tất cả list user ra*/
+        override fun performFiltering(constraint: CharSequence?): FilterResults {
+            val results = FilterResults()
+            results.values = users
+            results.count = users.size
 
-    override fun getView(position: Int, convertview: View?, p2: ViewGroup?): View {
-        var view: View?
-        var viewHolder: ViewHolder
-        if (convertview == null) {
-            var layoutInflater: LayoutInflater = LayoutInflater.from(context)
-            view = layoutInflater.inflate(R.layout.row_auto_completed_textview, null)
-            viewHolder = ViewHolder(view)
-            view.tag = viewHolder
-        } else {
-            view = convertview
-            viewHolder = convertview.tag as ViewHolder
+            return results
         }
 
-        var user: UserResponse = getItem(position) as UserResponse
-        viewHolder.tvName.text = user.name
-        return view!!
-    }
-
-    class ViewHolder(row: View) {
-        var tvName: TextView
-
-        init {
-            tvName = row.findViewById(R.id.row_ItemNameSearch) as TextView
+        override fun publishResults(constraint: CharSequence?, results: FilterResults) {
+            clear()
+            addAll(results.values as List<UserResponse>)
+            notifyDataSetChanged()
         }
-    }
 
-    override fun getFilter(): Filter {
-        TODO("Not yet implemented")
+        override fun convertResultToString(resultValue: Any?): CharSequence {
+            return (resultValue as UserResponse).name
+        }
     }
 }
-
