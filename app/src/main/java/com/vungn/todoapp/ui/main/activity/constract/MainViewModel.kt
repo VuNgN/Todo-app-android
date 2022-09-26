@@ -6,6 +6,5 @@ import com.vungn.todoapp.data.model.reponse.UserResponse
 
 interface MainViewModel {
     val liveDataUserGuest: LiveData<List<UserResponse>>
-    fun getDataUserGuest():LiveData<List<UserResponse>>
     fun addUserInLiveData(userResponse: UserResponse)
 }

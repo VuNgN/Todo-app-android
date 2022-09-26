@@ -1,6 +1,5 @@
 package com.vungn.todoapp.ui.main.adduser
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,15 +12,12 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.vungn.todoapp.R
-import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.FragmentAddUserInTaskBinding
-import com.vungn.todoapp.databinding.FragmentSearchUserBinding
 import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
 import com.vungn.todoapp.ui.main.activity.constract.implement.MainViewModelImpl
 import com.vungn.todoapp.ui.main.adduser.adapter.AddUserRecycleViewAdapter
 import com.vungn.todoapp.ui.main.adduser.contract.AddUserInTaskViewModel
 import com.vungn.todoapp.ui.main.adduser.contract.implement.AddUserInTaskViewModelImpl
-import com.vungn.todoapp.ui.main.searchuser.adapter.SearchUserAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

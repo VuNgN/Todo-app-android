@@ -7,7 +7,6 @@ import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class MainViewModelImpl @Inject constructor(application: Application) :
@@ -17,11 +16,6 @@ class MainViewModelImpl @Inject constructor(application: Application) :
     private val listUserGuest: MutableLiveData<List<UserResponse>> = MutableLiveData()
     override val liveDataUserGuest: LiveData<List<UserResponse>> = listUserGuest
 
-
-    override fun getDataUserGuest(): LiveData<List<UserResponse>> {
-        return liveDataUserGuest
-    }
-
     override fun addUserInLiveData(userResponse: UserResponse) {
         try {
             list.addAll(liveDataUserGuest.value!!.size, liveDataUserGuest.value!!)
@@ -29,8 +23,7 @@ class MainViewModelImpl @Inject constructor(application: Application) :
             Log.d(TAG, "$e")
         }
         list.add(userResponse)
-
-        listUserGuest.value=list
+        listUserGuest.value = list
     }
 
     companion object {

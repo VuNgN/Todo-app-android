@@ -103,7 +103,8 @@ class SearchUserFragment : Fragment(), LifecycleOwner {
             })
         }
     }
-    companion object{
+
+    companion object {
         private val TAG = "SearchUserFragment"
     }
 }
