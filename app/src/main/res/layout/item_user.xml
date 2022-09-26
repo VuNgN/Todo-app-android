@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="userUnSelected"
             type="com.vungn.todoapp.data.model.reponse.UserResponse" />

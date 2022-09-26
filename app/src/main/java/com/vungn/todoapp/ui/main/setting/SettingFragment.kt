@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.vungn.todoapp.R
 import com.vungn.todoapp.data.model.User
 import com.vungn.todoapp.databinding.FragmentSettingBinding
@@ -43,7 +42,7 @@ class SettingFragment : Fragment(),LifecycleOwner {
             binding.nameTextview.setText(it)
         }
         viewModel.avatar.observe(viewLifecycleOwner){
-            Glide.with(this).load(it).into(binding.avatarImageView)
+//            Glide.with(this).load(it).into(binding.avatarImageView)
         }
         handleEvent()
         setupStatusBarColor(R.color.primary_variant)

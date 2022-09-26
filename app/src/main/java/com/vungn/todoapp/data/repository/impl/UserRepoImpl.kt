@@ -26,8 +26,8 @@ class UserRepoImpl @Inject constructor(
     }
 
     override suspend fun searchUser(key: String): List<UserResponse> {
-//        return data()
-        return clientService.searchUser(key)
+        return data()
+//        return clientService.searchUser(key)
     }
 
     inline fun data(): List<UserResponse> {

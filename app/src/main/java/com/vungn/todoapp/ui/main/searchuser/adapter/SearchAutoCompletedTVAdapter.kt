@@ -13,12 +13,12 @@ import com.vungn.todoapp.data.model.reponse.UserResponse
 class SearchAutoCompletedTVAdapter(
     context: Context,
     private val users: List<UserResponse>,
-) : ArrayAdapter<UserResponse>(context, R.layout.row_auto_completed_textview, users) {
+) : ArrayAdapter<UserResponse>(context, R.layout.row_search_textview, users) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView
             ?: LayoutInflater.from(context)
-                .inflate(R.layout.row_auto_completed_textview, parent, false)
+                .inflate(R.layout.row_search_textview, parent, false)
         bind(view, position)
         return view
     }

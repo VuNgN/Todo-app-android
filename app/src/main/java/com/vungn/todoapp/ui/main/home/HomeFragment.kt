@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.vungn.todoapp.R
 import com.vungn.todoapp.data.model.Task
@@ -95,7 +94,8 @@ class HomeFragment : Fragment(), LifecycleOwner {
     private fun setupUi() {
 
         vm.avatar.observe(viewLifecycleOwner) {
-            Glide.with(this).load(it).into(binding.avartarImageView)
+
+//            Glide.with(this).load(it).into(binding.avartarImageView)
         }
         vm.name.observe(viewLifecycleOwner) {
             binding.nameTextview.setText(it)
