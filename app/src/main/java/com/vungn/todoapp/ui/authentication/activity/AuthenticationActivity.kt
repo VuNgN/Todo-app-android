@@ -21,20 +21,21 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AuthenticationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthenticationBinding
-    private val viewHolder: AuthenticationViewModel by viewModels<AuthenticationViewModelImpl>()
+    private val viewModel: AuthenticationViewModel by viewModels<AuthenticationViewModelImpl>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthenticationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (viewHolder.isLoggedIn()) {
+
+        if (viewModel.isLoggedIn()) {
             login()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (viewHolder.isFirstRun()) {
+        if (viewModel.isFirstRun()) {
             binding.myNavHostFragment.popupAndGo(R.id.loginFragment, R.id.getStartedFragment)
         } else {
             binding.myNavHostFragment.popupAndGo(R.id.getStartedFragment, R.id.loginFragment)

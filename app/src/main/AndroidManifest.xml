@@ -20,11 +20,7 @@
             android:name=".ui.main.activity.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.TodoApp.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.authentication.activity.AuthenticationActivity"
@@ -32,7 +28,11 @@
             android:exported="true"
             android:label="@string/title_activity_authentication"
             android:theme="@style/Theme.TodoApp.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

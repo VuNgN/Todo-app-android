@@ -32,13 +32,15 @@ import kotlin.math.log
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(),LifecycleOwner {
+
     private lateinit var signUpButton: TextView
     private lateinit var signInButton: Button
     private lateinit var forgotPassword: TextView
-    private val viewModel: LoginViewModel by viewModels<LoginViewModelImpl>()
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
     private var _binding: FragmentLoginBinding? = null
-    private lateinit var liveDataToken: MutableLiveData<String>
+
+    private val viewModel: LoginViewModel by viewModels<LoginViewModelImpl>()
+
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     // This property is only valid between onCreateView and
     // onDestroyView.

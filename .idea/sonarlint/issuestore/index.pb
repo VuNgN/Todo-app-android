@@ -3,8 +3,6 @@ x
 Happ/src/main/java/com/vungn/todoapp/data/repository/impl/TaskRepoImpl.kt,8\4\840cf8eccad76af4edc25c240d406f6bc6c9024a
 Z
 *app/src/main/java/com/vungn/todoapp/App.kt,d\e\deb11c56ea91fbba748cdb8936232a0458e99822
-t
-Dapp/src/main/java/com/vungn/todoapp/data/repository/ConfigManager.kt,0\0\006d5ccfe10c7c539340bcaa1debd3109f3cdf9c
 Å
 Qapp/src/main/java/com/vungn/todoapp/util/sharepreferences/AppSharedPreferences.kt,c\6\c6d90433d696ac49f9c25bebcb9e269fc7d3be7a
 w

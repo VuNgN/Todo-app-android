@@ -1,6 +1,5 @@
 package com.vungn.todoapp.ui.main.searchuser.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +10,7 @@ class SearchUserAdapter constructor(
     private var lstSearch: List<UserResponse>,
 ) :
     RecyclerView.Adapter<SearchUserAdapter.ViewHolder>() {
-    private var mListener: OnItemClickSearchListener? = null
+    private var mListener: OnItemClickListener? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +30,7 @@ class SearchUserAdapter constructor(
 
     inner class ViewHolder(
         private val binding: RowSearchTextviewBinding,
-        private val listener: OnItemClickSearchListener,
+        private val listener: OnItemClickListener,
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -49,11 +48,11 @@ class SearchUserAdapter constructor(
         }
     }
 
-    interface OnItemClickSearchListener {
+    interface OnItemClickListener {
         fun onItemClick(user: UserResponse)
     }
 
-    fun setOnItemClickListener(listener: OnItemClickSearchListener) {
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         mListener = listener
     }
 

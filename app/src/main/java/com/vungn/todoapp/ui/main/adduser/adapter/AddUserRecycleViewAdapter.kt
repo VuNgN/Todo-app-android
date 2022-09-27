@@ -4,35 +4,64 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.ItemUserBinding
 
 class AddUserRecycleViewAdapter constructor(
-    private val lstUser: List<UserResponse>,
-) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<AddUserRecycleViewAdapter.UserInListHolder>() {
+    private val users: MutableList<UserResponse> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
+    private var listener: OnItemClickListener? = null
 
-        val binding: ItemUserBinding = ItemUserBinding.inflate(layoutInflater)
-        return UserInListHolder(binding)
+    fun addList(list: List<UserResponse>){
+        users.addAll(list)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val userResponse: UserResponse = lstUser.get(position)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserInListHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemUserBinding.inflate(layoutInflater, parent, false)
+        return UserInListHolder(binding, listener)
+    }
 
-        val userInListHolder: UserInListHolder = holder as UserInListHolder
-        userInListHolder.itemUserBinding.nameTextview.text = userResponse.name
-        userInListHolder.itemUserBinding.emailTextview.text = userResponse.email
-//            Glide.with(context).load(userResponse.avatar).into(userInListHolder.itemUserBinding.avartarImageView)
+    override fun onBindViewHolder(holder: UserInListHolder, position: Int) {
+        val user = users[position]
+        holder.bind(user)
+        holder.handleEvent(position)
     }
 
     override fun getItemCount(): Int {
-        return lstUser.size
+        return users.size
     }
 
-    inner class UserInListHolder constructor(val itemUserBinding: ItemUserBinding) :
-        RecyclerView.ViewHolder(itemUserBinding.root)
+    inner class UserInListHolder(
+        private val binding: ItemUserBinding,
+        private val listener: OnItemClickListener?,
+    ) : RecyclerView.ViewHolder(binding.root) {
 
+        fun bind(userResponse: UserResponse) {
+            binding.apply {
+                nameTextview.text = userResponse.name
+                emailTextview.text = userResponse.email
+                Glide.with(itemView.context).load(userResponse.avatar)
+                    .into(avartarImageView)
+                executePendingBindings()
+            }
+        }
+
+        fun handleEvent(index: Int) {
+            itemView.setOnClickListener {
+                listener?.onDelete(index)
+            }
+        }
+
+    }
+
+    interface OnItemClickListener {
+        fun onDelete(index: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
 }

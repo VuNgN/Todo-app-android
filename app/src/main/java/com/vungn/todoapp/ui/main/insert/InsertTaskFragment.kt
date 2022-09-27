@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
@@ -19,14 +21,20 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.FragmentInsertTaskBinding
+import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
+import com.vungn.todoapp.ui.main.activity.constract.implement.MainViewModelImpl
 import com.vungn.todoapp.ui.main.insert.contract.InsertTaskViewModel
 import com.vungn.todoapp.ui.main.insert.contract.implement.InsertTaskViewModelImpl
 import com.vungn.todoapp.util.TimeUtil.formatToISO8601
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-class InsertTaskFragment : Fragment() {
+@AndroidEntryPoint
+class InsertTaskFragment : Fragment(), LifecycleOwner {
     private lateinit var binding: FragmentInsertTaskBinding
-    private lateinit var vm: InsertTaskViewModel
+    private val vm: InsertTaskViewModel by viewModels<InsertTaskViewModelImpl>()
+    private val viewmodelMainActivity: MainViewModel by activityViewModels<MainViewModelImpl>()
+
     private val calendarConstraints = CalendarConstraints.Builder()
         .setValidator(DateValidatorPointForward.now())
     private val datePicker = MaterialDatePicker.Builder.datePicker()
@@ -44,10 +52,7 @@ class InsertTaskFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View = FragmentInsertTaskBinding.inflate(inflater, container, false).also {
         binding = it
-        val factory =
-            InsertTaskViewModelImpl.Factory(this@InsertTaskFragment.requireActivity().application)
         binding.lifecycleOwner = this
-        vm = ViewModelProvider(this, factory)[InsertTaskViewModelImpl::class.java]
         binding.vm = vm
     }.root
 
@@ -74,6 +79,20 @@ class InsertTaskFragment : Fragment() {
             }
             buttonBack.setOnClickListener {
                 findNavController().popBackStack()
+            }
+            participantsEditText.setOnClickListener {
+                findNavController().navigate(R.id.action_insertTaskFragment_to_addUserInTaskFragment,
+                    null)
+            }
+        }
+
+        viewmodelMainActivity.newLiveDataUserGuest.observe(viewLifecycleOwner) {
+            if (it.size < 1) {
+                binding.participantsEditText.setText("No participants yet")
+            } else if (it.size == 1) {
+                binding.participantsEditText.setText("${it.get(0).name} join")
+            } else if (it.size > 1) {
+                binding.participantsEditText.setText("${it.get(0).name} and ${it.size - 1} other people join")
             }
         }
     }

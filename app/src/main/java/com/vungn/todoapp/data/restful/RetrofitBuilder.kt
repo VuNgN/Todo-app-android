@@ -9,7 +9,7 @@ object RetrofitBuilder {
 
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://6820-118-70-81-192.ap.ngrok.io/")
+            .baseUrl("https://ce0c-118-70-81-192.ap.ngrok.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

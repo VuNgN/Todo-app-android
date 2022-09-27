@@ -12,9 +12,15 @@ import com.vungn.todoapp.util.extention.ValidatorEx.isValidDesc
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidDueDate
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidName
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidRepeat
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.*
+import javax.inject.Inject
 
-class InsertTaskViewModelImpl(application: Application) : AndroidViewModel(application),
+@HiltViewModel
+class InsertTaskViewModelImpl @Inject constructor(
+    application: Application,
+    private val taskRepo: TaskRepo,
+) : AndroidViewModel(application),
     InsertTaskViewModel {
     private val name: MutableLiveData<String> = MutableLiveData()
     private val repeat: MutableLiveData<String> = MutableLiveData()
@@ -22,9 +28,6 @@ class InsertTaskViewModelImpl(application: Application) : AndroidViewModel(appli
     private val dueDate: MutableLiveData<String> = MutableLiveData()
     private val isSaveSuccess: MutableLiveData<Boolean> = MutableLiveData()
     private val isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    private val taskRepo: TaskRepo by lazy {
-        TaskRepoImpl(application)
-    }
 
     override fun name(): MutableLiveData<String> = name
 
@@ -69,11 +72,5 @@ class InsertTaskViewModelImpl(application: Application) : AndroidViewModel(appli
             isSaveSuccess.postValue(false)
         }
         isLoading.postValue(false)
-    }
-
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return InsertTaskViewModelImpl(application) as T
-        }
     }
 }

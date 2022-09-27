@@ -23,6 +23,8 @@ class UserManagerImpl @Inject constructor(application: Application, private val 
         sharedPreferences.save(Constants.KEY_USER, strJsonUser)
     }
 
+
+
     override suspend fun getUser(): User {
         val strJsonUser = sharedPreferences.getString(Constants.KEY_USER)
         return gson.fromJson(strJsonUser, User::class.java)
@@ -30,5 +32,9 @@ class UserManagerImpl @Inject constructor(application: Application, private val 
 
     override suspend fun deleteUser() {
         sharedPreferences.delete(Constants.KEY_USER)
+    }
+
+    override suspend fun checkLogin(): Boolean {
+       return sharedPreferences.getString(Constants.KEY_USER)!=null
     }
 }

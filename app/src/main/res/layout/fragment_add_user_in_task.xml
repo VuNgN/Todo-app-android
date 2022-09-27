@@ -37,12 +37,12 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Search User"
+                android:text="Insert User"
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 app:layout_constraintBottom_toBottomOf="@id/buttonBack"
@@ -54,38 +54,38 @@
             android:id="@+id/searchUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="15dp"
-            android:elevation="5dp"
-            android:paddingVertical="5dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             android:background="@drawable/background_search"
-            >
+            android:elevation="5dp"
+            android:orientation="horizontal"
+            android:paddingVertical="5dp">
+
             <ImageView
-                android:layout_marginStart="10dp"
                 android:layout_width="25sp"
                 android:layout_height="25sp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_search"/>
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_search" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:backgroundTint="@color/border_input_text_color"
-                android:hint=" Search..."
-                android:maxLines="1"
+                android:completionThreshold="1"
+                android:dropDownWidth="match_parent"
                 android:editable="false"
                 android:focusable="false"
-                android:completionThreshold="1"
+                android:hint=" Search..."
+                android:maxLines="1"
                 android:textColor="@color/black"
-                android:dropDownWidth="match_parent"
-                android:textSize="15dp"/>
+                android:textSize="15dp" />
         </LinearLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycle_view"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="15dp"
@@ -94,6 +94,7 @@
             android:background="@drawable/background_line"
             android:paddingVertical="15dp"
             android:paddingStart="@dimen/edge_horizontal"
+            android:paddingEnd="5dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="3"
             tools:listitem="@layout/item_user"
@@ -109,7 +110,7 @@
             android:background="@drawable/ripple_primary_button"
             android:text="Confirm"
             android:textColor="@color/white"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.vungn.todoapp.data.model.reponse.UserResponse
 
 interface MainViewModel {
-    val liveDataUserGuest: LiveData<List<UserResponse>>
+    val newLiveDataUserGuest: LiveData<List<UserResponse>>
+
+    //    val livedataUser: MutableLiveData<List<UserResponse>>
     fun addUserInLiveData(userResponse: UserResponse)
+    fun deleteUserInLiveData(index: Int)
 }

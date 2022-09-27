@@ -8,13 +8,6 @@
         <entry key="..\:/Users/Me/Documents/Workspace/Todo-app-android/app/src/main/res/drawable/corner_edit_text_main.xml" value="0.2265" />
         <entry key="..\:/Users/Me/Documents/Workspace/Todo-app-android/app/src/main/res/layout/fragment_home.xml" value="0.4" />
         <entry key="..\:/Users/Me/Documents/Workspace/Todo-app-android/app/src/main/res/layout/fragment_login.xml" value="0.22826086956521738" />
-        <entry key="..\:/VTI/learnDisplay/Todo-app-android/app/src/main/res/drawable-v24/devider.xml" value="0.128" />
-        <entry key="..\:/VTI/learnDisplay/Todo-app-android/app/src/main/res/layout/fragment_add_user_in_task.xml" value="0.19067028985507245" />
-        <entry key="..\:/VTI/learnDisplay/Todo-app-android/app/src/main/res/layout/fragment_search_user.xml" value="0.18885869565217392" />
-        <entry key="..\:/VTI/learnDisplay/Todo-app-android/app/src/main/res/layout/item_horizontal_task.xml" value="0.1" />
-        <entry key="..\:/VTI/learnDisplay/Todo-app-android/app/src/main/res/layout/item_user.xml" value="0.25" />
-        <entry key="..\:/VTI/learnDisplay/Todo-app-android/app/src/main/res/layout/item_user_selected.xml" value="0.25" />
-        <entry key="..\:/VTI/learnDisplay/Todo-app-android/app/src/main/res/layout/row_search_textview.xml" value="0.1" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable-v24/devider.xml" value="0.1955" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/background_line.xml" value="0.1955" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/background_search.xml" value="0.1955" />
@@ -25,18 +18,22 @@
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/corner_user_unchoice.xml" value="0.1955" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/decorator.xml" value="0.135" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/ic_close.xml" value="0.2065" />
+        <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/ic_people_outline.xml" value="0.294" />
+        <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/ic_round_calendar_today_24.xml" value="0.294" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/ic_search.xml" value="0.1955" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/drawable/ripple_primary_button.xml" value="0.3365" />
+        <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout-v21/fragment_search_user.xml" value="0.3776041666666667" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/activity_authentication.xml" value="0.36666666666666664" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_add_user_in_task.xml" value="0.36666666666666664" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_choice_user.xml" value="0.33" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_get_started.xml" value="0.36666666666666664" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_home.xml" value="0.36102564102564105" />
-        <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_insert_task.xml" value="0.36666666666666664" />
+        <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_insert_task.xml" value="0.33" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_login.xml" value="0.36102564102564105" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_reset_password.xml" value="0.36666666666666664" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_search_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_search_usser.xml" value="0.24010416666666667" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_setting.xml" value="0.36666666666666664" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_task.xml" value="0.36666666666666664" />
         <entry key="..\:/project_learn/tutorial/android-tutorial/Todo-app-android/app/src/main/res/layout/fragment_verification.xml" value="0.36102564102564105" />

@@ -12,13 +12,13 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.vungn.todoapp.R
 import com.vungn.todoapp.data.model.reponse.UserResponse
-import com.vungn.todoapp.databinding.FragmentSearchUserBinding
+import com.vungn.todoapp.databinding.FragmentSearchUsserBinding
 import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
 import com.vungn.todoapp.ui.main.activity.constract.implement.MainViewModelImpl
 import com.vungn.todoapp.ui.main.searchuser.adapter.SearchUserAdapter
@@ -26,23 +26,22 @@ import com.vungn.todoapp.ui.main.searchuser.constract.SearchUserViewModel
 import com.vungn.todoapp.ui.main.searchuser.constract.implement.SearchUserViewModelImpl
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class SearchUserFragment : Fragment(), LifecycleOwner {
+class SearchUsserFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchUserBinding
-    private val viewmodel: SearchUserViewModel by viewModels<SearchUserViewModelImpl>()
-    private val viewModelMainActivity: MainViewModel by viewModels<MainViewModelImpl>()
+    private lateinit var binding: FragmentSearchUsserBinding
+    private val vm: SearchUserViewModel by viewModels<SearchUserViewModelImpl>()
+    private val viewModelMainActivity: MainViewModel by activityViewModels<MainViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View = FragmentSearchUserBinding.inflate(inflater, container, false).also {
+    ): View = FragmentSearchUsserBinding.inflate(inflater, container, false).also {
+        // Inflate the layout for this fragment
         binding = it
-        binding.viewmodel = viewmodel
+        binding.viewmodel = vm
         loadRecycleView()
     }.root
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,9 +51,9 @@ class SearchUserFragment : Fragment(), LifecycleOwner {
     private fun handleEvent() {
         binding.apply {
             searchUser.requestFocus()
-            val imm: InputMethodManager? =
+            val imm: InputMethodManager =
                 requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm!!.showSoftInput(binding.searchUser, InputMethodManager.SHOW_IMPLICIT)
+            imm.showSoftInput(binding.searchUser, InputMethodManager.SHOW_IMPLICIT)
             buttonBack.setOnClickListener {
                 findNavController().popBackStack(R.id.addUserInTaskFragment,
                     false)
@@ -62,16 +61,12 @@ class SearchUserFragment : Fragment(), LifecycleOwner {
 
             searchUser.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(charSequence: Editable?) {
-
-                }
-
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-                }
-
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     viewmodel!!.search()
                 }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+                override fun onTextChanged(value: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             })
         }
 
@@ -85,16 +80,16 @@ class SearchUserFragment : Fragment(), LifecycleOwner {
         itemDecorator.setDrawable(
             (ContextCompat.getDrawable(
                 requireContext(),
-                R.drawable.devider
+                R.drawable.divider
             ))!!
         )
-        binding.recycleView.addItemDecoration(itemDecorator)
+        binding.recyclerView.addItemDecoration(itemDecorator)
 
-        viewmodel.listUserSearch.observe(viewLifecycleOwner) {
+        vm.listUserSearch.observe(viewLifecycleOwner) {
             val adapter = SearchUserAdapter(it)
-            binding.recycleView.adapter = adapter
+            binding.recyclerView.adapter = adapter
 
-            adapter.setOnItemClickListener(object : SearchUserAdapter.OnItemClickSearchListener {
+            adapter.setOnItemClickListener(object : SearchUserAdapter.OnItemClickListener {
                 override fun onItemClick(user: UserResponse) {
                     viewModelMainActivity.addUserInLiveData(user)
                     Log.d(TAG, "onItemClick: ${user.name}")
@@ -105,6 +100,6 @@ class SearchUserFragment : Fragment(), LifecycleOwner {
     }
 
     companion object {
-        private val TAG = "SearchUserFragment"
+        private val TAG = "SearchUsserFragment"
     }
 }

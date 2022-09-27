@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.vungn.todoapp.R
 import com.vungn.todoapp.data.model.Task
@@ -95,7 +96,7 @@ class HomeFragment : Fragment(), LifecycleOwner {
 
         vm.avatar.observe(viewLifecycleOwner) {
 
-//            Glide.with(this).load(it).into(binding.avartarImageView)
+            Glide.with(this).load(it).into(binding.avartarImageView)
         }
         vm.name.observe(viewLifecycleOwner) {
             binding.nameTextview.setText(it)
@@ -103,8 +104,8 @@ class HomeFragment : Fragment(), LifecycleOwner {
 
         adapter = HorizontalTaskAdapter()
         binding.apply {
-            recycleView.adapter = adapter
-            recycleView.layoutManager =
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
             val itemDecoration =
                 DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL)
@@ -114,9 +115,9 @@ class HomeFragment : Fragment(), LifecycleOwner {
                     R.drawable.decorator
                 )!!
             )
-            recycleView.addItemDecoration(itemDecoration)
+            recyclerView.addItemDecoration(itemDecoration)
             val snapHelper: SnapHelper = LinearSnapHelper()
-            snapHelper.attachToRecyclerView(binding.recycleView)
+            snapHelper.attachToRecyclerView(recyclerView)
             updateRecycleView(listOf())
         }
     }
@@ -126,14 +127,14 @@ class HomeFragment : Fragment(), LifecycleOwner {
         adapter.notifyChange(
             maxOf(
                 0,
-                (binding.recycleView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() - 3
+                (binding.recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() - 3
             ),
             minOf(
-                (binding.recycleView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition() + 5,
+                (binding.recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition() + 5,
                 adapter.itemCount
             )
         )
-        (binding.recycleView.layoutManager as LinearLayoutManager).scrollToPosition(0)
-        binding.recycleView.startLayoutAnimation()
+        (binding.recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(0)
+        binding.recyclerView.startLayoutAnimation()
     }
 }
