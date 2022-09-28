@@ -27,11 +27,14 @@ import com.vungn.todoapp.ui.main.searchuser.constract.implement.SearchUserViewMo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchUsserFragment : Fragment() {
+class SearchUserFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchUsserBinding
+
     private val vm: SearchUserViewModel by viewModels<SearchUserViewModelImpl>()
     private val viewModelMainActivity: MainViewModel by activityViewModels<MainViewModelImpl>()
+
+    private val adapter = SearchUserAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,8 +72,6 @@ class SearchUsserFragment : Fragment() {
                 override fun onTextChanged(value: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             })
         }
-
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -86,12 +87,18 @@ class SearchUsserFragment : Fragment() {
         binding.recyclerView.addItemDecoration(itemDecorator)
 
         vm.listUserSearch.observe(viewLifecycleOwner) {
-            val adapter = SearchUserAdapter(it)
+
+            if (viewModelMainActivity.guests.value == null) {
+                adapter.addList(it)
+            } else {
+                adapter.addList(it, viewModelMainActivity.guests.value!!)
+            }
+
             binding.recyclerView.adapter = adapter
 
             adapter.setOnItemClickListener(object : SearchUserAdapter.OnItemClickListener {
                 override fun onItemClick(user: UserResponse) {
-                    viewModelMainActivity.addUserInLiveData(user)
+                    viewModelMainActivity.addUser(user)
                     Log.d(TAG, "onItemClick: ${user.name}")
                     findNavController().popBackStack()
                 }

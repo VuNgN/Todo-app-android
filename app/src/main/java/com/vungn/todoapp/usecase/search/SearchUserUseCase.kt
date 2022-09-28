@@ -1,4 +1,4 @@
-package com.vungn.todoapp.usecase.task
+package com.vungn.todoapp.usecase.search
 
 import android.util.Log
 import com.vungn.todoapp.data.model.reponse.UserResponse

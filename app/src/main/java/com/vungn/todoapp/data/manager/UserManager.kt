@@ -6,5 +6,4 @@ interface UserManager {
     suspend fun saveUser(user: User)
     suspend fun getUser(): User
     suspend fun deleteUser()
-    suspend fun checkLogin(): Boolean
 }

@@ -1,36 +1,49 @@
 package com.vungn.todoapp.ui.main.activity.constract.implement
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModelImpl @Inject constructor(application: Application) :
+class MainViewModelImpl @Inject constructor(
+    application: Application,
+) :
     AndroidViewModel(application), MainViewModel {
 
-    private val listUserGuest: MutableLiveData<List<UserResponse>> = MutableLiveData()
-    override val newLiveDataUserGuest: LiveData<List<UserResponse>> = listUserGuest
+    //livedata các user cũ
+    override val oldLiveDataUserGuest: MutableLiveData<List<UserResponse>> = MutableLiveData()
 
+    // livedata lưu các user
+    private val _guests: MutableLiveData<List<UserResponse>> = MutableLiveData()
+    override val guests: LiveData<List<UserResponse>> = _guests
 
-    override fun addUserInLiveData(userResponse: UserResponse) {
-        val list = listUserGuest.value?.toMutableList() ?: mutableListOf()
+    // fun confirm việc thêm các user search được vào list
+    override fun addUser(userResponse: UserResponse) {
+        val list = _guests.value?.toMutableList() ?: mutableListOf()
         list.add(userResponse)
-        listUserGuest.postValue(list)
+        _guests.postValue(list)
     }
 
-    override fun deleteUserInLiveData(index: Int) {
-        val list= listUserGuest.value?.toMutableList() ?: mutableListOf()
+    //fun delete các user nằm trong list user của task
+    override fun deleteUser(index: Int) {
+        val list = _guests.value?.toMutableList() ?: mutableListOf()
         list.removeAt(index)
-        listUserGuest.postValue(list)
+        _guests.postValue(list)
+    }
+
+    //fun bỏ các thay đổi của list user
+    override fun cancelAddUser() {
+        val list = _guests.value?.toMutableList() ?: mutableListOf()
+        list.removeAll(list)
+        if (oldLiveDataUserGuest.value != null) {
+            _guests.postValue(oldLiveDataUserGuest.value)
+        }
     }
 
     companion object {
         private val TAG = "MainViewModelImpl"
     }
-
 }

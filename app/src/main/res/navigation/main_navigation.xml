@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/insertTaskFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -111,7 +111,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchUsserFragment"
-        android:name="com.vungn.todoapp.ui.main.searchuser.SearchUsserFragment"
+        android:name="com.vungn.todoapp.ui.main.searchuser.SearchUserFragment"
         android:label="SearchUsserFragment"
         tools:layout="@layout/fragment_search_usser"/>
 

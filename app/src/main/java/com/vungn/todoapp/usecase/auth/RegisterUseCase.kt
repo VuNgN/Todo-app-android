@@ -8,7 +8,6 @@ import vn.com.vti.learnningdisplay.base.usecase.UseCase
 import javax.inject.Inject
 
 class RegisterUseCase @Inject constructor(
-    application: Application,
     private val userRepo: UserRepo,
 ) : UseCase<UserRequest, Boolean> {
 

@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.ui.main.searchuser.constract.SearchUserViewModel
-import com.vungn.todoapp.usecase.task.SearchUserUseCase
+import com.vungn.todoapp.usecase.search.SearchUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -31,10 +31,8 @@ class SearchUserViewModelImpl @Inject constructor(
     override fun search() {
         viewModelScope.launch {
             try {
-                Log.d(TAG, "search: key ${key.value.toString()}")
-                val list = searchUserUseCase.execute(key.value.toString())
-                Log.d(TAG, "search:  : ${list.get(0).name}")
-                listUser.postValue(list)
+                val listSearch = searchUserUseCase.execute(key.value.toString())
+                listUser.postValue(listSearch)
             } catch (e: Exception) {
                 Log.e(TAG, "search: $e", e)
             }

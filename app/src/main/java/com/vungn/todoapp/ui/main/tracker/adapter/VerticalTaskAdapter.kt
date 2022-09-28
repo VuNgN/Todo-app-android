@@ -66,9 +66,9 @@ class VerticalTaskAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(task: Task) {
-            binding.itemHorizontalTask.apply {
-                this.task = task
-            }
+//            binding.itemHorizontalTask.apply {
+//                this.task = task
+//            }
         }
 
         fun handleEvent(task: Task) {

@@ -58,6 +58,7 @@ class AddUserInTaskFragment : Fragment(), LifecycleOwner {
                 findNavController().popBackStack()
             }
             buttonBack.setOnClickListener {
+                viewModelMainActivity.cancelAddUser()
                 findNavController().popBackStack()
             }
         }
@@ -75,12 +76,13 @@ class AddUserInTaskFragment : Fragment(), LifecycleOwner {
         )
         binding.recyclerView.addItemDecoration(itemDecorator)
 
-        viewModelMainActivity.newLiveDataUserGuest.observe(viewLifecycleOwner) {
+        viewModelMainActivity.guests.observe(viewLifecycleOwner) {
+            adapter.addList(it)
             binding.recyclerView.adapter = adapter
 
             adapter.setOnItemClickListener(object : AddUserRecycleViewAdapter.OnItemClickListener {
                 override fun onDelete(index: Int) {
-                    viewModelMainActivity.deleteUserInLiveData(index)
+                    viewModelMainActivity.deleteUser(index)
                 }
             })
 

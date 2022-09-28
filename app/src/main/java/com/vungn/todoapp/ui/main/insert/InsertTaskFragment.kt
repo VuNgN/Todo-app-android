@@ -33,7 +33,7 @@ import java.util.*
 class InsertTaskFragment : Fragment(), LifecycleOwner {
     private lateinit var binding: FragmentInsertTaskBinding
     private val vm: InsertTaskViewModel by viewModels<InsertTaskViewModelImpl>()
-    private val viewmodelMainActivity: MainViewModel by activityViewModels<MainViewModelImpl>()
+    private val viewModelMainActivity: MainViewModel by activityViewModels<MainViewModelImpl>()
 
     private val calendarConstraints = CalendarConstraints.Builder()
         .setValidator(DateValidatorPointForward.now())
@@ -84,17 +84,18 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
                 findNavController().navigate(R.id.action_insertTaskFragment_to_addUserInTaskFragment,
                     null)
             }
-        }
-
-        viewmodelMainActivity.newLiveDataUserGuest.observe(viewLifecycleOwner) {
-            if (it.size < 1) {
-                binding.participantsEditText.setText("No participants yet")
-            } else if (it.size == 1) {
-                binding.participantsEditText.setText("${it.get(0).name} join")
-            } else if (it.size > 1) {
-                binding.participantsEditText.setText("${it.get(0).name} and ${it.size - 1} other people join")
+            viewModelMainActivity.guests.observe(viewLifecycleOwner) {
+                if (it.size < 1) {
+                    participantsEditText.setText("No participants yet")
+                } else if (it.size == 1) {
+                    participantsEditText.setText("${it.get(0).name} join")
+                } else if (it.size > 1) {
+                    participantsEditText.setText("${it.get(0).name} and ${it.size - 1} other people join")
+                }
+                viewModelMainActivity.oldLiveDataUserGuest.postValue(it)
             }
         }
+
     }
 
     private fun onTimePickSelectItem() {

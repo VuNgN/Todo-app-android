@@ -8,6 +8,7 @@ import com.vungn.todoapp.R
 import com.vungn.todoapp.common.livedata.CombinedLiveData
 import com.vungn.todoapp.common.livedata.OneTimeMutableLivedata
 import com.vungn.todoapp.data.model.Direction
+import com.vungn.todoapp.data.repository.ConfigManager
 import com.vungn.todoapp.ui.authentication.login.contract.LoginViewModel
 import com.vungn.todoapp.usecase.auth.loginwithgoogle.LoginWithGoogleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,8 +20,8 @@ import javax.inject.Inject
 class LoginViewModelImpl @Inject constructor(
     application: Application,
     private val loginWithGoogleUseCase: LoginWithGoogleUseCase,
-
-    ) : AndroidViewModel(application), LoginViewModel {
+    private val configManager: ConfigManager,
+) : AndroidViewModel(application), LoginViewModel {
     private val email = MutableLiveData<String>()
     private val password = MutableLiveData<String>()
 
@@ -46,7 +47,7 @@ class LoginViewModelImpl @Inject constructor(
         runBlocking {
             loginWithGoogleUseCase.execute(token)
             singleLiveEventLogin.setValue(true)
-            Log.d(TAG, "loginWithGoogle: " + checkLogin.value)
+            configManager.setLoggedIn(true)
         }
     }
 

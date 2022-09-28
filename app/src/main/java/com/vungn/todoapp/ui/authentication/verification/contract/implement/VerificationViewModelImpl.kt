@@ -11,7 +11,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class VerificationViewModelImpl @Inject constructor(application: Application,private val configManager: ConfigManager) : AndroidViewModel(application),
+class VerificationViewModelImpl @Inject constructor(
+    application: Application,
+    private val configManager: ConfigManager,
+) : AndroidViewModel(application),
     VerificationViewModel {
 
     private val otp = MutableLiveData<String>()
