@@ -1,6 +1,7 @@
 package com.vungn.todoapp.data.model.request
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class UserRequest(
     @SerializedName("name")
@@ -9,4 +10,4 @@ data class UserRequest(
     val email: String,
     @SerializedName("avatar")
     val avatar: String
-)
+): Serializable

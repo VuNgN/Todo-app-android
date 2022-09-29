@@ -14,4 +14,6 @@ interface InsertTaskViewModel {
     fun isLoading(): MutableLiveData<Boolean>
     fun clearTextField()
     fun save()
+    fun setListUser(list: List<UserResponse>)
+    fun getListUser(): List<UserResponse>
 }

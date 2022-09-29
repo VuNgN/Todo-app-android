@@ -32,6 +32,7 @@ class SearchUserViewModelImpl @Inject constructor(
         viewModelScope.launch {
             try {
                 val listSearch = searchUserUseCase.execute(key.value.toString())
+                Log.d(TAG, "search: ${key.value.toString()}")
                 listUser.postValue(listSearch)
             } catch (e: Exception) {
                 Log.e(TAG, "search: $e", e)

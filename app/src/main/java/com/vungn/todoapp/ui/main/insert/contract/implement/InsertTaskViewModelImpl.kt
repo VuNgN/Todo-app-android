@@ -4,15 +4,19 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.vungn.todoapp.common.livedata.CombinedLiveData
 import com.vungn.todoapp.data.model.Task
+import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.data.repository.TaskRepo
 import com.vungn.todoapp.data.repository.impl.TaskRepoImpl
 import com.vungn.todoapp.ui.main.insert.contract.InsertTaskViewModel
+import com.vungn.todoapp.usecase.search.getListUserUseCase
+import com.vungn.todoapp.usecase.search.setListUserUseCase
 import com.vungn.todoapp.util.TimeUtil.formatToISO8601
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidDesc
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidDueDate
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidName
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidRepeat
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
@@ -20,6 +24,8 @@ import javax.inject.Inject
 class InsertTaskViewModelImpl @Inject constructor(
     application: Application,
     private val taskRepo: TaskRepo,
+    private val setListUserUseCase: setListUserUseCase,
+    private val getListUserUseCase: getListUserUseCase,
 ) : AndroidViewModel(application),
     InsertTaskViewModel {
     private val name: MutableLiveData<String> = MutableLiveData()
@@ -72,5 +78,19 @@ class InsertTaskViewModelImpl @Inject constructor(
             isSaveSuccess.postValue(false)
         }
         isLoading.postValue(false)
+    }
+
+    override fun setListUser(list: List<UserResponse>) {
+        viewModelScope.launch {
+            setListUserUseCase.execute(list)
+        }
+    }
+
+    override fun getListUser(): List<UserResponse> {
+        val listUser = mutableListOf<UserResponse>()
+        viewModelScope.launch {
+            listUser.addAll(getListUserUseCase.execute())
+        }
+        return listUser
     }
 }

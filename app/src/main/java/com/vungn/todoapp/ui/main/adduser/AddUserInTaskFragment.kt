@@ -3,23 +3,26 @@ package com.vungn.todoapp.ui.main.adduser
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.core.os.bundleOf
+import androidx.fragment.app.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.google.gson.Gson
 import com.vungn.todoapp.R
+import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.FragmentAddUserInTaskBinding
 import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
 import com.vungn.todoapp.ui.main.activity.constract.implement.MainViewModelImpl
 import com.vungn.todoapp.ui.main.adduser.adapter.AddUserRecycleViewAdapter
 import com.vungn.todoapp.ui.main.adduser.contract.AddUserInTaskViewModel
 import com.vungn.todoapp.ui.main.adduser.contract.implement.AddUserInTaskViewModelImpl
+import com.vungn.todoapp.ui.main.insert.InsertTaskFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,14 +54,19 @@ class AddUserInTaskFragment : Fragment(), LifecycleOwner {
     private fun handleEvent() {
         binding.apply {
             searchUser.setOnClickListener {
+                setFragmentResult(InsertTaskFragment.KEY_REQUEST,
+                    bundleOf(InsertTaskFragment.KEY_REQUEST to viewModel.getListUser()))
+
                 findNavController().navigate(R.id.action_addUserInTaskFragment_to_searchUsserFragment,
                     null)
             }
             confirmButton.setOnClickListener {
+                setFragmentResult(InsertTaskFragment.KEY_REQUEST,
+                    bundleOf(InsertTaskFragment.KEY_REQUEST to viewModel.getListUser()))
+
                 findNavController().popBackStack()
             }
             buttonBack.setOnClickListener {
-                viewModelMainActivity.cancelAddUser()
                 findNavController().popBackStack()
             }
         }
@@ -76,8 +84,11 @@ class AddUserInTaskFragment : Fragment(), LifecycleOwner {
         )
         binding.recyclerView.addItemDecoration(itemDecorator)
 
-        viewModelMainActivity.guests.observe(viewLifecycleOwner) {
-            adapter.addList(it)
+        setFragmentResultListener(InsertTaskFragment.KEY_REQUEST) { _, bundle ->
+            val list = bundle.getParcelableArrayList<UserResponse>(InsertTaskFragment.KEY_BUNDLE)
+                ?: return@setFragmentResultListener
+            viewModel.setListUser(list)
+            adapter.addList(list)
             binding.recyclerView.adapter = adapter
 
             adapter.setOnItemClickListener(object : AddUserRecycleViewAdapter.OnItemClickListener {
@@ -85,8 +96,6 @@ class AddUserInTaskFragment : Fragment(), LifecycleOwner {
                     viewModelMainActivity.deleteUser(index)
                 }
             })
-
-            Log.d(TAG, "loadRecycleView: list change ${it.size}")
         }
     }
 

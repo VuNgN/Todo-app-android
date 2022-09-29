@@ -1,8 +1,14 @@
 package com.vungn.todoapp.data.model.reponse
 
+import android.os.Parcelable
+import androidx.room.Ignore
 import com.google.gson.annotations.SerializedName
+import com.vungn.todoapp.data.model.User
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
+@Parcelize
 data class UserResponse(
     @SerializedName("id")
     val id: Int,
@@ -11,5 +17,5 @@ data class UserResponse(
     @SerializedName("email")
     val email: String,
     @SerializedName("avatar")
-    val avatar: String
-) :Serializable
+    val avatar: String,
+) : Parcelable

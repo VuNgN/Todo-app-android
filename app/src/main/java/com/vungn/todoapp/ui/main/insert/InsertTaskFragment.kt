@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.core.os.bundleOf
+import androidx.fragment.app.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
@@ -20,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.vungn.todoapp.R
+import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.FragmentInsertTaskBinding
 import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
 import com.vungn.todoapp.ui.main.activity.constract.implement.MainViewModelImpl
@@ -32,7 +32,7 @@ import java.util.*
 @AndroidEntryPoint
 class InsertTaskFragment : Fragment(), LifecycleOwner {
     private lateinit var binding: FragmentInsertTaskBinding
-    private val vm: InsertTaskViewModel by viewModels<InsertTaskViewModelImpl>()
+    private val viewModel: InsertTaskViewModel by viewModels<InsertTaskViewModelImpl>()
     private val viewModelMainActivity: MainViewModel by activityViewModels<MainViewModelImpl>()
 
     private val calendarConstraints = CalendarConstraints.Builder()
@@ -53,7 +53,12 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
     ): View = FragmentInsertTaskBinding.inflate(inflater, container, false).also {
         binding = it
         binding.lifecycleOwner = this
-        binding.vm = vm
+        binding.vm = viewModel
+        setFragmentResultListener(KEY_REQUEST) { _, bundle ->
+            val list = bundle.getParcelableArrayList<UserResponse>(KEY_BUNDLE)
+                ?: return@setFragmentResultListener
+            viewModel.setListUser(list)
+        }
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,20 +85,24 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
             buttonBack.setOnClickListener {
                 findNavController().popBackStack()
             }
+
+// thực hiện gửi list user cho màn hình hiển thị
             participantsEditText.setOnClickListener {
+                setFragmentResult(KEY_REQUEST, bundleOf(KEY_BUNDLE to viewModel.getListUser()))
                 findNavController().navigate(R.id.action_insertTaskFragment_to_addUserInTaskFragment,
                     null)
             }
-            viewModelMainActivity.guests.observe(viewLifecycleOwner) {
-                if (it.size < 1) {
-                    participantsEditText.setText("No participants yet")
-                } else if (it.size == 1) {
-                    participantsEditText.setText("${it.get(0).name} join")
-                } else if (it.size > 1) {
-                    participantsEditText.setText("${it.get(0).name} and ${it.size - 1} other people join")
-                }
-                viewModelMainActivity.oldLiveDataUserGuest.postValue(it)
+
+            if (viewModel.getListUser().isEmpty()) {
+                participantsEditText.setText("No participants yet")
+            } else if (viewModel.getListUser().size == 1) {
+                participantsEditText.setText("${viewModel.getListUser().get(0).name} join")
+            } else if (viewModel.getListUser().size > 1) {
+                participantsEditText.setText("${
+                    viewModel.getListUser().get(0).name
+                } and ${viewModel.getListUser().size - 1} other people join")
             }
+
         }
 
     }
@@ -106,7 +115,7 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
         }.time
         val formattedDate = formatToISO8601(date)
         Log.d("", "datePicker: $formattedDate")
-        vm.dueDate().postValue(formattedDate)
+        viewModel.dueDate().postValue(formattedDate)
     }
 
     private fun setupUi() {
@@ -118,7 +127,7 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
             (repeat.editText as AutoCompleteTextView).setText(dropdownAdapter.getItem(3), false)
         }
 
-        vm.isLoading().observe(viewLifecycleOwner) {
+        viewModel.isLoading().observe(viewLifecycleOwner) {
             binding.apply {
                 if (it) {
                     saveButton.visibility = View.GONE
@@ -131,11 +140,11 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
             }
         }
 
-        vm.isValid().observe(viewLifecycleOwner) {
+        viewModel.isValid().observe(viewLifecycleOwner) {
             binding.saveButton.isEnabled = it
         }
 
-        vm.isSaveSuccess().observe(viewLifecycleOwner) {
+        viewModel.isSaveSuccess().observe(viewLifecycleOwner) {
             if (it) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     Snackbar.make(this.requireView(), "Add success!", Snackbar.LENGTH_SHORT)
@@ -146,5 +155,10 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
                 findNavController().popBackStack()
             }
         }
+    }
+
+    companion object {
+        const val KEY_REQUEST = "REQUEST_LIST_USER"
+        const val KEY_BUNDLE = "BUNDLE_LIST_USER"
     }
 }

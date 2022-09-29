@@ -4,13 +4,14 @@ import android.app.Application
 import com.vungn.todoapp.data.database.Db
 import com.vungn.todoapp.data.database.dao.TaskDao
 import com.vungn.todoapp.data.model.Task
+import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.data.repository.TaskRepo
 import com.vungn.todoapp.util.TimeUtil.formatFromISO8601ToDay
 import com.vungn.todoapp.util.TimeUtil.formatToISO8601
 import java.util.*
 import javax.inject.Inject
 
-class TaskRepoImpl @Inject constructor(application: Application,) : TaskRepo {
+class TaskRepoImpl @Inject constructor(application: Application) : TaskRepo {
     private val taskDao: TaskDao by lazy {
         Db.getInstance(application).taskDao()
     }
@@ -46,4 +47,16 @@ class TaskRepoImpl @Inject constructor(application: Application,) : TaskRepo {
         } catch (e: Exception) {
             false
         }
+
+    private val list: MutableList<UserResponse> = mutableListOf()
+
+    override suspend fun addUserInTask(list: List<UserResponse>) {
+        this.list.clear()
+        this.list.addAll(list)
+    }
+
+    override suspend fun loadUserInTask(): List<UserResponse> {
+        return list
+    }
+
 }

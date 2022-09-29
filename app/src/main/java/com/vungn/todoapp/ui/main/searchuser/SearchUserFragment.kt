@@ -11,16 +11,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.vungn.todoapp.R
 import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.FragmentSearchUsserBinding
-import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
-import com.vungn.todoapp.ui.main.activity.constract.implement.MainViewModelImpl
+import com.vungn.todoapp.ui.main.insert.InsertTaskFragment
 import com.vungn.todoapp.ui.main.searchuser.adapter.SearchUserAdapter
 import com.vungn.todoapp.ui.main.searchuser.constract.SearchUserViewModel
 import com.vungn.todoapp.ui.main.searchuser.constract.implement.SearchUserViewModelImpl
@@ -32,7 +33,6 @@ class SearchUserFragment : Fragment() {
     private lateinit var binding: FragmentSearchUsserBinding
 
     private val vm: SearchUserViewModel by viewModels<SearchUserViewModelImpl>()
-    private val viewModelMainActivity: MainViewModel by activityViewModels<MainViewModelImpl>()
 
     private val adapter = SearchUserAdapter()
 
@@ -64,7 +64,11 @@ class SearchUserFragment : Fragment() {
 
             searchUser.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(charSequence: Editable?) {
-                    viewmodel!!.search()
+                    try {
+                        viewmodel!!.search()
+                    } catch (e: Exception) {
+                        Log.d(TAG, "afterTextChanged: exception = $e")
+                    }
                 }
 
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -84,21 +88,32 @@ class SearchUserFragment : Fragment() {
                 R.drawable.divider
             ))!!
         )
+
         binding.recyclerView.addItemDecoration(itemDecorator)
+
+        val list = mutableListOf<UserResponse>()
 
         vm.listUserSearch.observe(viewLifecycleOwner) {
 
-            if (viewModelMainActivity.guests.value == null) {
-                adapter.addList(it)
-            } else {
-                adapter.addList(it, viewModelMainActivity.guests.value!!)
+            setFragmentResultListener(InsertTaskFragment.KEY_REQUEST) { _, bundle ->
+                val listRequest =
+                    bundle.getParcelableArrayList<UserResponse>(InsertTaskFragment.KEY_BUNDLE)
+                        ?: return@setFragmentResultListener
+                list.addAll(listRequest)
             }
 
+            if (list.size == 0) {
+                adapter.addList(it)
+            } else {
+                adapter.addList(it, list)
+            }
             binding.recyclerView.adapter = adapter
 
             adapter.setOnItemClickListener(object : SearchUserAdapter.OnItemClickListener {
                 override fun onItemClick(user: UserResponse) {
-                    viewModelMainActivity.addUser(user)
+                    list.add(user)
+                    setFragmentResult(InsertTaskFragment.KEY_REQUEST,
+                        bundleOf(InsertTaskFragment.KEY_BUNDLE to list))
                     Log.d(TAG, "onItemClick: ${user.name}")
                     findNavController().popBackStack()
                 }
