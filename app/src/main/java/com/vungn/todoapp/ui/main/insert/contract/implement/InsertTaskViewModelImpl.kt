@@ -1,20 +1,27 @@
 package com.vungn.todoapp.ui.main.insert.contract.implement
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import com.vungn.todoapp.common.livedata.CombinedLiveData
-import com.vungn.todoapp.data.model.Task
-import com.vungn.todoapp.data.repository.TaskRepo
-import com.vungn.todoapp.data.repository.impl.TaskRepoImpl
+import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.ui.main.insert.contract.InsertTaskViewModel
-import com.vungn.todoapp.util.TimeUtil.formatToISO8601
+import com.vungn.todoapp.usecase.search.GetListUserUseCase
+import com.vungn.todoapp.usecase.search.SetListUserUseCase
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidDesc
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidDueDate
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidName
 import com.vungn.todoapp.util.extention.ValidatorEx.isValidRepeat
-import java.util.*
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class InsertTaskViewModelImpl(application: Application) : AndroidViewModel(application),
+@HiltViewModel
+class InsertTaskViewModelImpl @Inject constructor(
+    application: Application,
+    private val setListUserUseCase: SetListUserUseCase,
+    private val getListUserUseCase: GetListUserUseCase,
+) : AndroidViewModel(application),
     InsertTaskViewModel {
     private val name: MutableLiveData<String> = MutableLiveData()
     private val repeat: MutableLiveData<String> = MutableLiveData()
@@ -22,9 +29,8 @@ class InsertTaskViewModelImpl(application: Application) : AndroidViewModel(appli
     private val dueDate: MutableLiveData<String> = MutableLiveData()
     private val isSaveSuccess: MutableLiveData<Boolean> = MutableLiveData()
     private val isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    private val taskRepo: TaskRepo by lazy {
-        TaskRepoImpl(application)
-    }
+
+    private val users = mutableListOf<UserResponse>()
 
     override fun name(): MutableLiveData<String> = name
 
@@ -55,25 +61,28 @@ class InsertTaskViewModelImpl(application: Application) : AndroidViewModel(appli
     }
 
     override fun save() {
-        isLoading.postValue(true)
-        val currentDate = Calendar.getInstance().apply {}.time
-        val formattedDate = formatToISO8601(currentDate)
-        val task = Task(title = name.value.toString(),
-            description = description.value.toString(),
-            repeat = repeat.value.toString(),
-            startOn = formattedDate,
-            dueDate = dueDate.value.toString())
-        if (taskRepo.insertNewTask(task)) {
-            isSaveSuccess.postValue(true)
-        } else {
-            isSaveSuccess.postValue(false)
-        }
-        isLoading.postValue(false)
+//        isLoading.postValue(true)
+//        val currentDate = Calendar.getInstance().apply {}.time
+//        val formattedDate = formatToISO8601(currentDate)
+//        val task = Task(title = name.value.toString(),
+//            description = description.value.toString(),
+//            repeat = repeat.value.toString(),
+//            startOn = formattedDate,
+//            dueDate = dueDate.value.toString())
+//        if (taskRepo.insertNewTask(task)) {
+//            isSaveSuccess.postValue(true)
+//        } else {
+//            isSaveSuccess.postValue(false)
+//        }
+//        isLoading.postValue(false)
     }
 
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return InsertTaskViewModelImpl(application) as T
-        }
+    override fun setListUser(list: List<UserResponse>) {
+        users.clear()
+        users.addAll(list)
+    }
+
+    override fun getListUser(): List<UserResponse> {
+        return users
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="user"
+            type="com.vungn.todoapp.data.model.reponse.UserResponse" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="5dp">
+        <TextView
+            android:id="@+id/row_ItemNameSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="@{user.name}"
+            android:textColor="@color/text_gray_task"
+            android:paddingStart="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/border_input_text_color" />
+    </LinearLayout>
+</layout>

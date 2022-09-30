@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/insertTaskFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -65,7 +65,11 @@
         android:id="@+id/insertTaskFragment"
         android:name="com.vungn.todoapp.ui.main.insert.InsertTaskFragment"
         android:label="fragment_insert_task"
-        tools:layout="@layout/fragment_insert_task" />
+        tools:layout="@layout/fragment_insert_task" >
+        <action
+            android:id="@+id/action_insertTaskFragment_to_addUserInTaskFragment"
+            app:destination="@id/addUserInTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.vungn.todoapp.ui.main.setting.SettingFragment"
@@ -96,5 +100,27 @@
         android:name="com.vungn.todoapp.ui.main.privacypolicies.PrivacyPoliciesFragment"
         android:label="fragment_privacy_policies"
         tools:layout="@layout/fragment_privacy_policies" />
+    <fragment
+        android:id="@+id/addUserInTaskFragment"
+        android:name="com.vungn.todoapp.ui.main.adduser.AddUserInTaskFragment"
+        android:label="AddUserInTaskFragment"
+        tools:layout="@layout/fragment_add_user_in_task">
+        <action
+            android:id="@+id/action_addUserInTaskFragment_to_searchUsserFragment"
+            app:destination="@id/searchUsserFragment" />
+
+        <argument
+            android:name="users"
+            app:argType="com.vungn.todoapp.data.model.reponse.UserRespons"/>
+    </fragment>
+    <fragment
+        android:id="@+id/searchUsserFragment"
+        android:name="com.vungn.todoapp.ui.main.searchuser.SearchUserFragment"
+        android:label="SearchUsserFragment"
+        tools:layout="@layout/fragment_search_usser">
+        <argument
+            android:name="users"
+            app:argType="com.vungn.todoapp.data.model.reponse.UserRespons"/>
+    </fragment>
 
 </navigation>

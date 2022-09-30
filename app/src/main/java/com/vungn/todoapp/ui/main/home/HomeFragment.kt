@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.vungn.todoapp.R
 import com.vungn.todoapp.data.model.Task
@@ -21,10 +23,12 @@ import com.vungn.todoapp.ui.main.home.adapter.HorizontalTaskAdapter
 import com.vungn.todoapp.ui.main.home.constant.TabType
 import com.vungn.todoapp.ui.main.home.contract.HomeViewModel
 import com.vungn.todoapp.ui.main.home.contract.implement.HomeViewModelImpl
+import dagger.hilt.android.AndroidEntryPoint
 
-class HomeFragment : Fragment() {
+@AndroidEntryPoint
+class HomeFragment : Fragment(), LifecycleOwner {
     private lateinit var adapter: HorizontalTaskAdapter
-    private lateinit var vm: HomeViewModel
+    private val vm: HomeViewModel by viewModels<HomeViewModelImpl>()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -32,10 +36,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View = FragmentHomeBinding.inflate(inflater, container, false).also {
-        val factory = HomeViewModelImpl.Factory(this@HomeFragment.requireActivity().application)
-        vm = ViewModelProvider(this, factory)[HomeViewModelImpl::class.java]
         _binding = it
         _binding?.vm = vm
+        vm.loadUser()
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -90,10 +93,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupUi() {
+
+        vm.avatar.observe(viewLifecycleOwner) {
+
+            Glide.with(this).load(it).into(binding.avartarImageView)
+        }
+        vm.name.observe(viewLifecycleOwner) {
+            binding.nameTextview.setText(it)
+        }
+
         adapter = HorizontalTaskAdapter()
         binding.apply {
-            recycleView.adapter = adapter
-            recycleView.layoutManager =
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager =
                 LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
             val itemDecoration =
                 DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL)
@@ -103,9 +115,9 @@ class HomeFragment : Fragment() {
                     R.drawable.decorator
                 )!!
             )
-            recycleView.addItemDecoration(itemDecoration)
+            recyclerView.addItemDecoration(itemDecoration)
             val snapHelper: SnapHelper = LinearSnapHelper()
-            snapHelper.attachToRecyclerView(binding.recycleView)
+            snapHelper.attachToRecyclerView(recyclerView)
             updateRecycleView(listOf())
         }
     }
@@ -115,14 +127,14 @@ class HomeFragment : Fragment() {
         adapter.notifyChange(
             maxOf(
                 0,
-                (binding.recycleView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() - 3
+                (binding.recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() - 3
             ),
             minOf(
-                (binding.recycleView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition() + 5,
+                (binding.recyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition() + 5,
                 adapter.itemCount
             )
         )
-        (binding.recycleView.layoutManager as LinearLayoutManager).scrollToPosition(0)
-        binding.recycleView.startLayoutAnimation()
+        (binding.recyclerView.layoutManager as LinearLayoutManager).scrollToPosition(0)
+        binding.recyclerView.startLayoutAnimation()
     }
 }

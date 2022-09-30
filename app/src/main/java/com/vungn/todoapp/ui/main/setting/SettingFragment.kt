@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
@@ -15,27 +17,32 @@ import com.vungn.todoapp.databinding.FragmentSettingBinding
 import com.vungn.todoapp.ui.main.activity.MainActivity
 import com.vungn.todoapp.ui.main.setting.contract.SettingViewModel
 import com.vungn.todoapp.ui.main.setting.contract.implement.SettingViewModelImpl
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class SettingFragment : Fragment() {
+@AndroidEntryPoint
+class SettingFragment : Fragment(),LifecycleOwner {
     private lateinit var binding: FragmentSettingBinding
-    private lateinit var viewModel: SettingViewModel
+    private val viewModel: SettingViewModel by viewModels<SettingViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = FragmentSettingBinding.inflate(inflater, container, false).also {
-        val factory =
-            SettingViewModelImpl.Factory(this@SettingFragment.requireActivity().application)
-        viewModel = ViewModelProvider(this, factory)[SettingViewModelImpl::class.java]
         binding = it
+        viewModel.loadUser()
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply {
-            user = User(name = "alo alo", email = "", passwd = "", address = "")
+        viewModel.email.observe(viewLifecycleOwner){
+            binding.emailTexView.setText(it)
+        }
+        viewModel.name.observe(viewLifecycleOwner){
+            binding.nameTextview.setText(it)
+        }
+        viewModel.avatar.observe(viewLifecycleOwner){
+//            Glide.with(this).load(it).into(binding.avatarImageView)
         }
         handleEvent()
         setupStatusBarColor(R.color.primary_variant)

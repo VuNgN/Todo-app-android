@@ -177,7 +177,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/edge_horizontal"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="35dp"
                     android:drawablePadding="@dimen/edit_text_drawable_padding"
                     app:boxBackgroundColor="@color/white"
                     app:boxBackgroundMode="filled"
@@ -203,6 +202,43 @@
                         android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
                         android:paddingVertical="@dimen/edit_text_padding_vertical"
                         android:text="@={vm.dueDate}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/edit_text_text_size_login_register" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/participants"
+                    style="@style/ThemeOverlay.App.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/edge_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"
+                    android:drawablePadding="@dimen/edit_text_drawable_padding"
+                    app:boxBackgroundColor="@color/white"
+                    app:boxBackgroundMode="filled"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/color_error"
+                    app:endIconDrawable="@drawable/ic_round_keyboard_arrow_down_24"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/black"
+                    app:hintEnabled="false"
+                    app:startIconDrawable="@drawable/ic_people_outline"
+                    app:startIconTint="@color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/participantsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:fontFamily="@font/poppins_light"
+                        android:hint="Task participants"
+                        android:inputType="none"
+                        android:maxLines="2"
+                        android:paddingHorizontal="@dimen/edit_text_padding_horizontal"
+                        android:paddingVertical="@dimen/edit_text_padding_vertical"
                         android:textColor="@color/black"
                         android:textSize="@dimen/edit_text_text_size_login_register" />
 

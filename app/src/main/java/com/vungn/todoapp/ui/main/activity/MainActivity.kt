@@ -8,11 +8,17 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.vungn.todoapp.R
 import com.vungn.todoapp.ui.authentication.activity.AuthenticationActivity
+import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
+import com.vungn.todoapp.ui.main.activity.constract.implement.MainViewModelImpl
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

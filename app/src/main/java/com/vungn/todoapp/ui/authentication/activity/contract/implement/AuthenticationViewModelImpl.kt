@@ -1,18 +1,20 @@
 package com.vungn.todoapp.ui.authentication.activity.contract.implement
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.vungn.todoapp.data.repository.ConfigManager
 import com.vungn.todoapp.ui.authentication.activity.contract.AuthenticationViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AuthenticationViewModelImpl(application: Application) : AndroidViewModel(
+@HiltViewModel
+class AuthenticationViewModelImpl @Inject constructor(
+    application: Application,
+    private val configManager: ConfigManager,
+) : AndroidViewModel(
     application
 ), AuthenticationViewModel {
-    private val configManager: ConfigManager by lazy {
-        ConfigManager(application.applicationContext)
-    }
 
     override fun isFirstRun(): Boolean =
         if (configManager.isFirstRun()) {
@@ -22,12 +24,12 @@ class AuthenticationViewModelImpl(application: Application) : AndroidViewModel(
             false
         }
 
-    override fun isLoggedIn(): Boolean = configManager.isLoggedIn()
+    @SuppressLint("LongLogTag")
+    override fun isLoggedIn(): Boolean {
+        return configManager.isLoggedIn()
+    }
 
-
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return AuthenticationViewModelImpl(application) as T
-        }
+    companion object {
+        private val TAG = "AuthenticationViewModelImpl"
     }
 }

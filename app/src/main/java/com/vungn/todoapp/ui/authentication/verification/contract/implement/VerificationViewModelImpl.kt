@@ -7,12 +7,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.vungn.todoapp.data.repository.ConfigManager
 import com.vungn.todoapp.ui.authentication.verification.contract.VerificationViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class VerificationViewModelImpl(application: Application) : AndroidViewModel(application),
+@HiltViewModel
+class VerificationViewModelImpl @Inject constructor(
+    application: Application,
+    private val configManager: ConfigManager,
+) : AndroidViewModel(application),
     VerificationViewModel {
-    private val configManager: ConfigManager by lazy {
-        ConfigManager(application.applicationContext)
-    }
 
     private val otp = MutableLiveData<String>()
     private val navigation = MutableLiveData<Boolean>()
@@ -30,11 +33,5 @@ class VerificationViewModelImpl(application: Application) : AndroidViewModel(app
 
     override fun otpCompleted(otp: String) {
         this.otp.value = otp
-    }
-
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return VerificationViewModelImpl(application) as T
-        }
     }
 }

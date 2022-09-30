@@ -2,21 +2,34 @@ package com.vungn.todoapp.ui.main.home.contract.implement
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.vungn.todoapp.data.model.Task
 import com.vungn.todoapp.data.repository.TaskRepo
-import com.vungn.todoapp.data.repository.impl.TaskRepoImpl
 import com.vungn.todoapp.ui.main.home.constant.TabType
 import com.vungn.todoapp.ui.main.home.contract.HomeViewModel
+import com.vungn.todoapp.usecase.home.LoadInfoUserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
-class HomeViewModelImpl(application: Application) : AndroidViewModel(application), HomeViewModel {
+@HiltViewModel
+class HomeViewModelImpl @Inject constructor(
+    application: Application,
+    private val taskRepo: TaskRepo,
+    private val loadInfoUserUseCase: LoadInfoUserUseCase,
+) : AndroidViewModel(application), HomeViewModel {
     private val tasks: MutableLiveData<List<Task>> = MutableLiveData()
-    private val taskRepo: TaskRepo by lazy {
-        TaskRepoImpl(application)
-    }
+
+    private val mutableName: MutableLiveData<String> = MutableLiveData()
+    override val name: LiveData<String>
+        get() = mutableName
+
+    private val mutableAvartar: MutableLiveData<String> = MutableLiveData()
+    override val avatar: LiveData<String>
+        get() = mutableAvartar
 
     override fun tasks(): MutableLiveData<List<Task>> = tasks
 
@@ -39,9 +52,12 @@ class HomeViewModelImpl(application: Application) : AndroidViewModel(application
         this.tasks.postValue(tasks)
     }
 
-    class Factory(private val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return HomeViewModelImpl(application) as T
+    override fun loadUser() {
+        viewModelScope.launch {
+            val user = loadInfoUserUseCase.getUserFromJson()
+            mutableName.postValue(user.name)
+            mutableAvartar.postValue(user.avatar)
         }
     }
+
 }

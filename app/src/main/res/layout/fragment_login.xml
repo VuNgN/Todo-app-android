@@ -165,6 +165,7 @@
             android:textColor="@color/text_gray" />
 
         <Button
+            android:id="@+id/ggBtn"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height_social_login"
             android:layout_marginHorizontal="@dimen/button_margin_horizontal_login_register"

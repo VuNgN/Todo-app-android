@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.vungn.todoapp.ui.main.adduser.contract.AddUserInTaskViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.adduser.AddUserInTaskFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/buttonBack"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:contentDescription="@null"
+                android:scaleType="center"
+                android:src="@drawable/ic_round_arrow_back_ios_new_24"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Insert User"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="@id/buttonBack"
+                app:layout_constraintStart_toEndOf="@id/buttonBack" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/searchUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_search"
+            android:elevation="5dp"
+            android:orientation="horizontal"
+            android:paddingVertical="5dp">
+
+            <ImageView
+                android:layout_width="25sp"
+                android:layout_height="25sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:backgroundTint="@color/border_input_text_color"
+                android:completionThreshold="1"
+                android:dropDownWidth="match_parent"
+                android:editable="false"
+                android:focusable="false"
+                android:hint=" Search..."
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/background_line"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="15dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_user"
+            tools:orientation="vertical" />
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ripple_primary_button"
+            android:text="Confirm"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+</layout>

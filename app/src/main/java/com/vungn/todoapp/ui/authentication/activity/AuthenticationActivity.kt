@@ -8,33 +8,34 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.vungn.todoapp.R
 import com.vungn.todoapp.databinding.ActivityAuthenticationBinding
 import com.vungn.todoapp.ui.authentication.activity.contract.AuthenticationViewModel
 import com.vungn.todoapp.ui.authentication.activity.contract.implement.AuthenticationViewModelImpl
 import com.vungn.todoapp.ui.main.activity.MainActivity
 import com.vungn.todoapp.util.extention.CommonEx.popupAndGo
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthenticationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthenticationBinding
-    private lateinit var viewHolder: AuthenticationViewModel
+    private val viewModel: AuthenticationViewModel by viewModels<AuthenticationViewModelImpl>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthenticationBinding.inflate(layoutInflater)
-        val factory = AuthenticationViewModelImpl.Factory(this@AuthenticationActivity.application)
-        viewHolder = ViewModelProvider(this, factory)[AuthenticationViewModelImpl::class.java]
         setContentView(binding.root)
-        if (viewHolder.isLoggedIn()) {
+
+        if (viewModel.isLoggedIn()) {
             login()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (viewHolder.isFirstRun()) {
+        if (viewModel.isFirstRun()) {
             binding.myNavHostFragment.popupAndGo(R.id.loginFragment, R.id.getStartedFragment)
         } else {
             binding.myNavHostFragment.popupAndGo(R.id.getStartedFragment, R.id.loginFragment)

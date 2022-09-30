@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.vungn.todoapp.R
@@ -14,22 +15,21 @@ import com.vungn.todoapp.databinding.FragmentVerificationBinding
 import com.vungn.todoapp.ui.authentication.activity.AuthenticationActivity
 import com.vungn.todoapp.ui.authentication.verification.contract.VerificationViewModel
 import com.vungn.todoapp.ui.authentication.verification.contract.implement.VerificationViewModelImpl
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class VerificationFragment : Fragment() {
     private lateinit var countDownTimer: CountDownTimer
     private var _binding: FragmentVerificationBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: VerificationViewModel
+    private val viewModel: VerificationViewModel by viewModels<VerificationViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = FragmentVerificationBinding.inflate(layoutInflater, container, false).also {
         _binding = it
-        val factory =
-            VerificationViewModelImpl.Factory(this@VerificationFragment.requireActivity().application)
-        viewModel = ViewModelProvider(this, factory)[VerificationViewModelImpl::class.java]
         _binding?.viewModel = viewModel
     }.root
 
