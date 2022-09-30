@@ -14,14 +14,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.vungn.todoapp.R
+import com.vungn.todoapp.data.model.reponse.UserRespons
 import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.FragmentSearchUsserBinding
-import com.vungn.todoapp.ui.main.insert.InsertTaskFragment
 import com.vungn.todoapp.ui.main.searchuser.adapter.SearchUserAdapter
 import com.vungn.todoapp.ui.main.searchuser.constract.SearchUserViewModel
 import com.vungn.todoapp.ui.main.searchuser.constract.implement.SearchUserViewModelImpl
@@ -93,14 +92,10 @@ class SearchUserFragment : Fragment() {
 
         val list = mutableListOf<UserResponse>()
 
-        vm.listUserSearch.observe(viewLifecycleOwner) {
-
-            setFragmentResultListener(InsertTaskFragment.KEY_REQUEST) { _, bundle ->
-                val listRequest =
-                    bundle.getParcelableArrayList<UserResponse>(InsertTaskFragment.KEY_BUNDLE)
-                        ?: return@setFragmentResultListener
-                list.addAll(listRequest)
-            }
+        vm.resultSearch.observe(viewLifecycleOwner) {
+            val listRequest: UserRespons =
+                SearchUserFragmentArgs.fromBundle(requireArguments()).users
+            list.addAll(listRequest)
 
             if (list.size == 0) {
                 adapter.addList(it)
@@ -111,9 +106,7 @@ class SearchUserFragment : Fragment() {
 
             adapter.setOnItemClickListener(object : SearchUserAdapter.OnItemClickListener {
                 override fun onItemClick(user: UserResponse) {
-                    list.add(user)
-                    setFragmentResult(InsertTaskFragment.KEY_REQUEST,
-                        bundleOf(InsertTaskFragment.KEY_BUNDLE to list))
+                    setFragmentResult(KEY_SEARCH_REQUEST, bundleOf(KEY_USER_SEARCH to user))
                     Log.d(TAG, "onItemClick: ${user.name}")
                     findNavController().popBackStack()
                 }
@@ -123,5 +116,7 @@ class SearchUserFragment : Fragment() {
 
     companion object {
         private val TAG = "SearchUsserFragment"
+        const val KEY_SEARCH_REQUEST = "REQUEST"
+        const val KEY_USER_SEARCH = "SEND_SEARCH"
     }
 }

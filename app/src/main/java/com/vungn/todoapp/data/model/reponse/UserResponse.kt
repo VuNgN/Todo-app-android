@@ -19,3 +19,6 @@ data class UserResponse(
     @SerializedName("avatar")
     val avatar: String,
 ) : Parcelable
+
+@Parcelize
+class UserRespons : ArrayList<UserResponse>(), Parcelable

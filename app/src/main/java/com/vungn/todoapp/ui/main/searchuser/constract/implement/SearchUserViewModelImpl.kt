@@ -11,7 +11,6 @@ import com.vungn.todoapp.ui.main.searchuser.constract.SearchUserViewModel
 import com.vungn.todoapp.usecase.search.SearchUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,21 +21,17 @@ class SearchUserViewModelImpl @Inject constructor(
     AndroidViewModel(application) {
 
 
-    private val listUser: MutableLiveData<List<UserResponse>> = MutableLiveData()
-    override val listUserSearch: LiveData<List<UserResponse>> = listUser
+    private val searchResult: MutableLiveData<List<UserResponse>> = MutableLiveData()
+    override val resultSearch: LiveData<List<UserResponse>> = searchResult
 
     private val key: MutableLiveData<String> = MutableLiveData()
     override fun keySearch(): MutableLiveData<String> = key
 
     override fun search() {
         viewModelScope.launch {
-            try {
-                val listSearch = searchUserUseCase.execute(key.value.toString())
-                Log.d(TAG, "search: ${key.value.toString()}")
-                listUser.postValue(listSearch)
-            } catch (e: Exception) {
-                Log.e(TAG, "search: $e", e)
-            }
+            val listSearch = searchUserUseCase.execute(key.value.toString())
+            Log.d(TAG, "search: ${key.value.toString()}")
+            searchResult.postValue(listSearch)
         }
     }
 

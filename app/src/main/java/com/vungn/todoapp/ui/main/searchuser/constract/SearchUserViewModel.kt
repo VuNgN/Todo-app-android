@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.vungn.todoapp.data.model.reponse.UserResponse
 
 interface SearchUserViewModel {
-    val listUserSearch: LiveData<List<UserResponse>>
+    val resultSearch: LiveData<List<UserResponse>>
     fun keySearch(): MutableLiveData<String>
     fun search()
 }

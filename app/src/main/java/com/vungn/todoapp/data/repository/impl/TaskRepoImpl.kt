@@ -1,6 +1,7 @@
 package com.vungn.todoapp.data.repository.impl
 
 import android.app.Application
+import android.util.Log
 import com.vungn.todoapp.data.database.Db
 import com.vungn.todoapp.data.database.dao.TaskDao
 import com.vungn.todoapp.data.model.Task
@@ -57,6 +58,10 @@ class TaskRepoImpl @Inject constructor(application: Application) : TaskRepo {
 
     override suspend fun loadUserInTask(): List<UserResponse> {
         return list
+    }
+
+    companion object{
+        private val TAG = "TaskRepoImpl"
     }
 
 }

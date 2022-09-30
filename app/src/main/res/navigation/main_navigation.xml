@@ -108,11 +108,19 @@
         <action
             android:id="@+id/action_addUserInTaskFragment_to_searchUsserFragment"
             app:destination="@id/searchUsserFragment" />
+
+        <argument
+            android:name="users"
+            app:argType="com.vungn.todoapp.data.model.reponse.UserRespons"/>
     </fragment>
     <fragment
         android:id="@+id/searchUsserFragment"
         android:name="com.vungn.todoapp.ui.main.searchuser.SearchUserFragment"
         android:label="SearchUsserFragment"
-        tools:layout="@layout/fragment_search_usser"/>
+        tools:layout="@layout/fragment_search_usser">
+        <argument
+            android:name="users"
+            app:argType="com.vungn.todoapp.data.model.reponse.UserRespons"/>
+    </fragment>
 
 </navigation>

@@ -5,9 +5,10 @@ import com.vungn.todoapp.data.repository.TaskRepo
 import vn.com.vti.learnningdisplay.base.usecase.UseCase
 import javax.inject.Inject
 
-class setListUserUseCase @Inject constructor(private val taskRepo: TaskRepo) {
+class GetListUserUseCase @Inject constructor(private val taskRepo: TaskRepo) :
+    UseCase<Unit, List<UserResponse>> {
 
-    suspend fun execute(params: List<UserResponse>) {
-        taskRepo.addUserInTask(params)
+    override suspend fun execute(params: Unit): List<UserResponse> {
+        return taskRepo.loadUserInTask()
     }
 }

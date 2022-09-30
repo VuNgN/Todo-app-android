@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import androidx.core.os.bundleOf
 import androidx.fragment.app.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
@@ -19,10 +18,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.vungn.todoapp.R
+import com.vungn.todoapp.data.model.reponse.UserRespons
 import com.vungn.todoapp.data.model.reponse.UserResponse
 import com.vungn.todoapp.databinding.FragmentInsertTaskBinding
-import com.vungn.todoapp.ui.main.activity.constract.MainViewModel
-import com.vungn.todoapp.ui.main.activity.constract.implement.MainViewModelImpl
+import com.vungn.todoapp.ui.main.adduser.AddUserInTaskFragment
 import com.vungn.todoapp.ui.main.insert.contract.InsertTaskViewModel
 import com.vungn.todoapp.ui.main.insert.contract.implement.InsertTaskViewModelImpl
 import com.vungn.todoapp.util.TimeUtil.formatToISO8601
@@ -33,7 +32,6 @@ import java.util.*
 class InsertTaskFragment : Fragment(), LifecycleOwner {
     private lateinit var binding: FragmentInsertTaskBinding
     private val viewModel: InsertTaskViewModel by viewModels<InsertTaskViewModelImpl>()
-    private val viewModelMainActivity: MainViewModel by activityViewModels<MainViewModelImpl>()
 
     private val calendarConstraints = CalendarConstraints.Builder()
         .setValidator(DateValidatorPointForward.now())
@@ -54,15 +52,11 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
         binding = it
         binding.lifecycleOwner = this
         binding.vm = viewModel
-        setFragmentResultListener(KEY_REQUEST) { _, bundle ->
-            val list = bundle.getParcelableArrayList<UserResponse>(KEY_BUNDLE)
-                ?: return@setFragmentResultListener
-            viewModel.setListUser(list)
-        }
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupUi()
         handleEvent()
     }
@@ -88,23 +82,33 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
 
 // thực hiện gửi list user cho màn hình hiển thị
             participantsEditText.setOnClickListener {
-                setFragmentResult(KEY_REQUEST, bundleOf(KEY_BUNDLE to viewModel.getListUser()))
-                findNavController().navigate(R.id.action_insertTaskFragment_to_addUserInTaskFragment,
-                    null)
+                val list = UserRespons()
+                list.addAll(viewModel.getListUser())
+
+                val action = InsertTaskFragmentDirections.actionInsertTaskFragmentToAddUserInTaskFragment(list)
+                findNavController().navigate(action)
             }
 
-            if (viewModel.getListUser().isEmpty()) {
-                participantsEditText.setText("No participants yet")
-            } else if (viewModel.getListUser().size == 1) {
-                participantsEditText.setText("${viewModel.getListUser().get(0).name} join")
-            } else if (viewModel.getListUser().size > 1) {
-                participantsEditText.setText("${
-                    viewModel.getListUser().get(0).name
-                } and ${viewModel.getListUser().size - 1} other people join")
+            setFragmentResultListener(AddUserInTaskFragment.KEY_REQUEST) { _, bundle ->
+                val list =
+                    bundle.getParcelableArrayList<UserResponse>(AddUserInTaskFragment.KEY_NEW_LIST)
+                        ?: return@setFragmentResultListener
+                viewModel.setListUser(list)
+                loadListUser()
             }
-
         }
+    }
 
+    private fun loadListUser() {
+        if (viewModel.getListUser().isEmpty()) {
+            binding.participantsEditText.setText("No participants yet")
+        } else if (viewModel.getListUser().size == 1) {
+            binding.participantsEditText.setText("${viewModel.getListUser().get(0).name} join")
+        } else if (viewModel.getListUser().size > 1) {
+            binding.participantsEditText.setText("${
+                viewModel.getListUser().get(0).name
+            } and ${viewModel.getListUser().size - 1} other people join")
+        }
     }
 
     private fun onTimePickSelectItem() {
@@ -158,7 +162,7 @@ class InsertTaskFragment : Fragment(), LifecycleOwner {
     }
 
     companion object {
-        const val KEY_REQUEST = "REQUEST_LIST_USER"
-        const val KEY_BUNDLE = "BUNDLE_LIST_USER"
+        private val TAG = "InsertTaskFragment"
+
     }
 }
